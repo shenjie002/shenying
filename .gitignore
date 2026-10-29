@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.venv/
+dist/
+out/
+public/audio/
+timeline.json
+*.tmp
+*.tmp.json
+*.log
+.DS_Store
+playwright-report/
+test-results/

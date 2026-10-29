@@ -1,0 +1,57 @@
+{
+  "title": "理解 Rust 所有权",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "intro",
+      "voiceover": "不需要垃圾回收，Rust 是怎样管理内存的？关键就在所有权。",
+      "template": "FlowSlide",
+      "props": {
+        "heading": "请求是怎样完成的？",
+        "steps": [
+          "发起请求",
+          "服务处理",
+          "返回结果"
+        ],
+        "description": "跟随数据，理解每一步的作用。"
+      }
+    },
+    {
+      "id": "rules",
+      "voiceover": "每个值都有一个所有者。同一时间，一个值只有一个所有者。当所有者离开作用域，值就会被释放。",
+      "template": "FlowSlide",
+      "props": {
+        "heading": "请求是怎样完成的？",
+        "steps": [
+          "发起请求",
+          "服务处理",
+          "返回结果"
+        ],
+        "description": "跟随数据，理解每一步的作用。"
+      }
+    },
+    {
+      "id": "code",
+      "voiceover": "把字符串从 s1 赋给 s2，所有权发生转移。这之后，不能再使用 s1。",
+      "template": "CodeSlide",
+      "props": {
+        "heading": "赋值，也可能是转移",
+        "language": "rust",
+        "code": "fn main() {\n    let s1 = String::from(\"hello\");\n    let s2 = s1; // ownership moves\n    println!(\"{}\", s2);\n}"
+      }
+    },
+    {
+      "id": "compare",
+      "voiceover": "转移会更换所有者。借用则让你在不转移所有权的情况下使用一个值。",
+      "template": "CardSlide",
+      "props": {
+        "heading": "转移，还是借用？",
+        "leftTitle": "Move · 转移",
+        "leftBody": "交出所有权，原变量不再可用。",
+        "rightTitle": "Borrow · 借用",
+        "rightBody": "通过引用访问，所有权保持不变。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "视觉升级 · 从源码到运行结果",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {"id":"visual_intro","template":"TitleSlide","voiceover":"不只是展示文字，我们可以跟随代码、流程和命令，一步一步理解知识。","visual":{"background":"glow","animation":"spring","pace":"progressive"},"props":{"title":"让讲解\n真正动起来","subtitle":"代码聚焦 × 流程演示 × 终端模拟"}},
+    {"id":"visual_flow","template":"FlowSlide","voiceover":"一个程序从源码出发，经过编译器检查，再生成可执行文件，最后运行得到结果。","visual":{"background":"grid","animation":"spring","pace":"progressive"},"props":{"heading":"从源码到运行，发生了什么？","steps":["编写源码","编译检查","生成程序","运行结果"],"description":"把抽象的处理过程，拆成可以跟随的步骤。"},"beats":[{"at":0,"target":1,"caption":"第一步：描述你希望程序完成的事情。"},{"at":0.23,"target":2,"caption":"编译器检查语法与类型。"},{"at":0.46,"target":3,"caption":"通过检查后生成可执行程序。"},{"at":0.7,"target":4,"caption":"运行程序，观察它的输出。"}]},
+    {"id":"visual_code","template":"CodeSlide","voiceover":"先创建一个字符串。然后把它赋给 s2，所有权随之转移。最后通过 s2 输出这个字符串。","visual":{"background":"glow","animation":"gentle","pace":"progressive"},"props":{"heading":"跟随高亮，理解所有权转移","language":"rust","code":"fn main() {\n    let s1 = String::from(\"hello\");\n    let s2 = s1;\n    println!(\"{}\", s2);\n}"},"beats":[{"at":0,"target":2,"caption":"创建字符串，s1 是它的所有者。"},{"at":0.33,"target":3,"caption":"赋值发生 Move，之后不能再使用 s1。"},{"at":0.67,"target":4,"caption":"现在由 s2 访问并输出字符串。"}]},
+    {"id":"visual_terminal","template":"TerminalSlide","voiceover":"在终端中先执行编译检查，再运行程序。示例输出 hello，说明程序成功执行。","visual":{"background":"grid","animation":"gentle","pace":"progressive"},"props":{"heading":"看看实际的命令与结果","commands":["cargo check","cargo run"],"outputs":["Finished dev profile successfully.","hello"]}},
+    {"id":"visual_summary","template":"BulletListSlide","voiceover":"好的讲解要分解过程、突出重点，并给出可观察的结果。让画面服务于理解，而不是只增加装饰。","visual":{"background":"plain","animation":"spring","pace":"progressive"},"props":{"heading":"画面，为理解服务","bullets":["流程图：看见处理过程","代码聚焦：把注意力放到关键行","终端演示：连接命令与结果"]}}
+  ]
+}

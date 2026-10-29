@@ -1,0 +1,12 @@
+import type {Scene} from '../shared/schema';
+
+export function NarrationEditor({scene, onChange}: {scene: Scene; onChange: (next: Scene) => void}) {
+  const segments = scene.narration ?? [];
+  const updateSegments = (next: NonNullable<Scene['narration']>) => onChange({...scene, narration: next.length ? next : undefined, voiceover: next.length ? next.map(s => s.text).join('') : scene.voiceover});
+  return <div className="motion-editor"><div className="motion-heading">分句旁白与字幕 <small>分句音频驱动画面</small></div><label>字幕<select value={scene.subtitles === false ? 'off' : 'on'} onChange={e => onChange({...scene, subtitles: e.target.value === 'on'})}><option value="on">显示字幕</option><option value="off">隐藏字幕</option></select></label><p className="beat-help">每句单独生成配音，句首可绑定代码行或画面项目。开启后，配音以这里的分句为准，自动同步整幕旁白。分句生成可能改变语气连贯性，请试听。</p>{segments.length === 0 ? <button type="button" className="secondary" onClick={() => {
+    const parts = scene.voiceover.match(/[^。！？!?\n]+[。！？!?]?/g) ?? [scene.voiceover];
+    const sentences = parts.flatMap(part => part.match(/[\s\S]{1,500}/g) ?? []).map(text => ({text: text.trim()})).filter(s => s.text);
+    if (sentences.length > 50) {window.alert('拆分超过 50 句，请先缩短旁白或拆成多幕。'); return;}
+    updateSegments(sentences);
+  }}>按句号拆分现有旁白</button> : <>{segments.map((segment, i) => <div key={i}><label>第 {i + 1} 句<textarea rows={2} value={segment.text} onChange={e => updateSegments(segments.map((s, n) => n === i ? {...s, text: e.target.value} : s))}/></label><div className="field-row"><label>句首聚焦目标（可空）<input type="number" min={1} max={100} value={segment.target ?? ''} onChange={e => updateSegments(segments.map((s, n) => n === i ? {...s, target: e.target.value ? Number(e.target.value) : undefined} : s))}/></label><label>画面解释（可空）<input value={segment.caption ?? ''} onChange={e => updateSegments(segments.map((s, n) => n === i ? {...s, caption: e.target.value} : s))}/></label></div><button type="button" className="secondary" onClick={() => updateSegments(segments.filter((_, n) => n !== i))}>删除此句</button></div>)}<div className="field-row"><button type="button" className="secondary" disabled={segments.length >= 50} onClick={() => updateSegments([...segments, {text: '补充一句讲解。'}])}>＋ 添加一句</button><button type="button" className="secondary" onClick={() => {if (window.confirm('合并为整幕配音？将清除句首目标绑定。')) onChange({...scene, narration: undefined});}}>合并为整幕配音</button></div></>}<p className="beat-help">代码目标是行号，列表/流程/终端是项目序号，对比是 1 或 2。分句绑定优先于比例节拍；字幕长句分页仍为估算，不是逐字对齐。</p></div>;
+}
