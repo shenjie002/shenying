@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {targetCount} from './capabilities';
 
 const text = z.string().trim().min(1).max(500);
 export const beatSchema = z.object({
@@ -36,11 +37,7 @@ export const scriptSchema = z.object({
   scenes: z.array(sceneSchema).min(1).max(30),
 }).superRefine((data, ctx) => {
   data.scenes.forEach((scene, index) => {
-    const limit = scene.template === 'CodeSlide' ? scene.props.code.split('\n').length
-      : scene.template === 'BulletListSlide' ? scene.props.bullets.length
-      : scene.template === 'FlowSlide' ? scene.props.steps.length
-      : scene.template === 'TerminalSlide' ? scene.props.commands.length
-      : scene.template === 'CardSlide' ? 2 : 1;
+    const limit = targetCount(scene);
     scene.narration?.forEach((segment, segmentIndex) => {
       if (segment.target && segment.target > limit) ctx.addIssue({code: 'custom', path: ['scenes', index, 'narration', segmentIndex, 'target'], message: `目标超出范围，最多 ${limit} 项`});
     });

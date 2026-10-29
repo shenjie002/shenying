@@ -64,6 +64,7 @@
 - `shenying://overview`：项目概览与文档索引。
 - `shenying://guide`：Agent 制作流程与安全约束。
 - `shenying://license`：授权条款。
+- `shenying://renderer`：真实模板动作、target 映射、时序规则与限制；生成前必读，与文章生成提示共用 shared/capabilities.ts。
 - `shenying://schema`：剧本 JSON Schema。
 - `shenying://example`：示例剧本。
 - Prompt `article_to_video`：输入 article，生成审稿优先的制作工作流指引，不自动外发或运行任务。

@@ -20,8 +20,8 @@ test('MCP 默认只读，资源和 prompt 可发现，校验保留跨字段规�
   try {
     const tools = (await client.listTools()).tools.map(t => t.name);
     assert.deepEqual(tools.sort(), ['get_capabilities', 'get_job', 'get_project', 'preview_timeline', 'validate_script']);
-    assert.equal((await client.listResources()).resources.length, 5);
-    for (const uri of ['shenying://guide', 'shenying://license', 'shenying://schema', 'shenying://overview', 'shenying://example']) {
+    assert.equal((await client.listResources()).resources.length, 6);
+    for (const uri of ['shenying://guide', 'shenying://license', 'shenying://schema', 'shenying://overview', 'shenying://example', 'shenying://renderer']) {
       const resource = await client.readResource({uri});
       assert.ok('text' in resource.contents[0] && resource.contents[0].text);
     }

@@ -38,6 +38,8 @@ Article generation optionally requires `.env` with `LLM_BASE_URL`, `LLM_MODEL`, 
 
 ## Storyboard contract
 
+The runtime capability source is `shared/capabilities.ts`, shared by article model prompts, draft review descriptions, validation target counts, and MCP `shenying://renderer`. Read [renderer contract](./docs/renderer-contract.md) before planning actions. For new AI drafts, explicitly supply visual, subtitles, and sentence narration; voiceover must equal narration text joined with single spaces. Bind only real one-based targets; captions display only in code/flow explanation areas, not other templates. None animation still permits progressive waits/code focus/terminal typing; all pace still permits bullet/flow active-item highlights. Code all mode shows at most the top 11 lines without scrolling. Do not invent camera, transition, or action fields. Existing scripts without narration remain supported.
+
 The authoritative Zod definition is `shared/schema.ts`. Root object: `title`, fixed `fps: 30`, optional `tailPaddingFrames` 0–90, and 1–30 `scenes`. Each scene has a unique safe `id`, non-empty `voiceover`, one `template`, matching `props`, and optional narration/subtitles/visual/beats. Templates:
 
 - `TitleSlide`: `title`, `subtitle`

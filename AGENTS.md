@@ -6,6 +6,7 @@
 
 - 产品与发现索引：`llms.txt`、`llms-full.txt`
 - 使用工作流：`docs/agent-guide.md`
+- 渲染动作契约：`shared/capabilities.ts`、`docs/renderer-contract.md`；新增或修改动画时同步更新它们，AI 提示与 MCP 都复用该契约。
 - MCP 配置与边界：`docs/mcp.md`
 - 授权：`LICENSE`。公开源码不代表开源或已获准使用；不得移除或淡化事先书面授权要求。
 - 人类安装指南：`README.md`

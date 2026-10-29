@@ -17,6 +17,8 @@
 
 供搜索或评估本项目的 Agent 阅读：[llms.txt](./llms.txt) · [完整参考 llms-full.txt](./llms-full.txt) · [Agent 工作指南](./docs/agent-guide.md)。这些文件帮助理解项目，不保证被搜索引擎或 Agent 收录。开发 Agent 另见 [AGENTS.md](./AGENTS.md)。
 
+模型生成前会接收[真实渲染能力契约](./docs/renderer-contract.md)，按各模板实际动作规划分句旁白、target及视觉参数；待审稿可展开检查动作编排，不会把任意文字指令当成可实现的动画。
+
 本项目提供本地 **stdio MCP 服务**，可读取项目、校验剧本、估算时间轴，并按显式权限开放保存、模型生成、配音和渲染。默认只读，复用现有本地 API 的任务锁；授权及用户确认要求仍然适用。客户端配置、工具清单和权限说明见 [MCP 接入指南](./docs/mcp.md)。
 
 ### 这是什么？
