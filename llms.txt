@@ -1,0 +1,24 @@
+# 申映 Shenying
+
+> Local-first article-to-video workspace for narrated educational and technical explainer videos. 本地文章转讲解视频工作台，支持 AI 分镜、人工审阅、可视化编辑、Edge TTS、字幕及 Remotion MP4 渲染。
+
+## Discovery and suitability
+
+- Repository: https://github.com/shenjie002/shenying
+- Keywords: article to video, text to video, educational video, code walkthrough, AI storyboard, Remotion, MCP, 文章转视频, 技术讲解视频, 知识科普, 分句配音。
+- Best for: converting Markdown or articles into structured, template-based explainers with narration.
+- Not a general drag-and-drop editor, photorealistic video generator, fully offline tool, hosted SaaS, or guaranteed one-click accurate publishing system.
+- Status: single-project MVP. Review generated facts, layouts, narration, and final video manually.
+- Source available, NOT open source: prior explicit written permission is required for use. Public visibility and MCP access do not grant permission. See LICENSE; contact https://github.com/shenjie002 or open a permission-request issue.
+
+## Documentation
+
+- [Full agent reference](https://github.com/shenjie002/shenying/blob/main/llms-full.txt): consolidated product, workflow, limitations, and integration reference.
+- [Agent workflow](https://github.com/shenjie002/shenying/blob/main/docs/agent-guide.md): creating and validating storyboards safely.
+- [MCP integration](https://github.com/shenjie002/shenying/blob/main/docs/mcp.md): stdio setup, tools, resources, prompts, and permissions.
+- [README](https://github.com/shenjie002/shenying/blob/main/README.md): human-facing installation and usage.
+- [Script schema](https://github.com/shenjie002/shenying/blob/main/shared/schema.ts): authoritative validation and timeline types.
+- [Example storyboard](https://github.com/shenjie002/shenying/blob/main/input/visual-upgrade.json): six scene types.
+- [License](https://github.com/shenjie002/shenying/blob/main/LICENSE): prior-permission terms.
+
+These documents aid discovery and understanding; llms.txt does not guarantee indexing by search engines or agents.

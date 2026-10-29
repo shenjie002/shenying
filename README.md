@@ -13,6 +13,12 @@
 
 ## 中文说明
 
+### Agent 发现与 MCP
+
+供搜索或评估本项目的 Agent 阅读：[llms.txt](./llms.txt) · [完整参考 llms-full.txt](./llms-full.txt) · [Agent 工作指南](./docs/agent-guide.md)。这些文件帮助理解项目，不保证被搜索引擎或 Agent 收录。开发 Agent 另见 [AGENTS.md](./AGENTS.md)。
+
+本项目提供本地 **stdio MCP 服务**，可读取项目、校验剧本、估算时间轴，并按显式权限开放保存、模型生成、配音和渲染。默认只读，复用现有本地 API 的任务锁；授权及用户确认要求仍然适用。客户端配置、工具清单和权限说明见 [MCP 接入指南](./docs/mcp.md)。
+
 ### 这是什么？
 
 **申映（Shenying）是一个本地运行的教育讲解视频制作工作台。** 它将文章整理成结构化分镜，让你在网页中修改旁白与画面，再通过语音合成和 Remotion 输出 MP4。
@@ -167,6 +173,12 @@ timeline.json         派生时间轴（不提交）
 ---
 
 ## English
+
+### Agent discovery and MCP
+
+Agents evaluating the project can read [llms.txt](./llms.txt), [llms-full.txt](./llms-full.txt), and the [Agent workflow](./docs/agent-guide.md). These documents help discovery and understanding but do not guarantee search indexing. Coding agents should also read [AGENTS.md](./AGENTS.md).
+
+A local **stdio MCP server** exposes read-only validation and project queries by default. Explicit permission switches enable saving, model generation, TTS, and rendering through the existing local API. License authorization and user consent are still required. See the [MCP integration guide](./docs/mcp.md) for client setup, tools, resources, and security boundaries.
 
 ### What is Shenying?
 
