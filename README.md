@@ -54,6 +54,10 @@ Remotion 本地渲染 → 下载 MP4
 
 **终端演示只是视觉模拟，不会执行填写的命令。**
 
+### 混合画布
+
+新增 **CanvasSlide** 可将代码、要点、提示、数据及简单节点图组合在同一分镜，并通过 GroupBlock 嵌套分栏、网格和堆叠布局。支持按整块绑定旁白句首入场与聚焦，保留原六种模板。网页先选择“混合画布”，用结构化布局 JSON 编辑并应用；不是拖拽或任意坐标编辑器。见 [画布指南](./docs/canvas.md) 与 [代码＋图解＋提示示例](./input/canvas-example.json)。图片、浏览器素材及块内逐行动画暂不支持；内容过多可能裁切，需预览确认。
+
 ### 项目状态
 
 这是正在开发的**单项目 MVP**。基础配音、渲染、下载和视频播放曾经用户手动验证；近期的六场景视觉升级、文章生成和分句字幕仍需对当前版本执行构建、测试及实际成片验收。本文列出的实现能力不等于所有组合均已验证稳定。
@@ -207,6 +211,10 @@ You can also edit examples or import storyboard JSON without configuring an LLM.
 - **Preview and export:** jump to scenes, inspect task logs and rendering progress, and export 1080p / 30 fps / H.264 MP4.
 
 **Terminal scenes simulate commands visually. They do not execute commands.**
+
+### Mixed canvas
+
+CanvasSlide combines code, bullet lists, callouts, verified statistics, and simple node diagrams within one scene. Nested GroupBlock containers support constrained split/grid/stacked layouts, with whole-block narration-triggered reveals and focus. The initial editor uses validated layout JSON, not drag-and-drop or arbitrary coordinates. See [canvas guide](./docs/canvas.md) and [example](./input/canvas-example.json). Images, browser assets, and within-block line animations are not supported; review layout clipping manually.
 
 ### Status and limitations
 

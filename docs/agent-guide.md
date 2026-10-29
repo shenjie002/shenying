@@ -24,7 +24,7 @@
 
 - 顶层：title、fps（30）、tailPaddingFrames（0～90，默认12）、scenes（1～30）。
 - 每幕：唯一 id（字母/数字/下划线/短横线）、template、voiceover、props。
-- 模板：TitleSlide、BulletListSlide、CodeSlide、CardSlide、FlowSlide、TerminalSlide。
+- 模板：TitleSlide、BulletListSlide、CodeSlide、CardSlide、FlowSlide、TerminalSlide，以及 [CanvasSlide 混合画布](./canvas.md)。画布target按深度优先内容块编号，仅控制整块入场和焦点，不是块内代码行或节点。
 - TitleSlide props: title、subtitle；BulletListSlide: heading、bullets（1～6项）。
 - CodeSlide: heading、language、code；CardSlide: heading、leftTitle、leftBody、rightTitle、rightBody。
 - FlowSlide: heading、steps（2～5项）、description；TerminalSlide: heading、commands（1～5项）、outputs。

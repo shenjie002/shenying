@@ -17,6 +17,7 @@
 - [Agent workflow](https://github.com/shenjie002/shenying/blob/main/docs/agent-guide.md): creating and validating storyboards safely.
 - [MCP integration](https://github.com/shenjie002/shenying/blob/main/docs/mcp.md): stdio setup, tools, resources, prompts, and permissions.
 - [README](https://github.com/shenjie002/shenying/blob/main/README.md): human-facing installation and usage.
+- [Mixed canvas](https://github.com/shenjie002/shenying/blob/main/docs/canvas.md): CanvasSlide combines code, bullets, callouts, statistics and simple diagrams using bounded nested containers; whole-block timing, not within-block animation.
 - [Renderer contract](https://github.com/shenjie002/shenying/blob/main/docs/renderer-contract.md): actual scene actions, narration targets, timing priorities, and unsupported effects. Read before drafting.
 - [Script schema](https://github.com/shenjie002/shenying/blob/main/shared/schema.ts): authoritative validation and timeline types.
 - [Example storyboard](https://github.com/shenjie002/shenying/blob/main/input/visual-upgrade.json): six scene types.

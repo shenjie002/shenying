@@ -1,3 +1,4 @@
+import {CanvasContent} from './CanvasContent';
 import React from 'react';
 import {useCurrentFrame} from 'remotion';
 import type {TimedScene} from '../../shared/schema';
@@ -9,6 +10,7 @@ export function SceneContent({scene}: {scene: TimedScene}) {
   const frame = useCurrentFrame();
   const all = visualOf(scene).pace === 'all';
   switch (scene.template) {
+    case 'CanvasSlide': return <CanvasContent scene={scene}/>;
     case 'TitleSlide': return <div style={{display: 'flex', alignItems: 'center', gap: 60}}><div style={{flex: 1}}><Reveal scene={scene}><div style={{fontSize: 23, color: '#a5b4fc', letterSpacing: 6}}>THE EXPLAINER / 核心概念</div><h1 style={{fontSize: 88, lineHeight: 1.22, whiteSpace: 'pre-wrap', margin: '40px 0', overflowWrap: 'anywhere'}}>{scene.props.title}</h1></Reveal><Reveal scene={scene} delay={all ? 0 : motionTiming.titleSubtitleDelay}><p style={{fontSize: 32, color: '#acb7d2', lineHeight: 1.6}}>{scene.props.subtitle}</p></Reveal></div><div style={{width: 280, height: 280, flexShrink: 0, borderRadius: 55, background: 'linear-gradient(140deg,#a9b2ff22,#5673c408)', border: '1px solid #c0c5ff30', transform: 'rotate(-12deg)', display: 'grid', placeItems: 'center', fontSize: 160, color: '#b8c4ff'}}>◈</div></div>;
     case 'BulletListSlide': {
       const active = activeTarget(scene, frame, scene.props.bullets.length);

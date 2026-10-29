@@ -2,6 +2,10 @@
 
 权威能力契约是 [`shared/capabilities.ts`](../shared/capabilities.ts)。网页文章生成提示、MCP `shenying://renderer` 与待审稿说明均复用它；target 数量校验也使用同一份映射。调整实际渲染时须同步更新契约与测试，不应承诺未实现的动作。
 
+## 混合画布
+
+新增 CanvasSlide 支持同幕组合代码、要点、提示、数据和简单节点图；GroupBlock 提供受约束的嵌套分栏/网格/堆叠。详情见 [混合画布](./canvas.md)，示例见 input/canvas-example.json。画布 target 为深度优先的内容块序号，只控制整块入场和边框焦点，不是块内代码行；块内内容静态，caption没有解释区。原六种模板保持不变。
+
 ## 六种实际画面
 
 | 模板 | 实际动作 | target 含义 |

@@ -8,4 +8,4 @@ export const articleRequestSchema = z.object({
   sceneCount: z.number().int().min(3).max(12).default(5),
 });
 export type ArticleRequest = z.infer<typeof articleRequestSchema>;
-export const templateLabels: Record<string, string> = {TitleSlide: '标题封面', BulletListSlide: '要点列表', CodeSlide: '代码讲解', CardSlide: '双栏对比', FlowSlide: '流程演示', TerminalSlide: '终端演示'};
+export const templateLabels: Record<string, string> = {CanvasSlide: '混合画布',TitleSlide: '标题封面', BulletListSlide: '要点列表', CodeSlide: '代码讲解', CardSlide: '双栏对比', FlowSlide: '流程演示', TerminalSlide: '终端演示'};

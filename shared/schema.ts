@@ -1,3 +1,4 @@
+import {canvasPropsSchema} from './canvas';
 import {z} from 'zod';
 import {targetCount} from './capabilities';
 
@@ -25,6 +26,7 @@ const base = {
   beats: z.array(beatSchema).max(30).optional(),
 };
 export const sceneSchema = z.discriminatedUnion('template', [
+  z.object({...base, template: z.literal('CanvasSlide'), props: canvasPropsSchema}),
   z.object({...base, template: z.literal('TitleSlide'), props: z.object({title: text, subtitle: z.string().max(500).default('')})}),
   z.object({...base, template: z.literal('BulletListSlide'), props: z.object({heading: text, bullets: z.array(text).min(1).max(6)})}),
   z.object({...base, template: z.literal('CodeSlide'), props: z.object({heading: text, language: z.string().max(30), code: z.string().min(1).max(5000)})}),

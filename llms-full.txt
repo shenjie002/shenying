@@ -42,6 +42,7 @@ The runtime capability source is `shared/capabilities.ts`, shared by article mod
 
 The authoritative Zod definition is `shared/schema.ts`. Root object: `title`, fixed `fps: 30`, optional `tailPaddingFrames` 0–90, and 1–30 `scenes`. Each scene has a unique safe `id`, non-empty `voiceover`, one `template`, matching `props`, and optional narration/subtitles/visual/beats. Templates:
 
+- `CanvasSlide`: `heading`, `layout` (`split-2-1|grid|stacked`), `blocks`. Supports CodeBlock, BulletBlock, CalloutBlock, StatBlock, DiagramBlock, and GroupBlock nested at most two group levels; at most 8 content blocks. Narration targets are one-based depth-first content-block indexes, only for whole-block reveal/focus, not internal lines/nodes. No caption area. See [canvas guide](./docs/canvas.md), `shared/canvas.ts`, and `input/canvas-example.json`. Initial editing is structured layout JSON, not drag-and-drop or arbitrary coordinates. Diagrams are static linear nodes; no remote images or browser blocks.
 - `TitleSlide`: `title`, `subtitle`
 - `BulletListSlide`: `heading`, `bullets` (1–6)
 - `CodeSlide`: `heading`, `language`, `code`

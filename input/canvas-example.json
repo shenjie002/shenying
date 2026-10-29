@@ -1,0 +1,28 @@
+{
+  "title": "Rust 所有权：混合画布示例",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [{
+    "id": "ownership_canvas",
+    "template": "CanvasSlide",
+    "voiceover": "左侧代码创建字符串，再将所有权移动给第二个变量。 右上方是用于理解的栈到堆示意图。 这里要注意，移动之后不能继续使用原来的变量。",
+    "subtitles": true,
+    "visual": {"background": "grid", "animation": "spring", "pace": "progressive"},
+    "narration": [
+      {"text": "左侧代码创建字符串，再将所有权移动给第二个变量。", "target": 1},
+      {"text": "右上方是用于理解的栈到堆示意图。", "target": 2},
+      {"text": "这里要注意，移动之后不能继续使用原来的变量。", "target": 3}
+    ],
+    "props": {
+      "heading": "所有权移动：代码、图解与提示同屏",
+      "layout": "split-2-1",
+      "blocks": [
+        {"id": "code", "type": "CodeBlock", "props": {"language": "rust", "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;"}},
+        {"id": "sidebar", "type": "GroupBlock", "layout": "stacked", "blocks": [
+          {"id": "diagram", "type": "DiagramBlock", "props": {"heading": "简化内存示意", "nodes": ["Stack", "Heap"], "activeNode": 2}},
+          {"id": "warning", "type": "CalloutBlock", "props": {"variant": "warning", "text": "Move 后，s1 不再可用。"}}
+        ]}
+      ]
+    }
+  }]
+}
