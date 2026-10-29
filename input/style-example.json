@@ -1,0 +1,275 @@
+{
+  "title": "背景与入场效果测试",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "style_1",
+      "template": "CanvasSlide",
+      "voiceover": "左侧代码创建字符串，再将所有权移动给第二个变量。 右上方是用于理解的栈到堆示意图。 这里要注意，移动之后不能继续使用原来的变量。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "flip",
+        "focus": "normal",
+        "pace": "progressive"
+      },
+      "narration": [
+        {
+          "text": "左侧代码创建字符串，再将所有权移动给第二个变量。",
+          "target": 1
+        },
+        {
+          "text": "右上方是用于理解的栈到堆示意图。",
+          "target": 2
+        },
+        {
+          "text": "这里要注意，移动之后不能继续使用原来的变量。",
+          "target": 3
+        }
+      ],
+      "props": {
+        "heading": "视觉测试 1：aurora / flip",
+        "layout": "split-2-1",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;"
+            }
+          },
+          {
+            "id": "sidebar",
+            "type": "GroupBlock",
+            "layout": "stacked",
+            "blocks": [
+              {
+                "id": "diagram",
+                "type": "DiagramBlock",
+                "props": {
+                  "heading": "简化内存示意",
+                  "nodes": [
+                    "Stack",
+                    "Heap"
+                  ],
+                  "activeNode": 2
+                }
+              },
+              {
+                "id": "warning",
+                "type": "CalloutBlock",
+                "props": {
+                  "variant": "warning",
+                  "text": "Move 后，s1 不再可用。"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "style_2",
+      "template": "CanvasSlide",
+      "voiceover": "左侧代码创建字符串，再将所有权移动给第二个变量。 右上方是用于理解的栈到堆示意图。 这里要注意，移动之后不能继续使用原来的变量。",
+      "subtitles": true,
+      "visual": {
+        "background": "grain",
+        "animation": "border",
+        "focus": "pulse",
+        "pace": "progressive"
+      },
+      "narration": [
+        {
+          "text": "左侧代码创建字符串，再将所有权移动给第二个变量。",
+          "target": 1
+        },
+        {
+          "text": "右上方是用于理解的栈到堆示意图。",
+          "target": 2
+        },
+        {
+          "text": "这里要注意，移动之后不能继续使用原来的变量。",
+          "target": 3
+        }
+      ],
+      "props": {
+        "heading": "视觉测试 2：grain / border",
+        "layout": "split-2-1",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;"
+            }
+          },
+          {
+            "id": "sidebar",
+            "type": "GroupBlock",
+            "layout": "stacked",
+            "blocks": [
+              {
+                "id": "diagram",
+                "type": "DiagramBlock",
+                "props": {
+                  "heading": "简化内存示意",
+                  "nodes": [
+                    "Stack",
+                    "Heap"
+                  ],
+                  "activeNode": 2
+                }
+              },
+              {
+                "id": "warning",
+                "type": "CalloutBlock",
+                "props": {
+                  "variant": "warning",
+                  "text": "Move 后，s1 不再可用。"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "style_3",
+      "template": "CanvasSlide",
+      "voiceover": "左侧代码创建字符串，再将所有权移动给第二个变量。 右上方是用于理解的栈到堆示意图。 这里要注意，移动之后不能继续使用原来的变量。",
+      "subtitles": true,
+      "visual": {
+        "background": "spotlight",
+        "animation": "pop",
+        "focus": "dim",
+        "pace": "progressive"
+      },
+      "narration": [
+        {
+          "text": "左侧代码创建字符串，再将所有权移动给第二个变量。",
+          "target": 1
+        },
+        {
+          "text": "右上方是用于理解的栈到堆示意图。",
+          "target": 2
+        },
+        {
+          "text": "这里要注意，移动之后不能继续使用原来的变量。",
+          "target": 3
+        }
+      ],
+      "props": {
+        "heading": "视觉测试 3：spotlight / pop",
+        "layout": "split-2-1",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;"
+            }
+          },
+          {
+            "id": "sidebar",
+            "type": "GroupBlock",
+            "layout": "stacked",
+            "blocks": [
+              {
+                "id": "diagram",
+                "type": "DiagramBlock",
+                "props": {
+                  "heading": "简化内存示意",
+                  "nodes": [
+                    "Stack",
+                    "Heap"
+                  ],
+                  "activeNode": 2
+                }
+              },
+              {
+                "id": "warning",
+                "type": "CalloutBlock",
+                "props": {
+                  "variant": "warning",
+                  "text": "Move 后，s1 不再可用。"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "style_4",
+      "template": "CanvasSlide",
+      "voiceover": "左侧代码创建字符串，再将所有权移动给第二个变量。 右上方是用于理解的栈到堆示意图。 这里要注意，移动之后不能继续使用原来的变量。",
+      "subtitles": true,
+      "visual": {
+        "background": "code",
+        "animation": "wipe",
+        "focus": "normal",
+        "pace": "progressive"
+      },
+      "narration": [
+        {
+          "text": "左侧代码创建字符串，再将所有权移动给第二个变量。",
+          "target": 1
+        },
+        {
+          "text": "右上方是用于理解的栈到堆示意图。",
+          "target": 2
+        },
+        {
+          "text": "这里要注意，移动之后不能继续使用原来的变量。",
+          "target": 3
+        }
+      ],
+      "props": {
+        "heading": "视觉测试 4：code / wipe",
+        "layout": "split-2-1",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;"
+            }
+          },
+          {
+            "id": "sidebar",
+            "type": "GroupBlock",
+            "layout": "stacked",
+            "blocks": [
+              {
+                "id": "diagram",
+                "type": "DiagramBlock",
+                "props": {
+                  "heading": "简化内存示意",
+                  "nodes": [
+                    "Stack",
+                    "Heap"
+                  ],
+                  "activeNode": 2
+                }
+              },
+              {
+                "id": "warning",
+                "type": "CalloutBlock",
+                "props": {
+                  "variant": "warning",
+                  "text": "Move 后，s1 不再可用。"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

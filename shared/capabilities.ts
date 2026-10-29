@@ -1,3 +1,4 @@
+import {styleGuide} from './style';
 import {canvasGuide, canvasLeaves} from './canvas';
 import type {Scene} from './schema';
 
@@ -26,12 +27,12 @@ export function targetCount(scene: Scene): number {
 }
 
 export function rendererGuide() {
-  return `申映实际渲染能力契约（只能规划这些能力，不得虚构actions、transition、camera等字段）：
+  return `申映实际渲染能力契约（只能规划这些能力，不得虚构actions、transition、顶层camera等字段；轻缓运镜仅用visual.camera）：
 ${Object.entries(sceneCapabilities).map(([name, c]) => `${name}: ${c.props}；${c.motion} ${c.advice}`).join('\n')}
-公共visual必须明确写出 {background:"glow"|"grid"|"plain",animation:"spring"|"gentle"|"none",pace:"progressive"|"all"}。
+${styleGuide}
 背景glow为微动光晕，grid叠加网格，plain纯色；spring柔和弹簧入场，gentle轻缓位移，none取消入场位移与背景微动，但不取消progressive的延迟、代码焦点或终端打字。pace=all取消分步入场及终端打字，但列表/流程的当前项仍可随时间高亮。
 分步首次入场优先使用首个匹配narration.target的句首，其次首个匹配beats.target的比例时刻，否则均匀安排在分镜前68%。活动焦点只要有句子target就按最近已开始的绑定句决定，否则按beats，再否则自动推进。重复target不会重复入场。
 AI生成时优先用narration组织讲解：每句{text,target?,caption?}，text非空不超过500字，每幕1～50句；voiceover必须等于各句text用一个空格连接。target只绑定实际要讲的元素；按首次出现顺序递增安排要点/卡片/流程/命令，避免后项先出现。代码可回看已讲行。TitleSlide不要绑定target。
 只用narration，不同时生成beats；不要猜测秒数或生成audioSrc、durationInFrames、totalFrames。分句TTS按实测句首触发，静音为估算，不是逐字对齐。caption是代码/流程解释文案，不是旁白字幕；真正字幕由subtitles=true开启。
-不支持镜头推拉、任意对象移动、截图标注、任意机制图（CanvasSlide仅支持简单静态线性节点图）、背景音乐、转场或分镜底部进度条。不要在旁白里承诺这些画面。先选适合内容的模板，再将旁白句子与真实可显示元素对应。`;
+不支持任意相机路径、任意对象移动、截图标注、任意自动布局机制图（受约束的TopologyBlock和TreeBlock已支持）、背景音乐、转场或分镜底部进度条。不要在旁白里承诺这些画面。先选适合内容的模板，再将旁白句子与真实可显示元素对应。`;
 }

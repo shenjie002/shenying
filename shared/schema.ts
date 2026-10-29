@@ -1,5 +1,7 @@
+import {visualSchema} from './style';
 import {canvasPropsSchema} from './canvas';
 import {z} from 'zod';
+import {narrationVoiceSchema, keywordSchema} from './polish';
 import {targetCount} from './capabilities';
 
 const text = z.string().trim().min(1).max(500);
@@ -17,12 +19,10 @@ const base = {
   id: z.string().regex(/^[a-zA-Z0-9_-]+$/).max(80),
   voiceover: z.string().trim().min(1).max(5000),
   narration: z.array(narrationSchema).min(1).max(50).optional(),
+  voice: narrationVoiceSchema.optional(),
+  keywords: keywordSchema.optional(),
   subtitles: z.boolean().optional(),
-  visual: z.object({
-    background: z.enum(['glow', 'grid', 'plain']),
-    animation: z.enum(['spring', 'gentle', 'none']),
-    pace: z.enum(['progressive', 'all']),
-  }).optional(),
+  visual: visualSchema.optional(),
   beats: z.array(beatSchema).max(30).optional(),
 };
 export const sceneSchema = z.discriminatedUnion('template', [
@@ -40,6 +40,9 @@ export const scriptSchema = z.object({
 }).superRefine((data, ctx) => {
   data.scenes.forEach((scene, index) => {
     const limit = targetCount(scene);
+    scene.keywords?.forEach((keyword,i)=>{if(!scene.narration?.[keyword.sentence-1]?.text.includes(keyword.text)) ctx.addIssue({code:'custom',path:['scenes',index,'keywords',i],message:'关键词必须出现在所绑定的分句中'});});
+    if (scene.template !== 'CanvasSlide' && scene.visual?.parallax) ctx.addIssue({code:'custom',path:['scenes',index,'visual','parallax'],message:'parallax仅适用于CanvasSlide'});
+    if (scene.template !== 'CanvasSlide' && scene.visual?.focus && scene.visual.focus !== 'normal') ctx.addIssue({code: 'custom', path: ['scenes', index, 'visual', 'focus'], message: 'dim/pulse仅适用于CanvasSlide整块聚焦'});
     scene.narration?.forEach((segment, segmentIndex) => {
       if (segment.target && segment.target > limit) ctx.addIssue({code: 'custom', path: ['scenes', index, 'narration', segmentIndex, 'target'], message: `目标超出范围，最多 ${limit} 项`});
     });

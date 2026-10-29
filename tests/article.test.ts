@@ -24,7 +24,7 @@ test('文章作为资料封装，制作要求与支持模板写入提示', () =>
   }
   assert.match(messages[0].content, /真实行号/);
   assert.match(messages[0].content, /不会实际执行命令/);
-  assert.match(messages[0].content, /不支持镜头推拉/);
+  assert.match(messages[0].content, /不支持任意相机路径/);
   assert.match(messages[1].content, /严格5个分镜/);
   assert.match(messages[1].content, /article/);
   assert.match(messages[1].content, /目标时长只是估算/);

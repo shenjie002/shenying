@@ -1,3 +1,4 @@
+import {renderProfile} from '../shared/polish';
 import {createHash} from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -35,7 +36,7 @@ export async function prepare(script: Script, mode: 'tts' | 'silent', log: (s: s
   await saveJson(path.join(root, 'timeline.json'), timeline);
   return timeline;
 }
-export async function render(script: Script, log: (s: string) => void, progress: (n: number) => void, smoke = false) {
+export async function render(script: Script, log: (s: string) => void, progress: (n: number) => void, smoke = false, draft = false) {
   const timeline = await readTimeline(script);
   if (!timeline) throw new Error('剧本已变更或尚未准备时间轴，请先生成配音或静音时间轴');
   if (timeline.mode === 'tts') for (const scene of timeline.scenes) {
@@ -50,10 +51,11 @@ export async function render(script: Script, log: (s: string) => void, progress:
   const inputProps = {scriptData: timeline};
   const composition = await selectComposition({serveUrl, id: 'FullArticleVideo', inputProps});
   const dir = path.join(root, 'out'); await fs.mkdir(dir, {recursive: true});
-  const name = smoke ? 'smoke.mp4' : `video-${Date.now()}.mp4`;
-  log(`开始渲染 ${smoke ? 15 : timeline.totalFrames} 帧，2 路并发`);
-  await renderMedia({composition, serveUrl, inputProps, codec: 'h264', pixelFormat: 'yuv420p', outputLocation: path.join(dir, name), concurrency: 2,
-    ...(smoke ? {frameRange: [0, 14] as [number, number], scale: 0.5} : {}),
+  const name = smoke ? 'smoke.mp4' : draft ? `draft-${Date.now()}.mp4` : `video-${Date.now()}.mp4`;
+  const profile = renderProfile(draft || smoke);
+  log(`开始${draft ? '草稿' : smoke ? '冒烟' : '正式'}渲染，${draft ? '960×540 / 30fps' : '1920×1080 / 30fps'}`);
+  await renderMedia({composition, serveUrl, inputProps, codec: 'h264', pixelFormat: 'yuv420p', crf: profile.crf, outputLocation: path.join(dir, name), concurrency: 2,
+    ...(smoke ? {frameRange: [0, 14] as [number, number]} : {}), scale: profile.scale,
     onProgress: ({progress: value}) => progress(value)});
   log(`渲染完成：out/${name}`);
   return `/out/${name}`;

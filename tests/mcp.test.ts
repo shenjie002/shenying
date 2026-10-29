@@ -40,8 +40,8 @@ test('MCP 显式权限组合控制工具是否可调用', async () => {
   for (const [options, expected] of [
     [{writes: true}, ['save_script', 'prepare_silent']],
     [{external: true}, ['generate_storyboard']],
-    [{render: true}, ['render_video']],
-    [{writes: true, external: true, render: true}, ['save_script', 'prepare_silent', 'generate_storyboard', 'prepare_tts', 'render_video']],
+    [{render: true}, ['render_video', 'render_draft']],
+    [{writes: true, external: true, render: true}, ['save_script', 'prepare_silent', 'generate_storyboard', 'prepare_tts', 'render_video', 'render_draft']],
   ] as const) {
     const {client, close} = await connect(options);
     try {
@@ -66,10 +66,11 @@ test('MCP 写入复用固定本地 API；非法剧本不发请求；API 错误�
     await client.callTool({name: 'prepare_silent', arguments: {}});
     await client.callTool({name: 'prepare_tts', arguments: {}});
     await client.callTool({name: 'render_video', arguments: {}});
+    await client.callTool({name: 'render_draft', arguments: {}});
     assert.equal(calls[0].url, 'http://127.0.0.1:3001/api/script');
     assert.equal(calls[0].init?.method, 'PUT');
     assert.equal(calls[0].init?.redirect, 'error');
-    assert.deepEqual(calls.slice(1).map(c => JSON.parse(String(c.init?.body)).kind), ['silent', 'tts', 'render']);
+    assert.deepEqual(calls.slice(1).map(c => JSON.parse(String(c.init?.body)).kind), ['silent', 'tts', 'render', 'draft']);
   } finally {await close();}
   const failure = await connect({fetch: (async () => new Response('secret-provider-data', {status: 409})) as typeof fetch});
   try {

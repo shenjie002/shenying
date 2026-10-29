@@ -2,9 +2,19 @@
 
 权威能力契约是 [`shared/capabilities.ts`](../shared/capabilities.ts)。网页文章生成提示、MCP `shenying://renderer` 与待审稿说明均复用它；target 数量校验也使用同一份映射。调整实际渲染时须同步更新契约与测试，不应承诺未实现的动作。
 
+## 音画与可靠性
+
+支持每幕voice白名单、分句绑定keywords、visual.camera轻微推拉与CanvasSlide visual.parallax；详情与限制见[音画与可靠性](./audio-motion-reliability.md)。关键词只是句首提示，字幕仍非逐字对齐。新增全片540p草稿渲染，MCP为render_draft，复用本地任务锁。BGM/SFX、卡拉OK、自动修源码未实现。
+
+## 视觉风格
+
+背景扩充为glow/grid/plain/aurora/grain/spotlight/code，入场支持spring/gentle/none/pop/flip/border/wipe；pace仍为progressive/all。CanvasSlide可选focus=dim或pulse。精确适用区域、帧驱动规则与限制见[视觉风格](./visual-style.md)及shared/style.ts，AI实际提示和MCP自动复用；不允许承诺计数器、图内追线或动态柱条。
+
 ## 混合画布
 
 新增 CanvasSlide 支持同幕组合代码、要点、提示、数据和简单节点图；GroupBlock 提供受约束的嵌套分栏/网格/堆叠。详情见 [混合画布](./canvas.md)，示例见 input/canvas-example.json。画布 target 为深度优先的内容块序号，只控制整块入场和边框焦点，不是块内代码行；块内内容静态，caption没有解释区。原六种模板保持不变。
+
+图表/图标扩展已实现：TopologyBlock、CompareBlock、TimelineBlock、BarChartBlock、TreeBlock、IconBlock。字段、语义映射与限制见[图表指南](./visualizations.md)。AI文章提示和MCP shenying://renderer自动包含其能力与选型规则；图内静态，只允许整块触发，不能承诺柱条增长或节点级动画。
 
 ## 六种实际画面
 
@@ -34,6 +44,6 @@ CodeSlide 一屏最多11行，progressive 会跟随焦点滚动；all 模式只�
 
 模型返回后除通用schema校验外，还会校验已有narration与voiceover一致、标题target、caption适用区域及非代码目标顺序。不符合时拒绝应用，不默默丢弃。历史无narration剧本保持兼容，仍使用原有自动时序；这些额外约束用于模型输出，不影响手工旧稿导入。
 
-分句TTS使用实测音频句首，静音时长仍为估算；不是逐字对齐。文章生成只规划动作，不会当场配音或执行渲染。当前不支持镜头推拉、任意对象移动、机制图、截图标注、音乐和重叠转场，也没有分镜底部进度条。
+分句TTS使用实测音频句首，静音时长仍为估算；不是逐字对齐。文章生成只规划动作，不会当场配音或执行渲染。当前不支持任意相机路径、任意对象移动、不受约束的机制图、截图标注、音乐和重叠转场，也没有分镜底部进度条。
 
 待审稿显示实际动作说明，并可展开查看 visual、narration、beats、subtitles 与props。应用后仍需试听、预览并人工验收成片。

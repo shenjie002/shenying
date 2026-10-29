@@ -1,0 +1,34 @@
+{
+  "title": "图表与语义图标：虚构演示资料",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "metrics", "template": "CanvasSlide", "voiceover": "这是虚构测试数据，不代表任何产品的性能。 同一测试单位下，方案甲为一百，方案乙为一百五十。",
+      "visual": {"background":"grid","animation":"gentle","pace":"progressive"}, "subtitles": true,
+      "narration": [{"text":"这是虚构测试数据，不代表任何产品的性能。","target":1},{"text":"同一测试单位下，方案甲为一百，方案乙为一百五十。","target":2}],
+      "props": {"heading":"仅供布局测试：不是性能证据","layout":"split-2-1","blocks":[
+        {"id":"metric_icon","type":"IconBlock","props":{"name":"Gauge","label":"虚构指标演示","tone":"accent"}},
+        {"id":"bars","type":"BarChartBlock","props":{"heading":"演示数据","unit":"演示单位","bars":[{"label":"方案甲","value":100},{"label":"方案乙","value":150}]}}
+      ]}
+    },
+    {
+      "id":"relations", "template":"CanvasSlide", "voiceover":"演示请求从客户端到接口，再到数据库的关系。 另一边展示应用下包含网页和服务两个模块的层级。",
+      "visual":{"background":"glow","animation":"gentle","pace":"progressive"},"subtitles":true,
+      "narration":[{"text":"演示请求从客户端到接口，再到数据库的关系。","target":1},{"text":"另一边展示应用下包含网页和服务两个模块的层级。","target":2}],
+      "props":{"heading":"虚构系统：关系与层级","layout":"grid","blocks":[
+        {"id":"topology","type":"TopologyBlock","props":{"heading":"节点关系","nodes":["Client","API","Database"],"edges":[{"from":1,"to":2,"label":"请求"},{"from":2,"to":3,"label":"查询"}]}},
+        {"id":"tree","type":"TreeBlock","props":{"heading":"模块层级","nodes":[{"label":"应用","parent":0},{"label":"网页","parent":1},{"label":"服务","parent":1}]}}
+      ]}
+    },
+    {
+      "id":"compare", "template":"CanvasSlide", "voiceover":"这个演示对比两种部署方式，并不判定哪一种总是更好。 版本先验证功能，再验证可观测性，这里没有真实发布日期。",
+      "visual":{"background":"plain","animation":"gentle","pace":"progressive"},"subtitles":true,
+      "narration":[{"text":"这个演示对比两种部署方式，并不判定哪一种总是更好。","target":1},{"text":"版本先验证功能，再验证可观测性，这里没有真实发布日期。","target":2}],
+      "props":{"heading":"演示对比与阶段","layout":"grid","blocks":[
+        {"id":"matrix","type":"CompareBlock","props":{"heading":"部署方式","columns":["本地","托管"],"rows":[{"label":"运行地点","values":["用户设备","服务商环境"]},{"label":"维护方","values":["使用者","服务商"]}]}},
+        {"id":"timeline","type":"TimelineBlock","props":{"heading":"示意阶段","events":[{"label":"阶段一","detail":"验证功能"},{"label":"阶段二","detail":"验证可观测性"}]}}
+      ]}
+    }
+  ]
+}

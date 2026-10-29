@@ -17,6 +17,9 @@
 - [Agent workflow](https://github.com/shenjie002/shenying/blob/main/docs/agent-guide.md): creating and validating storyboards safely.
 - [MCP integration](https://github.com/shenjie002/shenying/blob/main/docs/mcp.md): stdio setup, tools, resources, prompts, and permissions.
 - [README](https://github.com/shenjie002/shenying/blob/main/README.md): human-facing installation and usage.
+- [Audio, motion and reliability](https://github.com/shenjie002/shenying/blob/main/docs/audio-motion-reliability.md): bounded TTS voice choice, sentence-start keyword cues, subtle camera/parallax, draft render, and unavailable features/automation boundaries.
+- [Visual style](https://github.com/shenjie002/shenying/blob/main/docs/visual-style.md): frame-driven backgrounds, bounded entrance effects and canvas-only dim/pulse focus; content-led choices are injected into generation.
+- [Charts and semantic icons](https://github.com/shenjie002/shenying/blob/main/docs/visualizations.md): architecture topology, neutral comparison matrices, sourced timelines/bar charts, bounded trees and whitelist icons, rendered and schema-validated.
 - [Mixed canvas](https://github.com/shenjie002/shenying/blob/main/docs/canvas.md): CanvasSlide combines code, bullets, callouts, statistics and simple diagrams using bounded nested containers; whole-block timing, not within-block animation.
 - [Renderer contract](https://github.com/shenjie002/shenying/blob/main/docs/renderer-contract.md): actual scene actions, narration targets, timing priorities, and unsupported effects. Read before drafting.
 - [Script schema](https://github.com/shenjie002/shenying/blob/main/shared/schema.ts): authoritative validation and timeline types.

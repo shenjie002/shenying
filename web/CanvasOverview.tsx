@@ -15,6 +15,7 @@ export function CanvasOverview({scene}: {scene: CanvasScene}) {
     <p className="canvas-overview-note">下面是布局结构示意，不是最终画面截图。编号对应旁白 target，嵌套容器不占编号。</p>
     <div aria-label="布局结构示意">{draw(scene.props.blocks, scene.props.layout)}</div>
     <details className="canvas-binding-details" open><summary>旁白 → 画面绑定 · {bindings.length} 句</summary>{bindings.length ? <ol className="canvas-binding-list">{bindings.map(binding => <li key={binding.sentence}><span className={binding.invalid ? 'canvas-binding-error' : 'canvas-binding-target'}>{binding.target === undefined ? binding.label : `#${binding.target} ${binding.label}`}</span><p>{binding.text}</p>{binding.title && <small>{binding.title}</small>}</li>)}</ol> : <p className="canvas-overview-note">未设置分句旁白，内容块会按默认节奏依次展示。</p>}</details>
+    {leaves.some(block => block.type === 'IconBlock') && <p className="canvas-binding-warning" role="status">包含独立语义图标块：请确认它作为辅助信息，不会占用过大的空白区域；警告与提示优先使用自带图标的提示卡。</p>}
     {unbound.length > 0 && <p className="canvas-binding-warning" role="status">未绑定旁白：{unbound.map(block => `#${numbers.get(block.id)} ${blockLabel(block)}`).join('、')}。这些块仍可能按默认时序入场，请核对讲解节奏。</p>}
     <p className="canvas-overview-note">绑定控制整块入场／边框聚焦，不会高亮块内某一行代码或某个图节点。重复绑定不会重复入场。</p>
   </section>;

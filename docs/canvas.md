@@ -1,10 +1,12 @@
 # 混合画布 CanvasSlide
 
-在同一幕组合代码、要点、提示、数据和节点图，保留原有六种全屏模板。示例见 [input/canvas-example.json](../input/canvas-example.json)：左侧代码 + 右侧嵌套的图解与警告卡。
+在同一幕组合代码、要点、提示、数据、节点图，以及拓扑、矩阵、时间轴、柱图、树、语义图标，保留原有六种全屏模板。示例见 [input/canvas-example.json](../input/canvas-example.json)：左侧代码 + 右侧嵌套的图解与警告卡。
 
 ## 本地模型专项测试
 
 将 [Rust 测试任务与文章](../input/rust-canvas-test.md) 交给能读取项目规则的本地模型，生成 input/rust-canvas-generated.json，再执行 `npm run validate:storyboard -- input/rust-canvas-generated.json 5`。校验不会覆盖当前项目；通过后从网页JSON页导入预览。
+
+另支持拓扑、对比矩阵、时间轴、柱状图、层级树和白名单语义图标，见[图表与图标指南](./visualizations.md)。AI依据文章证据选择，数据不可编造；图内静态，旁白仅控制整块。
 
 ## AI 根据文章自主组合
 
@@ -35,7 +37,7 @@ CanvasSlide 仍有普通分镜的 id、voiceover、visual、narration、subtitle
 
 narration.target 按深度优先遍历**内容块**从1编号，GroupBlock 不占编号。示例中代码=1、图=2、提示=3。target 控制整块首次入场及边框聚焦；不控制块内部的代码行、节点或项目。caption 没有显示区域；旁白字幕仍使用 subtitles=true。
 
-每块使用全幕 visual 的入场模式。未绑定时沿用分步自动时序；all 让全部块开头显示，焦点边框仍跟随讲解。改变结构或顺序后必须重新核对target。
+每块使用全幕 visual 的入场模式；新增背景、缩放/翻转/遮罩及可选dim/pulse整块聚焦见[视觉风格](./visual-style.md)。未绑定时沿用分步自动时序；all 让全部块开头显示，焦点边框仍跟随讲解。改变结构或顺序后必须重新核对target。
 
 ## 编辑与限制
 

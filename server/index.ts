@@ -44,7 +44,7 @@ app.post('/api/article/generate', asyncRoute(async (req, res) => {
 app.get('/api/job', (_req, res) => {res.json({job});});
 app.post('/api/jobs', asyncRoute(async (req, res) => {
   if (job?.status === 'running' || generating) {res.status(409).json({error: '已有任务执行中'}); return;}
-  const {kind} = z.object({kind: z.enum(['tts', 'silent', 'render'])}).parse(req.body);
+  const {kind} = z.object({kind: z.enum(['tts', 'silent', 'render', 'draft'])}).parse(req.body);
   // Lock before the first await to prevent concurrent requests from starting jobs.
   const current = {id: String(Date.now()), kind, status: 'running' as const, progress: 0, logs: [] as string[]};
   job = current;
@@ -53,7 +53,7 @@ app.post('/api/jobs', asyncRoute(async (req, res) => {
   void (async () => {
     try {
       const script = await readScript();
-      if (kind === 'render') job!.output = await render(script, log, n => {job!.progress = n;});
+      if (kind === 'render' || kind === 'draft') job!.output = await render(script, log, n => {job!.progress = n;}, false, kind === 'draft');
       else await prepare(script, kind, log);
       job!.status = 'done'; job!.progress = 1;
     } catch (error) {job!.status = 'error'; job!.error = error instanceof Error ? error.message : String(error); log(job!.error!);}

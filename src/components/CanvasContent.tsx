@@ -1,29 +1,39 @@
 import React from 'react';
+import {Code2, Terminal, Cpu, Database, GitBranch, Server, Globe, Layers, Network, ShieldCheck, Zap, Activity, Gauge, TrendingUp, CheckCircle2, TriangleAlert, Info, CircleX, Box, FileText, Settings, Workflow} from 'lucide-react';
 import {useCurrentFrame} from 'remotion';
 import type {TimedScene} from '../../shared/schema';
 import {canvasLeaves, type CanvasBlock, type LeafBlock} from '../../shared/canvas';
-import {activeTarget, eventFrame} from '../../shared/visual';
+import {canvasFocus} from '../../shared/style';
+import {activeTarget, eventFrame, visualOf} from '../../shared/visual';
 import {Heading, Highlight, Reveal} from './Visuals';
 
-type CanvasScene = Extract<TimedScene, {template: 'CanvasSlide'}>;
+const iconMap = {Code2, Terminal, Cpu, Database, GitBranch, Server, Globe, Layers, Network, ShieldCheck, Zap, Activity, Gauge, TrendingUp, CheckCircle2, TriangleAlert, Info, CircleX, Box, FileText, Settings, Workflow};
+const iconColor = {neutral: '#b9c5da', success: '#83d6ad', warning: '#f2c776', danger: '#f08a8a', accent: '#aebaff'};
 function Content({block}: {block: LeafBlock}) {
   switch (block.type) {
     case 'CodeBlock': return <><div style={{color: '#94a8d0', fontSize: 18, marginBottom: 18}}>● ● ●　{block.props.language}</div><pre style={{margin: 0, fontSize: 24, lineHeight: 1.55, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere'}}><Highlight code={block.props.code}/></pre></>;
     case 'BulletBlock': return <><h2 style={{fontSize: 30, margin: '0 0 20px'}}>{block.props.heading}</h2>{block.props.bullets.map((text, i) => <div key={i} style={{fontSize: 25, lineHeight: 1.5, marginBottom: 14}}>• {text}</div>)}</>;
-    case 'CalloutBlock': return <div style={{fontSize: 29, lineHeight: 1.6, color: {info: '#bed6ff', warning: '#ffdc9a', success: '#a8e3c5'}[block.props.variant]}}><div style={{fontSize: 18, marginBottom: 16}}>{block.props.variant.toUpperCase()}</div>{block.props.text}</div>;
+    case 'CalloutBlock': {const Icon = block.props.variant === 'warning' ? TriangleAlert : block.props.variant === 'success' ? CheckCircle2 : Info; return <div style={{fontSize: 26, lineHeight: 1.6, color: {info: '#bed6ff', warning: '#ffdc9a', success: '#a8e3c5'}[block.props.variant]}}><Icon size={26} style={{verticalAlign: 'middle', marginRight: 10}}/>{block.props.text}</div>;}
     case 'StatBlock': return <div style={{textAlign: 'center', margin: 'auto'}}><div style={{fontSize: 66, color: '#bdc9ff', fontWeight: 700}}>{block.props.value}</div><div style={{fontSize: 25, marginTop: 18}}>{block.props.label}</div></div>;
     case 'DiagramBlock': return <><h2 style={{fontSize: 28, margin: '0 0 30px'}}>{block.props.heading}</h2><div style={{display: 'flex', alignItems: 'center', gap: 12}}>{block.props.nodes.map((node, i) => <React.Fragment key={i}>{i > 0 && <span style={{color: '#a9baff'}}>→</span>}<div style={{flex: 1, padding: '24px 12px', fontSize: 23, textAlign: 'center', border: `1px solid ${block.props.activeNode === i + 1 ? '#bdcaff' : '#ffffff30'}`, borderRadius: 12, background: '#a9baff10'}}>{node}</div></React.Fragment>)}</div></>;
+    case 'TopologyBlock': {const count=block.props.nodes.length; const point=(i:number)=>({x:80+(Math.floor(i/2)%2 === 0 ? i%2 : 1-i%2)*260,y:42+Math.floor(i/2)*95}); return <><h2 style={{fontSize:26,margin:'0 0 14px'}}>{block.props.heading}</h2><svg viewBox={`0 0 440 ${Math.ceil(count/2)*95}`} style={{width:'100%',flex:1,minHeight:0}} aria-label={block.props.heading}>{block.props.edges.map((edge,i)=>{const a=point(edge.from-1), b=point(edge.to-1); const angle=Math.atan2(b.y-a.y,b.x-a.x), dx=Math.cos(angle), dy=Math.sin(angle), offset=Math.min(Math.abs(dx)<0.001?Infinity:65/Math.abs(dx),Math.abs(dy)<0.001?Infinity:23/Math.abs(dy));const x=b.x-dx*offset,y=b.y-dy*offset;return <g key={i}><line x1={a.x+dx*offset} y1={a.y+dy*offset} x2={x} y2={y} stroke="#96abd7" strokeWidth={2}/><path d={`M ${x-9*dx+5*dy} ${y-9*dy-5*dx} L ${x} ${y} L ${x-9*dx-5*dy} ${y-9*dy+5*dx}`} fill="none" stroke="#96abd7" strokeWidth={2}/>{edge.label && <text x={(a.x+b.x)/2} y={(a.y+b.y)/2-8} textAnchor="middle" fill="#b9c7e5" fontSize={13}>{edge.label}</text>}</g>;})}{block.props.nodes.map((node,i)=>{const p=point(i);return <g key={i}><rect x={p.x-65} y={p.y-23} width={130} height={46} rx={8} fill="#162a47" stroke="#91a9d6"/><text x={p.x} y={p.y+5} textAnchor="middle" fill="#e2eaff" fontSize={14}>{node.length>14 ? node.slice(0,13)+'…' : node}</text></g>;})}</svg></>;}
+    case 'CompareBlock': return <><h2 style={{fontSize:25,margin:'0 0 12px'}}>{block.props.heading}</h2><table style={{width:'100%',borderCollapse:'collapse',fontSize:23}}><thead><tr><th></th>{block.props.columns.map(c=><th key={c} style={{padding:6}}>{c}</th>)}</tr></thead><tbody>{block.props.rows.map(r=><tr key={r.label}><th style={{textAlign:'left',padding:6,color:'#9daecb'}}>{r.label}</th>{r.values.map((v,i)=><td key={i} style={{padding:6,borderTop:'1px solid #ffffff20'}}>{v}</td>)}</tr>)}</tbody></table></>;
+    case 'TimelineBlock': return <><h2 style={{fontSize:25,margin:'0 0 14px'}}>{block.props.heading}</h2><div style={{display:'grid',gap:9}}>{block.props.events.map((e,i)=><div key={i} style={{display:'grid',gridTemplateColumns:'24px 1fr',gap:8,fontSize:24}}><b style={{color:'#b7c5ff'}}>{i+1}</b><div><strong>{e.label}</strong>{e.detail && <div style={{color:'#aab7cd',fontSize:21}}>{e.detail}</div>}</div></div>)}</div></>;
+    case 'BarChartBlock': {const max=Math.max(...block.props.bars.map(b=>b.value)); return <><h2 style={{fontSize:24,margin:'0 0 14px'}}>{block.props.heading}</h2><div style={{display:'grid',gap:10}}>{block.props.bars.map((b,i)=><div key={i} style={{fontSize:22}}><div style={{display:'flex',justifyContent:'space-between'}}><span>{b.label}</span><b>{b.value}{block.props.unit ? ` ${block.props.unit}` : ''}</b></div><div style={{height:20,background:'#ffffff18',borderRadius:7,marginTop:4}}><div style={{width:`${b.value/max*100}%`,height:'100%',background:'#9eafff',borderRadius:7}}/></div></div>)}</div></>}
+    case 'TreeBlock': {const depth = (index: number): number => {const parent = block.props.nodes[index].parent; return parent === 0 ? 0 : 1 + depth(parent - 1);}; return <><h2 style={{fontSize:25,margin:'0 0 12px'}}>{block.props.heading}</h2>{block.props.nodes.map((n,i)=><div key={i} style={{padding:'5px 8px',fontSize:24,marginLeft:depth(i) * 22,borderLeft:n.parent ? '2px solid #7585aa' : undefined,color:'#dce4f8'}}>{n.parent ? '↳ ' : '◆ '}{n.label}</div>)}</>;}
+    case 'IconBlock': {const Icon = iconMap[block.props.name]; return <div style={{display:'flex',alignItems:'center',gap:12,fontSize:29,color:iconColor[block.props.tone]}}><Icon size={40}/>{block.props.label}</div>;}
   }
 }
+type CanvasScene = Extract<TimedScene, {template: 'CanvasSlide'}>;
 export function CanvasContent({scene}: {scene: CanvasScene}) {
-  const frame = useCurrentFrame();
-  const leaves = canvasLeaves(scene.props.blocks);
-  const active = activeTarget(scene, frame, leaves.length);
+  const frame = useCurrentFrame(), leaves = canvasLeaves(scene.props.blocks), active = activeTarget(scene, frame, leaves.length);
   const indexes = new Map(leaves.map((block, index) => [block.id, index]));
   const layout = (blocks: CanvasBlock[], kind: CanvasScene['props']['layout']): React.ReactNode => <div style={{display: 'grid', gridTemplateColumns: kind === 'stacked' || blocks.length === 1 ? 'minmax(0,1fr)' : kind === 'split-2-1' ? 'minmax(0,2fr) minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))', gridAutoRows: 'minmax(0,1fr)', gap: 20, height: '100%', minHeight: 0, minWidth: 0}}>{blocks.map(block => {
     if (block.type === 'GroupBlock') return <div key={block.id} style={{minWidth: 0, minHeight: 0}}>{layout(block.blocks, block.layout)}</div>;
     const index = indexes.get(block.id)!;
-    return <Reveal key={block.id} scene={scene} delay={eventFrame(scene, index, leaves.length)} style={{minWidth: 0, minHeight: 0, height: '100%'}}><div style={{height: '100%', boxSizing: 'border-box', borderRadius: 20, border: `2px solid ${active === index ? '#b6c4ff' : '#ffffff22'}`, background: '#101e35', padding: 26, overflow: 'hidden', display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}><Content block={block}/></div></Reveal>;
+    const focus = canvasFocus(scene.visual?.focus ?? 'normal', active, index, frame, visualOf(scene).animation !== 'none');
+    const float = scene.visual?.parallax && visualOf(scene).animation !== 'none' ? Math.sin(frame/100+index*0.7)*3 : 0;
+    return <Reveal key={block.id} scene={scene} delay={eventFrame(scene, index, leaves.length)} style={{minWidth: 0, minHeight: 0, height: '100%'}}><div style={{...focus,transform:`translateY(${float}px)`,height: '100%', boxSizing: 'border-box', borderRadius: 20, border: `2px solid ${active === index ? '#b6c4ff' : '#ffffff22'}`, background: '#101e35', padding: 26, overflow: 'hidden', display: 'flex', flexDirection: 'column', overflowWrap: 'anywhere'}}><Content block={block}/></div></Reveal>;
   })}</div>;
   return <><Heading>{scene.props.heading}</Heading><div style={{height: 560}}>{layout(scene.props.blocks, scene.props.layout)}</div></>;
 }

@@ -13,6 +13,14 @@
 
 ## 中文说明
 
+### 图表与语义图标
+
+文章生成会依据内容选择拓扑、对比矩阵、时间轴、柱状图、层级树及白名单图标，并与原有块混排。没有真实数据不生成性能图，不默认判定两方案谁对谁错。图内静态，仅支持整块入场和聚焦。见[图表指南](./docs/visualizations.md)及[虚构数据布局示例](./input/visualization-example.json)。
+
+### Evidence-led charts and icons
+
+Article generation can also compose TopologyBlock (supported node relations), CompareBlock (neutral two-column facts), TimelineBlock (sourced ordered events), BarChartBlock (source-backed comparable numbers), TreeBlock (bounded hierarchy), and a whitelist-only semantic IconBlock. Callouts have built-in state icons. The actual prompt, schemas, and Remotion renderer are implemented; this is not a wishlist. No invented metrics, dates, or relationships. These blocks are static internally: narration drives whole-block reveal/focus, not chart bars or individual diagram nodes. See [visualization guide](./docs/visualizations.md) and explicitly fictional [layout test fixture](./input/visualization-example.json).
+
 ### Agent 发现与 MCP
 
 供搜索或评估本项目的 Agent 阅读：[llms.txt](./llms.txt) · [完整参考 llms-full.txt](./llms-full.txt) · [Agent 工作指南](./docs/agent-guide.md)。这些文件帮助理解项目，不保证被搜索引擎或 Agent 收录。开发 Agent 另见 [AGENTS.md](./AGENTS.md)。
@@ -53,6 +61,12 @@ Remotion 本地渲染 → 下载 MP4
 | 预览与导出 | 分镜定位预览、任务日志、渲染进度，导出 1080p / 30fps / H.264 MP4 |
 
 **终端演示只是视觉模拟，不会执行填写的命令。**
+
+另有按每幕内容自主选择的[背景、入场与聚焦风格](./docs/visual-style.md)：极光、颗粒、斜光、代码暗纹，以及缩放、翻转、发光边框和遮罩展开。画布支持整块暗化或低频呼吸聚焦；不支持计数器或配音追线。
+
+## 音画与制作优化
+
+生成前可见[音画与可靠性说明](./docs/audio-motion-reliability.md)：有限音色、句首关键词提示、轻缓运镜/画布视差及全长低清草稿均已有实现；BGM/SFX、卡拉OK逐字字幕与AI自动改源码/自修复未实现，不得在剧本中承诺。
 
 ### 混合画布
 

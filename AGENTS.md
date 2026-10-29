@@ -6,8 +6,11 @@
 
 - 产品与发现索引：`llms.txt`、`llms-full.txt`
 - 使用工作流：`docs/agent-guide.md`
+- 视觉风格：`shared/style.ts`、`docs/visual-style.md`，背景/入场/聚焦枚举必须与AI提示和渲染同步。
+- 图表与图标能力：`docs/visualizations.md`、`shared/canvas.ts`；只有实现并验证后才能加入生成提示。静态内容，不宣称数据或安全认证效果。
 - 混合画布：`docs/canvas.md`、`shared/canvas.ts`、`input/canvas-example.json`。CanvasSlide target按深度优先内容块编号，不是块内项目或代码行。
 - 渲染动作契约：`shared/capabilities.ts`、`docs/renderer-contract.md`；新增或修改动画时同步更新它们，AI 提示与 MCP 都复用该契约。
+- 音画与可靠性：`shared/polish.ts`、`docs/audio-motion-reliability.md`；生成提示不得承诺BGM、逐字字幕或自动改源码等未实现能力。
 - MCP 配置与边界：`docs/mcp.md`
 - 授权：`LICENSE`。公开源码不代表开源或已获准使用；不得移除或淡化事先书面授权要求。
 - 人类安装指南：`README.md`

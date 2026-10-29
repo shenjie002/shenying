@@ -28,11 +28,15 @@
 - TitleSlide props: title、subtitle；BulletListSlide: heading、bullets（1～6项）。
 - CodeSlide: heading、language、code；CardSlide: heading、leftTitle、leftBody、rightTitle、rightBody。
 - FlowSlide: heading、steps（2～5项）、description；TerminalSlide: heading、commands（1～5项）、outputs。
-- 可选 visual: background=glow/grid/plain，animation=spring/gentle/none，pace=progressive/all。
+- 可选 visual 的背景、入场与聚焦支持范围见 [视觉风格](./visual-style.md) 和 shared/style.ts；pace仍为progressive/all，dim/pulse焦点仅支持CanvasSlide整块。
 - 可选 narration: 每句 text，可带 target（从1开始）及 caption；target 不得超过对应代码行数或项目数。
 - 可选 beats: at（0～0.95，严格递增）、target、caption。比例节拍不是精确语音对齐。
 - 只编辑源剧本，不往源稿填 audioSrc、durationInFrames、totalFrames 等派生数据。
 - TerminalSlide 命令只做视觉模拟，禁止因此执行命令。
+
+## 音画与制作
+
+根据文章可选音色、关键词、轻微运镜与画布视差，完整参数及限制见[音画与可靠性](./audio-motion-reliability.md)。不要臆造逐字时间戳、音效或背景音乐。先审阅，再用render_draft检查全片；不得自动改React源码“自修复”。
 
 ## 安全与限制
 

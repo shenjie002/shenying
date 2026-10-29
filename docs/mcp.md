@@ -51,6 +51,7 @@
 | prepare_silent | 启动静音时间轴任务 | API + WRITES |
 | generate_storyboard | 向配置的模型发送文章，返回待审稿，不保存 | API + EXTERNAL |
 | prepare_tts | 文本发送 Edge TTS，写音频及时间轴 | API + WRITES + EXTERNAL |
+| render_draft | 全片960×540/30fps低清草稿，与正式渲染复用任务锁 | API + RENDER |
 | render_video | 基于有效时间轴生成 MP4 | API + RENDER |
 
 剧本参数使用 `script` 对象。实际 JSON Schema 可读 `shenying://schema`；再调用 validate_script 检查跨字段规则。generate_storyboard 参数遵循 shared/article.ts（article、audience、style、duration、sceneCount）。
@@ -59,12 +60,14 @@
 
 视频路径 `/out/name.mp4` 可通过 `http://127.0.0.1:3001/out/name.mp4` 在本机访问。MCP 不传输视频二进制，也不提供任意路径读取。
 
+渲染权限开启后同时提供render_video和render_draft，草稿同样会写视频并可能下载浏览器，需用户确认。默认不会自动重试或改源码。句首关键词、voice与camera/parallax参数由同一shenying://schema和renderer资源提供，细节见docs/audio-motion-reliability.md。
+
 ## Resources 与 Prompt
 
 - `shenying://overview`：项目概览与文档索引。
 - `shenying://guide`：Agent 制作流程与安全约束。
 - `shenying://license`：授权条款。
-- `shenying://renderer`：真实模板动作、target 映射、时序规则与限制；生成前必读，与文章生成提示共用 shared/capabilities.ts。
+- `shenying://renderer`：真实模板动作、图表和语义图标白名单、内容选型规则、背景/入场/整块聚焦风格（shared/style.ts，docs/visual-style.md）、target 映射、时序规则与限制；生成前必读，与文章生成提示共用 shared/capabilities.ts、shared/canvas.ts 与 shared/director.ts。新图表均为内部静态内容，只支持整块入场/聚焦；指标和关系需有资料依据，详见 docs/visualizations.md。
 - `shenying://schema`：剧本 JSON Schema。
 - `shenying://example`：示例剧本。
 - Prompt `article_to_video`：输入 article，生成审稿优先的制作工作流指引，不自动外发或运行任务。

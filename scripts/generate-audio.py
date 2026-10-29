@@ -13,16 +13,16 @@ ROOT = Path(__file__).resolve().parents[1]
 VOICE = "zh-CN-XiaoxiaoNeural"
 
 
-async def synthesize(text):
+async def synthesize(text, voice=VOICE):
     directory = ROOT / "public" / "audio"
     directory.mkdir(parents=True, exist_ok=True)
-    key = hashlib.sha256((VOICE + text).encode()).hexdigest()[:32]
+    key = hashlib.sha256((voice + text).encode()).hexdigest()[:32]
     audio = directory / (key + ".mp3")
     if not audio.exists():
         temp = audio.with_suffix(".tmp.mp3")
         for attempt in range(3):
             try:
-                await asyncio.wait_for(edge_tts.Communicate(text, VOICE).save(str(temp)), timeout=90)
+                await asyncio.wait_for(edge_tts.Communicate(text, voice).save(str(temp)), timeout=90)
                 if MP3(str(temp)).info.length <= 0:
                     raise ValueError("音频时长无效")
                 os.replace(str(temp), str(audio))
@@ -43,13 +43,16 @@ async def main():
     data = json.loads((ROOT / "script.json").read_text(encoding="utf-8"))
     fps = data["fps"]
     for i, scene in enumerate(data["scenes"]):
+        voice = scene.get('voice', VOICE)
+        if voice not in {VOICE, 'zh-CN-YunxiNeural', 'zh-CN-XiaoyiNeural', 'zh-CN-YunjianNeural'}:
+            raise ValueError('不支持的音色')
         segments = scene.get("narration")
         if segments:
             cursor = 0
             timed = []
             seconds = 0
             for segment in segments:
-                src, duration = await synthesize(segment["text"].strip())
+                src, duration = await synthesize(segment["text"].strip(), voice)
                 frames = math.ceil(duration * fps)
                 timed.append(dict(segment, audioSrc=src, from_frame=cursor, durationInFrames=frames))
                 # JSON uses 'from'; Python reserves that keyword.
@@ -60,7 +63,7 @@ async def main():
             scene["durationInFrames"] = cursor - 3 + data["tailPaddingFrames"]
             scene["audioDurationSeconds"] = seconds
         else:
-            src, duration = await synthesize(scene["voiceover"].strip())
+            src, duration = await synthesize(scene["voiceover"].strip(), voice)
             scene.update(audioSrc=src, audioDurationSeconds=duration,
                          durationInFrames=math.ceil(duration * fps) + data["tailPaddingFrames"])
         print("分镜 %d / %d：%d 帧" % (i + 1, len(data["scenes"]), scene["durationInFrames"]), flush=True)

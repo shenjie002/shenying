@@ -2,6 +2,7 @@ import {canvasLeaves, type CanvasBlock, type LeafBlock} from './canvas';
 import type {Scene} from './schema';
 
 export const blockLabels: Record<LeafBlock['type'], string> = {
+  TopologyBlock: '拓扑关系', CompareBlock: '对比矩阵', TimelineBlock: '时间轴', BarChartBlock: '柱状图', TreeBlock: '层级树', IconBlock: '语义图标',
   CodeBlock: '代码', BulletBlock: '要点列表', CalloutBlock: '提示卡', StatBlock: '数据卡', DiagramBlock: '节点图',
 };
 export const layoutLabels = {'split-2-1': '主辅分栏 · 2:1', grid: '等宽双列', stacked: '纵向堆叠'};
@@ -10,6 +11,12 @@ export function blockLabel(block: LeafBlock) {
 }
 export function blockTitle(block: LeafBlock) {
   switch (block.type) {
+    case 'TopologyBlock': return `${block.props.heading} · ${block.props.nodes.length}节点`;
+    case 'CompareBlock': return `${block.props.heading} · ${block.props.columns.join(' / ')}`;
+    case 'TimelineBlock': return `${block.props.heading} · ${block.props.events.length}阶段`;
+    case 'BarChartBlock': return `${block.props.heading} · ${block.props.bars.length}项数据`;
+    case 'TreeBlock': return `${block.props.heading} · ${block.props.nodes.length}节点`;
+    case 'IconBlock': return `${block.props.name} · ${block.props.label}`;
     case 'CodeBlock': return `${block.props.language || '代码'} · ${block.props.code.split('\n').length} 行`;
     case 'BulletBlock': return block.props.heading;
     case 'CalloutBlock': return block.props.text;
