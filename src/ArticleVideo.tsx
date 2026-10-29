@@ -13,7 +13,6 @@ function Slide({scene, index}: {scene: TimedScene; index: number}) {
     <div style={{position: 'relative', margin: 'auto 0', width: '100%'}}><SceneContent scene={scene}/></div>
     {subtitleAt(scene, frame) && <div style={{position: 'absolute', bottom: 89, left: 180, right: 180, textAlign: 'center', pointerEvents: 'none'}}><span style={{display: 'inline-block', fontSize: 32, lineHeight: 1.6, padding: '8px 24px', borderRadius: 12, background: '#030814dc', color: '#f5f7ff'}}>{subtitleAt(scene, frame)}</span></div>}
     <div style={{position: 'absolute', bottom: 42, left: 120, right: 120, display: 'flex', justifyContent: 'space-between', color: '#92a0c1', fontSize: 21}}><span>把知识，讲清楚。</span><span>{String(index + 1).padStart(2, '0')} / EXPLAINER</span></div>
-    <div style={{position: 'absolute', bottom: 0, left: 0, height: 5, width: `${Math.min(100, (frame + 1) / scene.durationInFrames * 100)}%`, background: '#a5b4fc'}}/>
   </AbsoluteFill>;
 }
 export function ArticleVideo({scriptData}: {scriptData: Timeline}) {
