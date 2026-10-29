@@ -10,6 +10,7 @@ import {previewTimeline, scriptSchema, type Script, type Scene, type Timeline} f
 import visualExample from '../input/visual-upgrade.json';
 import './style.css';
 import './motion.css';
+import './canvas.css';
 
 type Job = {id: string; kind: string; status: string; progress: number; logs: string[]; output?: string; error?: string};
 async function api(url: string, init?: RequestInit) {

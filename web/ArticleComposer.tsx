@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import {articleRequestSchema, templateLabels, type ArticleRequest} from '../shared/article';
+import {CanvasOverview} from './CanvasOverview';
 import {sceneCapabilities} from '../shared/capabilities';
 import {scriptSchema, type Script} from '../shared/schema';
 import './article.css';
@@ -48,6 +49,6 @@ export function ArticleComposer({disabled, onBusyChange, onApply}: {disabled: bo
     <div className="article-actions"><button className="primary" disabled={locked || !model?.configured || article.trim().length < 80} onClick={generate}>{generating ? '正在理解文章、规划分镜…' : draft ? '重新生成（替换待审稿）' : '✦ 生成分镜剧本'}</button>{generating && <button className="secondary" onClick={() => abort.current?.abort()}>取消等待</button>}<span>生成期间不执行配音或视频渲染</span></div>
     {draft && <div className="article-draft"><div className="article-draft-heading"><div><div className="eyebrow">REVIEW BEFORE PRODUCTION</div><h3>{draft.title}</h3><span>{draft.scenes.length} 幕 · 旁白 {draft.scenes.reduce((n, s) => n + s.voiceover.length, 0)} 字 · 字数粗估约 {Math.round(draft.scenes.reduce((n, s) => n + s.voiceover.length, 0) / 4)} 秒</span></div><button className="primary" disabled={locked} onClick={() => {
       if (window.confirm('将待审剧本应用到编辑器？当前未保存的编辑将被替换；磁盘文件仅在你保存后更新。')) onApply(draft);
-    }}>应用到编辑器 ↗</button></div><p className="article-review-note">请核对事实、代码、命令结果及画面组合是否符合原文。AI 会按内容选择单模板或混合画布并绑定旁白动作，不应仅罗列组件；模型仍可能遗漏或误解原文，应用后仍可逐幕编辑。</p><div className="article-scenes">{draft.scenes.map((scene, i) => <div className="article-scene" key={scene.id}><div><span>{String(i + 1).padStart(2, '0')}</span><strong>{templateLabels[scene.template]}</strong><small>{'title' in scene.props ? scene.props.title : scene.props.heading}</small></div><p>{scene.voiceover}</p><p>实际画面：{sceneCapabilities[scene.template].motion}</p><details><summary>查看画面与动作编排</summary><pre>{JSON.stringify({props: scene.props, visual: scene.visual, narration: scene.narration, beats: scene.beats, subtitles: scene.subtitles}, null, 2)}</pre></details></div>)}</div></div>}
+    }}>应用到编辑器 ↗</button></div><p className="article-review-note">请核对事实、代码、命令结果及画面组合是否符合原文。AI 会按内容选择单模板或混合画布并绑定旁白动作，不应仅罗列组件；模型仍可能遗漏或误解原文，应用后仍可逐幕编辑。</p><div className="article-scenes">{draft.scenes.map((scene, i) => <div className="article-scene" key={scene.id}><div><span>{String(i + 1).padStart(2, '0')}</span><strong>{templateLabels[scene.template]}</strong><small>{'title' in scene.props ? scene.props.title : scene.props.heading}</small></div><p>{scene.voiceover}</p>{scene.template === 'CanvasSlide' ? <CanvasOverview scene={scene}/> : <p>实际画面：{sceneCapabilities[scene.template].motion}</p>}<details><summary>查看画面与动作编排</summary><pre>{JSON.stringify({props: scene.props, visual: scene.visual, narration: scene.narration, beats: scene.beats, subtitles: scene.subtitles}, null, 2)}</pre></details></div>)}</div></div>}
   </div>}</section>;
 }
