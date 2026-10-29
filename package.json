@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts",
     "mcp": "tsx server/mcp-stdio.ts",
+    "validate:storyboard": "tsx scripts/validate-storyboard.ts",
     "audio": "tsx scripts/prepare.ts",
     "render": "tsx scripts/render-cli.ts",
     "video": "npm run audio && npm run render",

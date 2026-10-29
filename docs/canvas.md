@@ -2,6 +2,10 @@
 
 在同一幕组合代码、要点、提示、数据和节点图，保留原有六种全屏模板。示例见 [input/canvas-example.json](../input/canvas-example.json)：左侧代码 + 右侧嵌套的图解与警告卡。
 
+## 本地模型专项测试
+
+将 [Rust 测试任务与文章](../input/rust-canvas-test.md) 交给能读取项目规则的本地模型，生成 input/rust-canvas-generated.json，再执行 `npm run validate:storyboard -- input/rust-canvas-generated.json 5`。校验不会覆盖当前项目；通过后从网页JSON页导入预览。
+
 ## AI 根据文章自主组合
 
 文章生成实际请求会加载 shared/director.ts 的导演规则：先识别核心结论、代码、因果、对比、风险和已有数据，再决定单模板或同幕多块组合。代码与风险适合代码块+提示，结论与原文数值适合要点+数据，线性原理与实现可用图+代码。AI 根据主次选择分栏/网格/嵌套堆叠，直接输出完整布局和分句target，不要求用户手选组件；材料不支持的组合不得硬凑。每个生成画布内容块必须绑定至少一句旁白，否则生成校验拒绝应用。此规则同时通过MCP的shenying://renderer提供给外部Agent。提示与结构校验不能保证语义正确，仍须人工审稿。
