@@ -13,6 +13,14 @@
 
 ## 中文说明
 
+### 项目介绍视频
+
+[▶ 查看申映项目介绍视频（MP4，约 7 MB）](https://github.com/shenjie002/shenying/releases/download/project-introduction-video/video-1793351473140.mp4) · [视频发布页 / Watch or download](https://github.com/shenjie002/shenying/releases/tag/project-introduction-video)
+
+通过实际演示了解文章、结构化剧本、人工审阅、配音和视频导出的制作流程。此视频是项目介绍，不代表所有能力组合均已验收，也不保证任意文章一键成片。
+
+**English:** [Watch the project introduction](https://github.com/shenjie002/shenying/releases/tag/project-introduction-video). This demonstration introduces the workflow; it is not a guarantee of unattended production quality.
+
 ### 图表与语义图标
 
 文章生成会依据内容选择拓扑、对比矩阵、时间轴、柱状图、层级树及白名单图标，并与原有块混排。没有真实数据不生成性能图，不默认判定两方案谁对谁错。旁白target控制整块；柱图显露/计数、时间轴节点和树的顺序显露使用独立声明字段，不是任意数据变形。见[图表指南](./docs/visualizations.md)及[虚构数据布局示例](./input/visualization-example.json)。
