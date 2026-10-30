@@ -1,0 +1,1412 @@
+{
+  "title": "调度为什么要自己握着？",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 0,
+  "theme": {
+    "palette": "handbook",
+    "cinema": true
+  },
+  "scenes": [],
+  "master": {
+    "backdrop": "aurora",
+    "beats": [
+      {
+        "text": "模型公司为什么要自己掌握调度？",
+        "frames": 150
+      },
+      {
+        "text": "而跑代码的沙箱，却愿意交给别人用。先拆开一个 agent 看看。",
+        "frames": 180
+      },
+      {
+        "text": "模型是厨师，负责想下一步做什么。",
+        "frames": 210
+      },
+      {
+        "text": "调度是领班：问模型下一步，派工具，再把结果拿回来，一圈一圈地转。",
+        "frames": 240
+      },
+      {
+        "text": "沙箱是灶台，在这里跑代码、改文件。",
+        "frames": 210
+      },
+      {
+        "text": "记录是账本，记着活干到了哪一步。",
+        "frames": 210
+      },
+      {
+        "text": "以前一问一答，就是一个完整的任务；现在可能要跑几十分钟、几百步。",
+        "frames": 270
+      },
+      {
+        "text": "活一长，最先扛不住的往往不是模型，而是调度这个循环。",
+        "frames": 240
+      },
+      {
+        "text": "因为调度里，写着许多对模型的假设：假定它做不到什么。",
+        "frames": 240
+      },
+      {
+        "text": "比如旧模型临近上下文上限，会提前收工。调度就替它定时清空、重来。",
+        "frames": 270
+      },
+      {
+        "text": "新模型没了这个毛病，那套清空重来，反倒成了白白拖慢的累赘。",
+        "frames": 270
+      },
+      {
+        "text": "模型每升级一次，就有一批假设过期。最先知道新能力的，是模型公司自己。",
+        "frames": 240
+      },
+      {
+        "text": "所以，调度更可能留在模型公司手里。",
+        "frames": 210
+      },
+      {
+        "text": "沙箱管算力和隔离，跟模型聪明无关，所以可以放到客户机器或第三方沙箱。",
+        "frames": 240
+      },
+      {
+        "text": "所以判断标准只有一个，看这个零件：会不会随模型能力一起变。",
+        "frames": 210
+      },
+      {
+        "text": "会跟着模型一起变老的零件，自己做；只是算力的，可以让出去。",
+        "frames": 210
+      }
+    ],
+    "actors": [
+      {
+        "id": "title",
+        "label": "调度为什么\n要自己握着？",
+        "kind": "text",
+        "tone": "highlight",
+        "fontSize": 62,
+        "fontWeight": 800,
+        "width": 90,
+        "depth": 0.3,
+        "keys": [
+          {
+            "frame": 0,
+            "x": 50,
+            "y": 40,
+            "scale": 0.9,
+            "opacity": 0,
+            "z": -120,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 26,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "z": 0
+          },
+          {
+            "frame": 190,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 216,
+            "x": 50,
+            "y": 6,
+            "scale": 0.42,
+            "opacity": 0.9
+          }
+        ]
+      },
+      {
+        "id": "model",
+        "label": "模型",
+        "detail": "厨师：想下一步",
+        "kind": "card",
+        "icon": "Brain",
+        "iconMotion": "draw",
+        "tone": "accent",
+        "fontSize": 34,
+        "width": 44,
+        "keys": [
+          {
+            "frame": 230,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "progress": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 256,
+            "x": 50,
+            "y": 22,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "progress": 0.4
+          },
+          {
+            "frame": 340,
+            "x": 50,
+            "y": 22,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "progress": 0.4,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 364,
+            "x": 50,
+            "y": 22,
+            "scale": 1.05,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 540,
+            "x": 50,
+            "y": 22,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 570,
+            "x": 50,
+            "y": 22,
+            "scale": 0.9,
+            "opacity": 0.8
+          },
+          {
+            "frame": 1200,
+            "x": 50,
+            "y": 22,
+            "scale": 0.9,
+            "opacity": 0.8
+          },
+          {
+            "frame": 1236,
+            "x": 50,
+            "y": 16,
+            "scale": 0.7,
+            "opacity": 0.4
+          },
+          {
+            "frame": 1720,
+            "x": 50,
+            "y": 16,
+            "scale": 0.7,
+            "opacity": 0.4
+          },
+          {
+            "frame": 1750,
+            "x": 50,
+            "y": 14,
+            "scale": 0.6,
+            "opacity": 0
+          },
+          {
+            "frame": 2490,
+            "x": 50,
+            "y": 60,
+            "scale": 0.6,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2516,
+            "x": 50,
+            "y": 56,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 2740,
+            "x": 50,
+            "y": 56,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 2770,
+            "x": 27,
+            "y": 28,
+            "scale": 0.8,
+            "opacity": 1
+          },
+          {
+            "frame": 3190,
+            "x": 27,
+            "y": 28,
+            "scale": 0.8,
+            "opacity": 1
+          },
+          {
+            "frame": 3220,
+            "x": 35,
+            "y": 26,
+            "scale": 0.5,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "loop",
+        "label": "调度",
+        "detail": "领班：问、派、取回",
+        "kind": "ring",
+        "icon": "Workflow",
+        "tone": "highlight",
+        "fontSize": 34,
+        "width": 40,
+        "keys": [
+          {
+            "frame": 230,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "progress": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 256,
+            "x": 50,
+            "y": 46,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "progress": 0.15
+          },
+          {
+            "frame": 545,
+            "x": 50,
+            "y": 46,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "progress": 0.15,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 572,
+            "x": 50,
+            "y": 46,
+            "scale": 1.05,
+            "opacity": 1,
+            "progress": 0.15,
+            "easing": "linear"
+          },
+          {
+            "frame": 770,
+            "x": 50,
+            "y": 46,
+            "scale": 1.05,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 800,
+            "x": 50,
+            "y": 46,
+            "scale": 0.9,
+            "opacity": 0.7,
+            "progress": 1
+          },
+          {
+            "frame": 1200,
+            "x": 50,
+            "y": 46,
+            "scale": 0.9,
+            "opacity": 0.7,
+            "progress": 1
+          },
+          {
+            "frame": 1236,
+            "x": 50,
+            "y": 44,
+            "scale": 1.15,
+            "opacity": 1,
+            "progress": 0,
+            "easing": "linear"
+          },
+          {
+            "frame": 1460,
+            "x": 50,
+            "y": 44,
+            "scale": 1.15,
+            "opacity": 1,
+            "progress": 1,
+            "easing": "spring-jelly"
+          },
+          {
+            "frame": 1488,
+            "x": 50,
+            "y": 44,
+            "scale": 1.22,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 1712,
+            "x": 50,
+            "y": 44,
+            "scale": 1.22,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 28,
+            "scale": 0.82,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 2740,
+            "x": 50,
+            "y": 28,
+            "scale": 0.82,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 2770,
+            "x": 73,
+            "y": 28,
+            "scale": 0.72,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 3190,
+            "x": 73,
+            "y": 28,
+            "scale": 0.72,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 3220,
+            "x": 65,
+            "y": 26,
+            "scale": 0.5,
+            "opacity": 0,
+            "progress": 1
+          }
+        ]
+      },
+      {
+        "id": "token",
+        "label": "下一步？",
+        "kind": "chip",
+        "tone": "highlight",
+        "fontSize": 22,
+        "width": 30,
+        "keys": [
+          {
+            "frame": 580,
+            "x": 50,
+            "y": 40,
+            "scale": 0.5,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 598,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 626,
+            "x": 50,
+            "y": 30
+          },
+          {
+            "frame": 656,
+            "x": 50,
+            "y": 40
+          },
+          {
+            "frame": 690,
+            "x": 34,
+            "y": 63
+          },
+          {
+            "frame": 720,
+            "x": 50,
+            "y": 40
+          },
+          {
+            "frame": 750,
+            "x": 66,
+            "y": 63
+          },
+          {
+            "frame": 776,
+            "x": 50,
+            "y": 40
+          },
+          {
+            "frame": 800,
+            "x": 50,
+            "y": 40,
+            "scale": 0.4,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "sandbox",
+        "label": "沙箱",
+        "detail": "灶台：跑代码、改文件",
+        "kind": "card",
+        "icon": "Terminal",
+        "tone": "teal",
+        "fontSize": 34,
+        "width": 40,
+        "keys": [
+          {
+            "frame": 230,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 256,
+            "x": 28,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6
+          },
+          {
+            "frame": 790,
+            "x": 28,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 814,
+            "x": 28,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 990,
+            "x": 28,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 1020,
+            "x": 28,
+            "y": 72,
+            "scale": 0.9,
+            "opacity": 0.75
+          },
+          {
+            "frame": 1200,
+            "x": 28,
+            "y": 72,
+            "scale": 0.9,
+            "opacity": 0.75
+          },
+          {
+            "frame": 1236,
+            "x": 22,
+            "y": 78,
+            "scale": 0.7,
+            "opacity": 0
+          },
+          {
+            "frame": 2950,
+            "x": 50,
+            "y": 74,
+            "scale": 0.6,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2976,
+            "x": 50,
+            "y": 68,
+            "scale": 0.85,
+            "opacity": 1
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 68,
+            "scale": 0.85,
+            "opacity": 1
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 64,
+            "scale": 0.5,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "ledger",
+        "label": "记录",
+        "detail": "账本：干到哪一步",
+        "kind": "card",
+        "icon": "FileText",
+        "tone": "normal",
+        "fontSize": 34,
+        "width": 40,
+        "keys": [
+          {
+            "frame": 230,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 256,
+            "x": 72,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6
+          },
+          {
+            "frame": 1000,
+            "x": 72,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1024,
+            "x": 72,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 1200,
+            "x": 72,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1
+          },
+          {
+            "frame": 1236,
+            "x": 78,
+            "y": 78,
+            "scale": 0.7,
+            "opacity": 0
+          },
+          {
+            "frame": 2780,
+            "x": 50,
+            "y": 47,
+            "scale": 0.5,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2806,
+            "x": 50,
+            "y": 43,
+            "scale": 0.72,
+            "opacity": 1
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 43,
+            "scale": 0.72,
+            "opacity": 1
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 40,
+            "scale": 0.5,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "shortTask",
+        "label": "一问一答",
+        "kind": "chip",
+        "tone": "muted",
+        "fontSize": 26,
+        "width": 30,
+        "keys": [
+          {
+            "frame": 1210,
+            "x": 50,
+            "y": 64,
+            "scale": 0.6,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1232,
+            "x": 50,
+            "y": 64,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 1330,
+            "x": 50,
+            "y": 64,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 1360,
+            "x": 50,
+            "y": 63,
+            "scale": 0.78,
+            "opacity": 0.4
+          },
+          {
+            "frame": 1712,
+            "x": 50,
+            "y": 63,
+            "scale": 0.78,
+            "opacity": 0.4
+          },
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 66,
+            "scale": 0.6,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "longTask",
+        "label": "几十分钟、几百步",
+        "badge": "现在",
+        "kind": "line",
+        "tone": "highlight",
+        "fontSize": 30,
+        "width": 54,
+        "keys": [
+          {
+            "frame": 1350,
+            "x": 50,
+            "y": 80,
+            "scale": 0.9,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1376,
+            "x": 50,
+            "y": 73,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 1712,
+            "x": 50,
+            "y": 73,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 80,
+            "scale": 0.9,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "focusRing",
+        "label": "圈注",
+        "kind": "doodle",
+        "decoration": "circle",
+        "tone": "highlight",
+        "width": 58,
+        "keys": [
+          {
+            "frame": 1480,
+            "x": 50,
+            "y": 40,
+            "opacity": 1,
+            "progress": 0
+          },
+          {
+            "frame": 1520,
+            "x": 50,
+            "y": 40,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 1700,
+            "x": 50,
+            "y": 40,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 1730,
+            "x": 50,
+            "y": 40,
+            "opacity": 0,
+            "progress": 1
+          },
+          {
+            "frame": 2520,
+            "x": 50,
+            "y": 56,
+            "opacity": 0,
+            "progress": 0
+          },
+          {
+            "frame": 2540,
+            "x": 50,
+            "y": 56,
+            "opacity": 1,
+            "progress": 0
+          },
+          {
+            "frame": 2580,
+            "x": 50,
+            "y": 56,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 2730,
+            "x": 50,
+            "y": 56,
+            "opacity": 1,
+            "progress": 1
+          },
+          {
+            "frame": 2760,
+            "x": 50,
+            "y": 56,
+            "opacity": 0,
+            "progress": 1
+          }
+        ]
+      },
+      {
+        "id": "assumption",
+        "label": "快到上限\n就提前收工",
+        "detail": "调度对策：定时清空、重来",
+        "badge": "旧模型",
+        "kind": "card",
+        "icon": "Settings",
+        "tone": "warning",
+        "fontSize": 34,
+        "width": 42,
+        "keys": [
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 34,
+            "scale": 0.3,
+            "opacity": 0,
+            "z": -200,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1766,
+            "x": 50,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "z": 0
+          },
+          {
+            "frame": 2230,
+            "x": 50,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 2260,
+            "x": 27,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 2300,
+            "x": 27,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 2316,
+            "x": 27,
+            "y": 59,
+            "scale": 0.96,
+            "opacity": 0.55,
+            "rotate": -3
+          },
+          {
+            "frame": 2490,
+            "x": 27,
+            "y": 59,
+            "scale": 0.96,
+            "opacity": 0.55,
+            "rotate": -3
+          },
+          {
+            "frame": 2520,
+            "x": 27,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0,
+            "rotate": -3
+          }
+        ]
+      },
+      {
+        "id": "newModel",
+        "label": "不再\n提前收工",
+        "detail": "这个毛病没了",
+        "badge": "新模型",
+        "kind": "card",
+        "icon": "Sparkles",
+        "tone": "teal",
+        "fontSize": 34,
+        "width": 42,
+        "keys": [
+          {
+            "frame": 2240,
+            "x": 96,
+            "y": 58,
+            "scale": 0.9,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2266,
+            "x": 73,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 2490,
+            "x": 73,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 2520,
+            "x": 50,
+            "y": 56,
+            "scale": 0.5,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "drag",
+        "label": "成了累赘",
+        "kind": "text",
+        "tone": "rose",
+        "fontSize": 44,
+        "fontWeight": 900,
+        "width": 40,
+        "glow": true,
+        "keys": [
+          {
+            "frame": 2296,
+            "x": 27,
+            "y": 74,
+            "scale": 1.8,
+            "opacity": 0,
+            "rotate": -11.200000000000001,
+            "z": 200,
+            "easing": "spring-bouncy"
+          },
+          {
+            "frame": 2320,
+            "x": 27,
+            "y": 74,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": -8.0,
+            "z": 0
+          },
+          {
+            "frame": 2490,
+            "x": 27,
+            "y": 74,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": -8.0
+          },
+          {
+            "frame": 2520,
+            "x": 27,
+            "y": 86,
+            "scale": 0.8,
+            "opacity": 0,
+            "rotate": -8.0
+          }
+        ]
+      },
+      {
+        "id": "own",
+        "label": "随模型变：自己掌握",
+        "kind": "chip",
+        "tone": "accent",
+        "fontSize": 28,
+        "width": 62,
+        "keys": [
+          {
+            "frame": 2745,
+            "x": 50,
+            "y": 10,
+            "scale": 0.6,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2770,
+            "x": 50,
+            "y": 15,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 15,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 30,
+            "scale": 1.3,
+            "opacity": 1
+          },
+          {
+            "frame": 3390,
+            "x": 50,
+            "y": 30,
+            "scale": 1.3,
+            "opacity": 1,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 3416,
+            "x": 50,
+            "y": 32,
+            "scale": 1.42,
+            "opacity": 1
+          }
+        ]
+      },
+      {
+        "id": "open",
+        "label": "只是算力：可以开放",
+        "kind": "chip",
+        "tone": "teal",
+        "fontSize": 28,
+        "width": 62,
+        "keys": [
+          {
+            "frame": 2950,
+            "x": 50,
+            "y": 52,
+            "scale": 0.6,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2974,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 64,
+            "scale": 1.3,
+            "opacity": 1
+          },
+          {
+            "frame": 3390,
+            "x": 50,
+            "y": 64,
+            "scale": 1.3,
+            "opacity": 1,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 3416,
+            "x": 50,
+            "y": 62,
+            "scale": 1.42,
+            "opacity": 1
+          }
+        ]
+      },
+      {
+        "id": "hosts",
+        "label": "客户机器 · 第三方沙箱",
+        "kind": "chip",
+        "tone": "muted",
+        "fontSize": 24,
+        "width": 66,
+        "keys": [
+          {
+            "frame": 3010,
+            "x": 50,
+            "y": 84,
+            "scale": 0.7,
+            "opacity": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 3034,
+            "x": 50,
+            "y": 80,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 80,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3216,
+            "x": 50,
+            "y": 84,
+            "scale": 0.8,
+            "opacity": 0
+          }
+        ]
+      },
+      {
+        "id": "rule",
+        "label": "判断标准：\n会不会随模型能力变？",
+        "kind": "text",
+        "tone": "highlight",
+        "fontSize": 42,
+        "fontWeight": 800,
+        "width": 88,
+        "keys": [
+          {
+            "frame": 3196,
+            "x": 50,
+            "y": 50,
+            "scale": 0.7,
+            "opacity": 0,
+            "z": -100,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 3226,
+            "x": 50,
+            "y": 47,
+            "scale": 1,
+            "opacity": 1,
+            "z": 0
+          },
+          {
+            "frame": 3390,
+            "x": 50,
+            "y": 47,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 3416,
+            "x": 50,
+            "y": 47,
+            "scale": 0.85,
+            "opacity": 0.55
+          }
+        ]
+      }
+    ],
+    "camera": [
+      {
+        "frame": 0,
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      },
+      {
+        "frame": 560,
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      },
+      {
+        "frame": 600,
+        "x": 50,
+        "y": 47,
+        "zoom": 1.08
+      },
+      {
+        "frame": 770,
+        "x": 50,
+        "y": 47,
+        "zoom": 1.08
+      },
+      {
+        "frame": 810,
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      },
+      {
+        "frame": 1740,
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      },
+      {
+        "frame": 1780,
+        "x": 50,
+        "y": 52,
+        "zoom": 1.08
+      },
+      {
+        "frame": 2215,
+        "x": 50,
+        "y": 52,
+        "zoom": 1.08
+      },
+      {
+        "frame": 2250,
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      },
+      {
+        "frame": 3600,
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      }
+    ],
+    "sfx": [
+      {
+        "frame": 6,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 192,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 240,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 342,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 547,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 598,
+        "sound": "bloop",
+        "gain": 0.3
+      },
+      {
+        "frame": 626,
+        "sound": "tick",
+        "gain": 0.5
+      },
+      {
+        "frame": 656,
+        "sound": "tick",
+        "gain": 0.35
+      },
+      {
+        "frame": 690,
+        "sound": "tick",
+        "gain": 0.5
+      },
+      {
+        "frame": 720,
+        "sound": "tick",
+        "gain": 0.35
+      },
+      {
+        "frame": 750,
+        "sound": "tick",
+        "gain": 0.5
+      },
+      {
+        "frame": 776,
+        "sound": "tick",
+        "gain": 0.35
+      },
+      {
+        "frame": 792,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 1002,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 1204,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 1214,
+        "sound": "bloop",
+        "gain": 0.35
+      },
+      {
+        "frame": 1352,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 1460,
+        "sound": "tick",
+        "gain": 0.45
+      },
+      {
+        "frame": 1482,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 1740,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 1764,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 2240,
+        "sound": "whoosh",
+        "gain": 0.5
+      },
+      {
+        "frame": 2314,
+        "sound": "tick",
+        "gain": 0.55
+      },
+      {
+        "frame": 2318,
+        "sound": "bloop",
+        "gain": 0.45
+      },
+      {
+        "frame": 2490,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 2512,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 2542,
+        "sound": "tick",
+        "gain": 0.4
+      },
+      {
+        "frame": 2740,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 2770,
+        "sound": "bloop",
+        "gain": 0.45
+      },
+      {
+        "frame": 2806,
+        "sound": "bloop",
+        "gain": 0.35
+      },
+      {
+        "frame": 2950,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 2974,
+        "sound": "bloop",
+        "gain": 0.45
+      },
+      {
+        "frame": 3034,
+        "sound": "tick",
+        "gain": 0.4
+      },
+      {
+        "frame": 3192,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 3226,
+        "sound": "chime",
+        "gain": 0.45
+      },
+      {
+        "frame": 3412,
+        "sound": "chime",
+        "gain": 0.5
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import example from '../script.json';
+import example from '../input/visual-upgrade.json';
 import {scriptSchema, previewTimeline} from '../shared/schema';
 import {hashScript} from '../server/pipeline';
 

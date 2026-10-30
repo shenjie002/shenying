@@ -1,0 +1,2886 @@
+{
+  "title": "Anthropic 哪些零件绝不外包？",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "theme": {
+    "palette": "handbook",
+    "brand": "申映 / HANDBOOK",
+    "footer": "文案观点示意 · 数据未独立核实 · 静音估算",
+    "chapters": true
+  },
+  "scenes": [
+    {
+      "id": "cold_open",
+      "template": "CanvasSlide",
+      "chapter": "序 / 核心问题",
+      "voiceover": "Anthropic 哪些零件绝不外包？ Anthropic 就是做 AI 助手 Claude 的公司，Claude Code 是它的编程工具。 今年它给 agent 做了十几样零件，连代码仓库都自己重写了。 只有一样，它主动让给了别人：跑代码的沙箱。 规矩只有一条：会跟着模型一起变老的零件，自己做；只是算力的，可以让出去。 接下来拆开一个 agent，看它卡在哪、怎么补、别人怎么跟。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.6
+        }
+      },
+      "narration": [
+        {
+          "text": "Anthropic 哪些零件绝不外包？",
+          "target": 1
+        },
+        {
+          "text": "Anthropic 就是做 AI 助手 Claude 的公司，Claude Code 是它的编程工具。",
+          "target": 1
+        },
+        {
+          "text": "今年它给 agent 做了十几样零件，连代码仓库都自己重写了。",
+          "target": 1
+        },
+        {
+          "text": "只有一样，它主动让给了别人：跑代码的沙箱。",
+          "target": 1
+        },
+        {
+          "text": "规矩只有一条：会跟着模型一起变老的零件，自己做；只是算力的，可以让出去。",
+          "target": 1
+        },
+        {
+          "text": "接下来拆开一个 agent，看它卡在哪、怎么补、别人怎么跟。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "哪些零件，绝不外包",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "依据文案提炼的问题框架，概念示意。",
+              "objects": [
+                {
+                  "id": "anthropic",
+                  "label": "Anthropic",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 60,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 16,
+                      "fontSize": 34,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0,
+                      "x": 50,
+                      "y": 14,
+                      "fontSize": 30,
+                      "fontWeight": 600
+                    }
+                  ]
+                },
+                {
+                  "id": "parts",
+                  "label": "十几样零件",
+                  "detail": "连代码仓库都自己重写",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 52,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 46,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 46,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 40,
+                      "scale": 0.92
+                    }
+                  ]
+                },
+                {
+                  "id": "sandbox",
+                  "label": "沙箱",
+                  "detail": "只有这一样让出去",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 52,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 62,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 62,
+                      "scale": 1.06,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 70,
+                      "scale": 1
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 72,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "rule",
+                  "label": "跟着模型变老的，自己做",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 62,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 5,
+                      "at": 0.15,
+                      "x": 50,
+                      "y": 86,
+                      "opacity": 0,
+                      "fontSize": 30,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 86,
+                      "opacity": 1,
+                      "fontSize": 36,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "four_parts",
+      "template": "CanvasSlide",
+      "chapter": "01 / 07 · 一个 agent 由什么组成",
+      "voiceover": "一个 agent，拆开是四样东西： 模型是大脑，负责想。 旁边有个不停转的循环：问模型下一步干什么，把工具派出去，再把结果拿回来，这叫调度。 真正跑代码、改文件的地方叫沙箱，是手。 最后是一本账，记着干到了哪一步。 打个比方： 模型是厨师，调度是领班，沙箱是灶台，记录是账本。 过去两年，这四样大多是开发者自己拼，或者用 LangChain 这类框架拼。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "一个 agent，拆开是四样东西：",
+          "target": 1
+        },
+        {
+          "text": "模型是大脑，负责想。",
+          "target": 1
+        },
+        {
+          "text": "旁边有个不停转的循环：问模型下一步干什么，把工具派出去，再把结果拿回来，这叫调度。",
+          "target": 1
+        },
+        {
+          "text": "真正跑代码、改文件的地方叫沙箱，是手。",
+          "target": 1
+        },
+        {
+          "text": "最后是一本账，记着干到了哪一步。",
+          "target": 1
+        },
+        {
+          "text": "打个比方：",
+          "target": 1
+        },
+        {
+          "text": "模型是厨师，调度是领班，沙箱是灶台，记录是账本。",
+          "target": 1
+        },
+        {
+          "text": "过去两年，这四样大多是开发者自己拼，或者用 LangChain 这类框架拼。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "拆开一个 Agent，是四样东西",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "文案中的四个零件，概念示意，非真实架构。",
+              "stagger": [
+                {
+                  "sentence": 2,
+                  "objects": [
+                    "model",
+                    "dispatch",
+                    "sandbox",
+                    "ledger"
+                  ],
+                  "intervalFrames": 6,
+                  "preset": "spring-jelly"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "model",
+                  "label": "模型",
+                  "detail": "大脑 · 负责想",
+                  "badge": "想",
+                  "icon": "Brain",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 42,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 27,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 7,
+                      "at": 0,
+                      "x": 27,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "dispatch",
+                  "label": "调度",
+                  "detail": "问 → 派 → 收",
+                  "badge": "循环",
+                  "icon": "Workflow",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 42,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 73,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "opacity": 0,
+                      "scale": 0.85
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.25,
+                      "x": 73,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "opacity": 1
+                    },
+                    {
+                      "sentence": 7,
+                      "at": 0,
+                      "x": 73,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "sandbox",
+                  "label": "沙箱",
+                  "detail": "手 · 跑代码改文件",
+                  "badge": "执行",
+                  "icon": "Terminal",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 42,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 27,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "opacity": 0,
+                      "scale": 0.85
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.25,
+                      "x": 27,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "opacity": 1
+                    },
+                    {
+                      "sentence": 7,
+                      "at": 0,
+                      "x": 27,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "ledger",
+                  "label": "记录",
+                  "detail": "账 · 记到哪一步",
+                  "badge": "账本",
+                  "icon": "FileText",
+                  "shape": "panel",
+                  "tone": "warning",
+                  "width": 42,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 73,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "opacity": 0,
+                      "scale": 0.85
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.25,
+                      "x": 73,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "opacity": 1
+                    },
+                    {
+                      "sentence": 7,
+                      "at": 0,
+                      "x": 73,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "metaphor",
+                  "label": "厨师 · 领班 · 灶台 · 账本",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 7,
+                      "at": 0,
+                      "x": 50,
+                      "y": 82,
+                      "opacity": 0,
+                      "fontSize": 30,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 7,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 82,
+                      "opacity": 1,
+                      "fontSize": 34,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "tired",
+                  "label": "过去两年：自己拼，或用框架拼",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 64,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 1,
+                      "fontSize": 26
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "long_tasks",
+      "template": "CanvasSlide",
+      "chapter": "02 / 07 · AI 让什么变了",
+      "voiceover": "变的是活的长度。 以前问一句答一句，一个任务。 现在一个任务要跑几十分钟、几百步。 光是今年 2 月，Claude Code 的年化收入就过了 25 亿美元。 Anthropic 内部，产品工程团队 65% 的代码提交是 Slack 里的 Claude Tag 交的。 活一长，最先扛不住的不是模型，是那个调度循环。",
+      "subtitles": true,
+      "source": "参考文案所列数据；未独立核实",
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "变的是活的长度。",
+          "target": 1
+        },
+        {
+          "text": "以前问一句答一句，一个任务。",
+          "target": 1
+        },
+        {
+          "text": "现在一个任务要跑几十分钟、几百步。",
+          "target": 1
+        },
+        {
+          "text": "光是今年 2 月，Claude Code 的年化收入就过了 25 亿美元。",
+          "target": 1
+        },
+        {
+          "text": "Anthropic 内部，产品工程团队 65% 的代码提交是 Slack 里的 Claude Tag 交的。",
+          "target": 1
+        },
+        {
+          "text": "活一长，最先扛不住的不是模型，是那个调度循环。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "变的，是活的长度",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "时长与规模对比，数字来自文案，未独立核实。",
+              "objects": [
+                {
+                  "id": "before",
+                  "label": "一句问答",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 56,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 20,
+                      "opacity": 0,
+                      "fontSize": 40,
+                      "fontWeight": 600
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 20,
+                      "opacity": 1,
+                      "fontSize": 44
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 14,
+                      "scale": 0.8,
+                      "fontSize": 40
+                    }
+                  ]
+                },
+                {
+                  "id": "after",
+                  "label": "几十分钟 · 几百步",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 62,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 40,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 54,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 54,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "revenue",
+                  "label": "25 亿美元",
+                  "detail": "Claude Code 年化收入 · 文案称今年 2 月",
+                  "shape": "panel",
+                  "tone": "warning",
+                  "width": 56,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 54,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 54,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 56,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "commit",
+                  "label": "65%",
+                  "detail": "内部产品工程团队代码提交",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 50,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 5,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 72,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 74,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "bottleneck",
+                  "label": "最先扛不住：调度循环",
+                  "shape": "text",
+                  "tone": "rose",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 6,
+                      "at": 0.15,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 0,
+                      "fontSize": 28,
+                      "fontWeight": 600
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 1,
+                      "fontSize": 34,
+                      "fontWeight": 800
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "stuck_in_loop",
+      "template": "CanvasSlide",
+      "chapter": "03 / 07 · 卡在哪",
+      "voiceover": "卡在调度，因为调度里写的是对模型“做不到什么”的假设。 举个例子： Claude Sonnet 4.5 快到上下文上限时，会提前收工。 调度就替它定时清空、重来。 换上 Opus 4.5，这个毛病没了。 那套清空重来，就成了白白拖慢的累赘。 模型每升级一次，调度里就有一批假设过期。 谁能最早改？最先知道下一版模型能做什么的人，也就是模型公司自己。 所以调度这一格，Anthropic 不让。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "卡在调度，因为调度里写的是对模型“做不到什么”的假设。",
+          "target": 1
+        },
+        {
+          "text": "举个例子：",
+          "target": 1
+        },
+        {
+          "text": "Claude Sonnet 4.5 快到上下文上限时，会提前收工。",
+          "target": 1
+        },
+        {
+          "text": "调度就替它定时清空、重来。",
+          "target": 1
+        },
+        {
+          "text": "换上 Opus 4.5，这个毛病没了。",
+          "target": 1
+        },
+        {
+          "text": "那套清空重来，就成了白白拖慢的累赘。",
+          "target": 1
+        },
+        {
+          "text": "模型每升级一次，调度里就有一批假设过期。",
+          "target": 1
+        },
+        {
+          "text": "谁能最早改？最先知道下一版模型能做什么的人，也就是模型公司自己。",
+          "target": 1
+        },
+        {
+          "text": "所以调度这一格，Anthropic 不让。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "卡在调度：那批假设会过期",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "假设过期的概念示意，不是真实执行日志。",
+              "focus": [
+                {
+                  "sentence": 1,
+                  "ids": [
+                    "assumption"
+                  ],
+                  "dimOpacity": 0.3
+                },
+                {
+                  "sentence": 3,
+                  "ids": [
+                    "sonnet",
+                    "context"
+                  ],
+                  "dimOpacity": 0.22,
+                  "blur": 1.5
+                },
+                {
+                  "sentence": 4,
+                  "ids": [
+                    "reset"
+                  ],
+                  "dimOpacity": 0.2,
+                  "blur": 2
+                },
+                {
+                  "sentence": 5,
+                  "ids": [
+                    "opus",
+                    "reset"
+                  ],
+                  "dimOpacity": 0.22,
+                  "blur": 1.5
+                },
+                {
+                  "sentence": 6,
+                  "ids": [
+                    "reset",
+                    "burden"
+                  ],
+                  "dimOpacity": 0.2,
+                  "blur": 2
+                },
+                {
+                  "sentence": 7,
+                  "ids": [
+                    "assumption",
+                    "owner"
+                  ],
+                  "dimOpacity": 0.22,
+                  "blur": 1.5
+                },
+                {
+                  "sentence": 9,
+                  "ids": [
+                    "owner",
+                    "deny"
+                  ],
+                  "dimOpacity": 0.24,
+                  "blur": 1
+                }
+              ],
+              "objects": [
+                {
+                  "id": "assumption",
+                  "label": "做不到什么",
+                  "detail": "调度里写死的假设",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 54,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 20,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 20,
+                      "opacity": 1,
+                      "scale": 1.05,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 7,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 18,
+                      "scale": 1.05
+                    },
+                    {
+                      "sentence": 9,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 16,
+                      "scale": 0.9
+                    }
+                  ]
+                },
+                {
+                  "id": "sonnet",
+                  "label": "Sonnet 4.5",
+                  "detail": "快到上下文上限",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 46,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 38,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 38,
+                      "opacity": 1,
+                      "scale": 1
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.3,
+                      "x": 26,
+                      "y": 38,
+                      "scale": 0.8
+                    }
+                  ]
+                },
+                {
+                  "id": "context",
+                  "label": "上下文",
+                  "shape": "resource",
+                  "tone": "warning",
+                  "width": 44,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 50,
+                      "opacity": 0,
+                      "progress": 0.1
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.9,
+                      "x": 50,
+                      "y": 50,
+                      "opacity": 1,
+                      "progress": 1
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.3,
+                      "x": 26,
+                      "y": 50,
+                      "progress": 1,
+                      "scale": 0.8
+                    }
+                  ]
+                },
+                {
+                  "id": "reset",
+                  "label": "定时清空、重来",
+                  "shape": "text",
+                  "tone": "warning",
+                  "width": 58,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 64,
+                      "opacity": 0,
+                      "fontSize": 34,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 64,
+                      "opacity": 1,
+                      "fontSize": 40,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 58,
+                      "opacity": 1,
+                      "fontSize": 40,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "opus",
+                  "label": "Opus 4.5",
+                  "detail": "毛病没了",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 46,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 5,
+                      "at": 0,
+                      "x": 74,
+                      "y": 38,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.35,
+                      "x": 74,
+                      "y": 38,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.4,
+                      "x": 74,
+                      "y": 36,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "burden",
+                  "label": "旧补丁成了累赘",
+                  "shape": "text",
+                  "tone": "rose",
+                  "width": 60,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 6,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 76,
+                      "opacity": 0,
+                      "fontSize": 30,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 76,
+                      "opacity": 1,
+                      "fontSize": 36,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "owner",
+                  "label": "模型公司最早知道",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 54,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 66,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 66,
+                      "opacity": 1,
+                      "scale": 1.05,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 9,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 64,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "deny",
+                  "label": "调度这一格，不让",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 60,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 9,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 84,
+                      "opacity": 0,
+                      "fontSize": 32,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 9,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 84,
+                      "opacity": 1,
+                      "fontSize": 40,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "assume",
+                  "from": "assumption",
+                  "to": "reset",
+                  "sentence": 4,
+                  "untilSentence": 6,
+                  "label": "写死",
+                  "flow": "forward"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "managed_agents",
+      "template": "CanvasSlide",
+      "chapter": "04 / 07 · Anthropic 自己补了什么",
+      "voiceover": "今年 4 月，Anthropic 把调度做成了托管服务 Managed Agents。 循环跑在它自己的机房里，然后一样一样往里收： 4 月：记忆 5 月：免密钥登录 6 月：定时任务和存钥匙的保险箱，以及 Slack 里的 Claude Tag 9 月：合上电脑也能接着跑的云端会话 10 月：自己重写的代码仓库 Scion 和正式上线的代码审查 Code Review 这些零件有个共同点：模型一变，它们就得跟着改。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.5
+        }
+      },
+      "narration": [
+        {
+          "text": "今年 4 月，Anthropic 把调度做成了托管服务 Managed Agents。",
+          "target": 1
+        },
+        {
+          "text": "循环跑在它自己的机房里，然后一样一样往里收：",
+          "target": 1
+        },
+        {
+          "text": "4 月：记忆",
+          "target": 1
+        },
+        {
+          "text": "5 月：免密钥登录",
+          "target": 1
+        },
+        {
+          "text": "6 月：定时任务和存钥匙的保险箱，以及 Slack 里的 Claude Tag",
+          "target": 1
+        },
+        {
+          "text": "9 月：合上电脑也能接着跑的云端会话",
+          "target": 1
+        },
+        {
+          "text": "10 月：自己重写的代码仓库 Scion 和正式上线的代码审查 Code Review",
+          "target": 1
+        },
+        {
+          "text": "这些零件有个共同点：模型一变，它们就得跟着改。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "把调度，做成托管服务",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "文案所列时间线，概念示意；日期与产品名未独立核实。",
+              "objects": [
+                {
+                  "id": "managed",
+                  "label": "Managed Agents",
+                  "detail": "调度托管 · 今年 4 月",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 58,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 14,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 14,
+                      "opacity": 1,
+                      "scale": 1.05,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 12,
+                      "scale": 0.95
+                    }
+                  ]
+                },
+                {
+                  "id": "m4",
+                  "label": "4 月 · 记忆",
+                  "shape": "token",
+                  "tone": "rose",
+                  "width": 44,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 30,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 30,
+                      "fontSize": 26
+                    }
+                  ]
+                },
+                {
+                  "id": "m5",
+                  "label": "5 月 · 免密钥登录",
+                  "shape": "token",
+                  "tone": "accent",
+                  "width": 48,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 41,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 41,
+                      "fontSize": 26
+                    }
+                  ]
+                },
+                {
+                  "id": "m6",
+                  "label": "6 月 · 定时任务 / 保险箱 / Slack",
+                  "shape": "token",
+                  "tone": "teal",
+                  "width": 62,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 5,
+                      "at": 0,
+                      "x": 50,
+                      "y": 52,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 52,
+                      "fontSize": 24
+                    }
+                  ]
+                },
+                {
+                  "id": "m9",
+                  "label": "9 月 · 云端会话",
+                  "shape": "token",
+                  "tone": "warning",
+                  "width": 48,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 6,
+                      "at": 0,
+                      "x": 50,
+                      "y": 63,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 63,
+                      "fontSize": 26
+                    }
+                  ]
+                },
+                {
+                  "id": "m10",
+                  "label": "10 月 · Scion / Code Review",
+                  "shape": "token",
+                  "tone": "highlight",
+                  "width": 62,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 7,
+                      "at": 0,
+                      "x": 50,
+                      "y": 74,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0,
+                      "x": 50,
+                      "y": 74,
+                      "fontSize": 24
+                    }
+                  ]
+                },
+                {
+                  "id": "common",
+                  "label": "共同点：模型一变，它们就得跟着改",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 8,
+                      "at": 0.25,
+                      "x": 50,
+                      "y": 88,
+                      "opacity": 0,
+                      "fontSize": 26,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 8,
+                      "at": 0.6,
+                      "x": 50,
+                      "y": 88,
+                      "opacity": 1,
+                      "fontSize": 30,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "results",
+      "template": "CanvasSlide",
+      "chapter": "04 / 07 · 效果也有数",
+      "voiceover": "效果也有数： 拆开大脑和手以后，最慢那批请求的首字等待缩短了九成以上。 Claude Code 的 CPU 占用从 24% 降到 10%。 法律服务公司 ABC Legal 跑了 50 多个 agent，部分任务成本最多降了一半。 每个改动的代码管理时间，从 34 分钟降到 3.7 分钟。 这里面不少零件，都是 Anthropic 自己先用到扛不住，才拿出来卖。",
+      "subtitles": true,
+      "source": "参考文案所列数据；未独立核实",
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "效果也有数：",
+          "target": 1
+        },
+        {
+          "text": "拆开大脑和手以后，最慢那批请求的首字等待缩短了九成以上。",
+          "target": 1
+        },
+        {
+          "text": "Claude Code 的 CPU 占用从 24% 降到 10%。",
+          "target": 1
+        },
+        {
+          "text": "法律服务公司 ABC Legal 跑了 50 多个 agent，部分任务成本最多降了一半。",
+          "target": 1
+        },
+        {
+          "text": "每个改动的代码管理时间，从 34 分钟降到 3.7 分钟。",
+          "target": 1
+        },
+        {
+          "text": "这里面不少零件，都是 Anthropic 自己先用到扛不住，才拿出来卖。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "效果有数，但不是本地实测",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "数字均引自文案，未经独立核实；仅作观点呈现。",
+              "objects": [
+                {
+                  "id": "latency",
+                  "label": "首字等待",
+                  "detail": "最慢那批请求",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 46,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 22,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 22,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 22,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "ninety",
+                  "label": "缩短九成以上",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 58,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 36,
+                      "opacity": 0,
+                      "fontSize": 34,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.7,
+                      "x": 50,
+                      "y": 36,
+                      "opacity": 1,
+                      "fontSize": 42,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    }
+                  ]
+                },
+                {
+                  "id": "cpu",
+                  "label": "CPU 占用 24% → 10%",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 56,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 52,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 52,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "legal",
+                  "label": "ABC Legal：50+ agents",
+                  "detail": "部分任务成本最多减半",
+                  "shape": "panel",
+                  "tone": "warning",
+                  "width": 58,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 68,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 68,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 68,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "minutes",
+                  "label": "34 → 3.7 分钟",
+                  "detail": "每个改动的代码管理时间",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 54,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 5,
+                      "at": 0,
+                      "x": 50,
+                      "y": 83,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 83,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 83,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "sell",
+                  "label": "先自己用到扛不住，再拿出来卖",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 6,
+                      "at": 0.15,
+                      "x": 50,
+                      "y": 91,
+                      "opacity": 0,
+                      "fontSize": 22
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 91,
+                      "opacity": 1,
+                      "fontSize": 24,
+                      "fontWeight": 800
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "openai_and_frameworks",
+      "template": "CanvasSlide",
+      "chapter": "05 / 07 · 别人怎么做",
+      "voiceover": "五个月后，OpenAI 推出了 Agents API，跑的是 Codex 的循环。 会话、调度、压缩上下文、出错恢复，OpenAI 管，跑在哪，开发者自己选。 两家先后切在同一个地方，说明这不是哪一家的偏好，是这门生意的结构。 做框架的 LangChain，投后估值 12.5 亿美元。 强在一套代码换着用不同的模型，弱在追发布。 模型一升级，最先知道的不是它。",
+      "subtitles": true,
+      "source": "参考文案所列估值与产品名；未独立核实",
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "五个月后，OpenAI 推出了 Agents API，跑的是 Codex 的循环。",
+          "target": 1
+        },
+        {
+          "text": "会话、调度、压缩上下文、出错恢复，OpenAI 管，跑在哪，开发者自己选。",
+          "target": 1
+        },
+        {
+          "text": "两家先后切在同一个地方，说明这不是哪一家的偏好，是这门生意的结构。",
+          "target": 1
+        },
+        {
+          "text": "做框架的 LangChain，投后估值 12.5 亿美元。",
+          "target": 1
+        },
+        {
+          "text": "强在一套代码换着用不同的模型，弱在追发布。",
+          "target": 1
+        },
+        {
+          "text": "模型一升级，最先知道的不是它。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "两家切在同一层",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "产品与框架的位置关系，概念示意。",
+              "focus": [
+                {
+                  "sentence": 1,
+                  "ids": [
+                    "openai",
+                    "codex"
+                  ],
+                  "dimOpacity": 0.28
+                },
+                {
+                  "sentence": 3,
+                  "ids": [
+                    "layer"
+                  ],
+                  "dimOpacity": 0.24,
+                  "blur": 1.5
+                },
+                {
+                  "sentence": 4,
+                  "ids": [
+                    "langchain",
+                    "valuation"
+                  ],
+                  "dimOpacity": 0.24,
+                  "blur": 1
+                },
+                {
+                  "sentence": 6,
+                  "ids": [
+                    "weak"
+                  ],
+                  "dimOpacity": 0.26,
+                  "blur": 1
+                }
+              ],
+              "objects": [
+                {
+                  "id": "openai",
+                  "label": "OpenAI",
+                  "detail": "五个月后 · Agents API",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 50,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 20,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 20,
+                      "opacity": 1,
+                      "scale": 1.04,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 32,
+                      "y": 18,
+                      "scale": 0.9
+                    }
+                  ]
+                },
+                {
+                  "id": "codex",
+                  "label": "Codex 循环",
+                  "shape": "token",
+                  "tone": "teal",
+                  "width": 42,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.7,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 28
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 32,
+                      "y": 32,
+                      "scale": 0.9
+                    }
+                  ]
+                },
+                {
+                  "id": "layer",
+                  "label": "会话 / 调度 / 压缩 / 恢复",
+                  "detail": "OpenAI 管 · 跑在哪开发者选",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 62,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 50,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 50,
+                      "opacity": 1,
+                      "scale": 1.02,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 1.02
+                    }
+                  ]
+                },
+                {
+                  "id": "langchain",
+                  "label": "LangChain",
+                  "detail": "做框架的",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 46,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 50,
+                      "y": 68,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 68,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 66,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "valuation",
+                  "label": "投后估值 12.5 亿美元",
+                  "shape": "text",
+                  "tone": "warning",
+                  "width": 58,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 80,
+                      "opacity": 0,
+                      "fontSize": 28
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.7,
+                      "x": 50,
+                      "y": 80,
+                      "opacity": 1,
+                      "fontSize": 32,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "weak",
+                  "label": "强在换模型，弱在追发布",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 5,
+                      "at": 0,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 0,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 5,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 1,
+                      "fontSize": 32,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "lag",
+                  "label": "模型升级，最先知道的不是它",
+                  "shape": "text",
+                  "tone": "rose",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 6,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 91,
+                      "opacity": 0,
+                      "fontSize": 22
+                    },
+                    {
+                      "sentence": 6,
+                      "at": 0.7,
+                      "x": 50,
+                      "y": 91,
+                      "opacity": 1,
+                      "fontSize": 24,
+                      "fontWeight": 800
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "shared",
+                  "from": "layer",
+                  "to": "openai",
+                  "sentence": 3,
+                  "untilSentence": 4,
+                  "label": "同一层",
+                  "flow": "forward",
+                  "dashed": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "sandbox_invited",
+      "template": "CanvasSlide",
+      "chapter": "05 / 07 · 沙箱被请进门",
+      "voiceover": "沙箱这一层，反而被请进了门。 5 月起，调度留在 Anthropic，执行可以搬到客户自己的机器，或者 Cloudflare、Modal、E2B 这些沙箱公司。 官方文档列了 11 家。 沙箱是算力和隔离，跟模型聪不聪明无关，谁家的一样跑，所以可以让。",
+      "subtitles": true,
+      "source": "参考文案所列厂商与数量；未独立核实",
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "沙箱这一层，反而被请进了门。",
+          "target": 1
+        },
+        {
+          "text": "5 月起，调度留在 Anthropic，执行可以搬到客户自己的机器，或者 Cloudflare、Modal、E2B 这些沙箱公司。",
+          "target": 1
+        },
+        {
+          "text": "官方文档列了 11 家。",
+          "target": 1
+        },
+        {
+          "text": "沙箱是算力和隔离，跟模型聪不聪明无关，谁家的一样跑，所以可以让。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "执行层，被请进门",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "调度与执行的位置关系，概念示意。",
+              "objects": [
+                {
+                  "id": "dispatch",
+                  "label": "调度留在 Anthropic",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 58,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 18,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 18,
+                      "opacity": 1,
+                      "scale": 1.03,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 16,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "job",
+                  "label": "执行任务",
+                  "shape": "token",
+                  "tone": "warning",
+                  "width": 30,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.25,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.7,
+                      "x": 30,
+                      "y": 56,
+                      "opacity": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "customer",
+                  "label": "客户自己的机器",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 42,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 28,
+                      "y": 66,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.6,
+                      "x": 28,
+                      "y": 66,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.3,
+                      "x": 28,
+                      "y": 66,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "vendors",
+                  "label": "Cloudflare / Modal / E2B",
+                  "detail": "外部沙箱公司",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 54,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.4,
+                      "x": 72,
+                      "y": 66,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.7,
+                      "x": 72,
+                      "y": 66,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.3,
+                      "x": 72,
+                      "y": 66,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "count",
+                  "label": "官方文档列了 11 家",
+                  "shape": "token",
+                  "tone": "highlight",
+                  "width": 44,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 82,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 82,
+                      "opacity": 1,
+                      "fontSize": 28,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "why",
+                  "label": "算力 + 隔离，跟模型无关",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 64,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 0,
+                      "fontSize": 26
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 1,
+                      "fontSize": 30,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "toCustomer",
+                  "from": "dispatch",
+                  "to": "customer",
+                  "sentence": 2,
+                  "untilSentence": 4,
+                  "flow": "forward"
+                },
+                {
+                  "id": "toVendors",
+                  "from": "dispatch",
+                  "to": "vendors",
+                  "sentence": 2,
+                  "untilSentence": 4,
+                  "flow": "forward"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "not_exclusive",
+      "template": "CanvasSlide",
+      "chapter": "05 / 07 · 不独占",
+      "voiceover": "有人会说，Anthropic 自己也做沙箱？没错，Managed Agents 默认就跑在 Anthropic 的云端沙箱里，云端会话也是。 所以让出去不是不做，是不独占。 企业想把执行留在自己围墙里，Anthropic 就放行。 对沙箱公司来说，这是一条新销路，不是护城河。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.5
+        }
+      },
+      "narration": [
+        {
+          "text": "有人会说，Anthropic 自己也做沙箱？没错，Managed Agents 默认就跑在 Anthropic 的云端沙箱里，云端会话也是。",
+          "target": 1
+        },
+        {
+          "text": "所以让出去不是不做，是不独占。",
+          "target": 1
+        },
+        {
+          "text": "企业想把执行留在自己围墙里，Anthropic 就放行。",
+          "target": 1
+        },
+        {
+          "text": "对沙箱公司来说，这是一条新销路，不是护城河。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "让出去 ≠ 自己不做",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "“不独占”的关系示意，非商业结论。",
+              "objects": [
+                {
+                  "id": "own",
+                  "label": "自有云端沙箱",
+                  "detail": "Managed Agents 默认就跑在这",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 56,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 22,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 22,
+                      "opacity": 1,
+                      "scale": 1.02,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 20,
+                      "scale": 0.9
+                    }
+                  ]
+                },
+                {
+                  "id": "wall",
+                  "label": "企业自己的围墙",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 54,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 42,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 42,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 44,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "meaning",
+                  "label": "不独占",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 50,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 40,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 54,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 28,
+                      "scale": 0.72,
+                      "fontSize": 54
+                    }
+                  ]
+                },
+                {
+                  "id": "sales",
+                  "label": "新销路",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 44,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0,
+                      "x": 30,
+                      "y": 64,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.4,
+                      "x": 30,
+                      "y": 64,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    }
+                  ]
+                },
+                {
+                  "id": "moat",
+                  "label": "不是护城河",
+                  "shape": "panel",
+                  "tone": "muted",
+                  "width": 44,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 4,
+                      "at": 0.15,
+                      "x": 70,
+                      "y": 64,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 4,
+                      "at": 0.5,
+                      "x": 70,
+                      "y": 64,
+                      "opacity": 1,
+                      "scale": 1,
+                      "easing": "spring-jelly"
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "pass",
+                  "from": "own",
+                  "to": "wall",
+                  "sentence": 3,
+                  "untilSentence": 4,
+                  "label": "放行",
+                  "flow": "forward"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "the_line",
+      "template": "CanvasSlide",
+      "chapter": "06 / 07 · 线划在哪",
+      "voiceover": "会跟着模型一起变老的，自己做；只是算力的，可以让出去。 判断一个 agent 基础设施产品会不会被模型公司做掉，就问一句：它会不会跟着模型一起变？",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "会跟着模型一起变老的，自己做；只是算力的，可以让出去。",
+          "target": 1
+        },
+        {
+          "text": "判断一个 agent 基础设施产品会不会被模型公司做掉，就问一句：它会不会跟着模型一起变？",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "所以，线划在哪",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "判断框架示意，不是事实断言。",
+              "focus": [
+                {
+                  "sentence": 1,
+                  "ids": [
+                    "keep",
+                    "give"
+                  ],
+                  "dimOpacity": 0.35
+                },
+                {
+                  "sentence": 2,
+                  "ids": [
+                    "question"
+                  ],
+                  "dimOpacity": 0.24,
+                  "blur": 2
+                }
+              ],
+              "objects": [
+                {
+                  "id": "keep",
+                  "label": "跟着模型变老",
+                  "detail": "自己做",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 52,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 30,
+                      "y": 34,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 30,
+                      "y": 34,
+                      "opacity": 1,
+                      "scale": 1.03,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 30,
+                      "y": 24,
+                      "scale": 0.78
+                    }
+                  ]
+                },
+                {
+                  "id": "give",
+                  "label": "只是算力",
+                  "detail": "可以让出去",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 52,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.15,
+                      "x": 70,
+                      "y": 34,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 70,
+                      "y": 34,
+                      "opacity": 1,
+                      "scale": 1.03,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 70,
+                      "y": 24,
+                      "scale": 0.78
+                    }
+                  ]
+                },
+                {
+                  "id": "question",
+                  "label": "它会不会跟着模型一起变？",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 64,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 56,
+                      "opacity": 0,
+                      "fontSize": 32,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.45,
+                      "x": 50,
+                      "y": 58,
+                      "opacity": 1,
+                      "fontSize": 46,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    }
+                  ]
+                },
+                {
+                  "id": "hint",
+                  "label": "判断一个产品会不会被做掉",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 64,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 84,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 84,
+                      "opacity": 1,
+                      "fontSize": 26
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "whats_next",
+      "template": "CanvasSlide",
+      "chapter": "07 / 07 · 接下来会怎样",
+      "voiceover": "下一个被收进去的，大概率是围着 Claude Code 的那一圈工具：审查、评测、记忆。 不跟着模型变的那部分，比如算力、隔离、企业自己的合规边界，模型公司更愿意请别人进来。 要是哪天 Anthropic 把调度循环也交给第三方托管，这条规矩就要改。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "下一个被收进去的，大概率是围着 Claude Code 的那一圈工具：审查、评测、记忆。",
+          "target": 1
+        },
+        {
+          "text": "不跟着模型变的那部分，比如算力、隔离、企业自己的合规边界，模型公司更愿意请别人进来。",
+          "target": 1
+        },
+        {
+          "text": "要是哪天 Anthropic 把调度循环也交给第三方托管，这条规矩就要改。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "下一圈，可能是什么",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "文案的预测性判断，非确定结论。",
+              "objects": [
+                {
+                  "id": "code",
+                  "label": "Claude Code",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 50,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 16,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 16,
+                      "opacity": 1,
+                      "scale": 1.04,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 14,
+                      "scale": 0.95
+                    }
+                  ]
+                },
+                {
+                  "id": "review",
+                  "label": "审查",
+                  "shape": "token",
+                  "tone": "accent",
+                  "width": 28,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.2,
+                      "x": 22,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 22,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 26
+                    }
+                  ]
+                },
+                {
+                  "id": "eval",
+                  "label": "评测",
+                  "shape": "token",
+                  "tone": "warning",
+                  "width": 28,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.65,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 26
+                    }
+                  ]
+                },
+                {
+                  "id": "memory",
+                  "label": "记忆",
+                  "shape": "token",
+                  "tone": "teal",
+                  "width": 28,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 78,
+                      "y": 34,
+                      "opacity": 0,
+                      "fontSize": 24
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.8,
+                      "x": 78,
+                      "y": 34,
+                      "opacity": 1,
+                      "fontSize": 26
+                    }
+                  ]
+                },
+                {
+                  "id": "outside",
+                  "label": "算力 / 隔离 / 合规边界",
+                  "detail": "更愿意请别人进来",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 60,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 56,
+                      "opacity": 0,
+                      "scale": 0.9
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 56,
+                      "opacity": 1,
+                      "scale": 1.02,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 54,
+                      "scale": 1
+                    }
+                  ]
+                },
+                {
+                  "id": "revise",
+                  "label": "规矩就要改",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 56,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 76,
+                      "opacity": 0,
+                      "fontSize": 32,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 76,
+                      "opacity": 1,
+                      "fontSize": 44,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    }
+                  ]
+                },
+                {
+                  "id": "if",
+                  "label": "如果调度循环也交给第三方托管",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 64,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.05,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 0,
+                      "fontSize": 22
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 1,
+                      "fontSize": 24
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

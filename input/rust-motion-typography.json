@@ -1,0 +1,1418 @@
+{
+  "title": "Rust 所有权：看清交接与借用",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "question_in_code",
+      "template": "CodeSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "看这一句赋值：字符串交给 s2 后，s1 还能继续用吗？ 最后一行用的是 s2；要理解为什么，先看谁拥有这个值，以及拥有关系怎样改变。",
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "progressive",
+        "camera": "none"
+      },
+      "subtitles": true,
+      "narration": [
+        {
+          "text": "看这一句赋值：字符串交给 s2 后，s1 还能继续用吗？",
+          "target": 2,
+          "caption": "let s2 = s1;：交接，还是复制？"
+        },
+        {
+          "text": "最后一行用的是 s2；要理解为什么，先看谁拥有这个值，以及拥有关系怎样改变。",
+          "target": 3,
+          "caption": "从具体语句出发，观察资源的管理责任。"
+        }
+      ],
+      "props": {
+        "heading": "这一句之后，谁还能用？",
+        "language": "rust",
+        "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;\nprintln!(\"{}\", s2);"
+      },
+      "chapter": "01 / 05"
+    },
+    {
+      "id": "scope_changes",
+      "template": "CanvasSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "先把赋值放一边，进入原文的内层作用域，此时还没创建字符串。 创建后，message 拥有 String，并在作用域内读取它；每个值有所有者，同一时间只有一个。 离开作用域，message 不再可用，值被丢弃，字符串资源释放；图中淡出只表示生命周期结束。",
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "parallax": true
+      },
+      "subtitles": true,
+      "narration": [
+        {
+          "text": "先把赋值放一边，进入原文的内层作用域，此时还没创建字符串。",
+          "target": 1
+        },
+        {
+          "text": "创建后，message 拥有 String，并在作用域内读取它；每个值有所有者，同一时间只有一个。",
+          "target": 1
+        },
+        {
+          "text": "离开作用域，message 不再可用，值被丢弃，字符串资源释放；图中淡出只表示生命周期结束。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "创建、使用与结束：一个连续生命周期",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "process",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "生命周期概念示意，不是程序执行日志；并非所有 Rust 值都在堆上。 | 教学概念动画，不代表程序实际执行。",
+              "objects": [
+                {
+                  "id": "scope",
+                  "label": "{ 作用域 }",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 40,
+                      "opacity": 0,
+                      "scale": 0.7,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.25,
+                      "x": 50,
+                      "y": 40,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 40,
+                      "fontSize": 22,
+                      "fontWeight": 600,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.8,
+                      "x": 50,
+                      "y": 40,
+                      "scale": 0.85,
+                      "opacity": 0.2,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 60,
+                  "height": 38,
+                  "tone": "accent"
+                },
+                {
+                  "id": "message",
+                  "label": "message",
+                  "shape": "token",
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 32,
+                      "y": 36,
+                      "opacity": 0,
+                      "scale": 0.3,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.2,
+                      "x": 32,
+                      "y": 36,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 32,
+                      "y": 36,
+                      "fontSize": 22,
+                      "fontWeight": 600,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.35,
+                      "x": 32,
+                      "y": 30,
+                      "opacity": 0,
+                      "scale": 0.3,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 22,
+                  "height": 10,
+                  "tone": "teal"
+                },
+                {
+                  "id": "resource",
+                  "label": "String · hello",
+                  "shape": "resource",
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.1,
+                      "x": 65,
+                      "y": 46,
+                      "opacity": 0,
+                      "scale": 0.3,
+                      "progress": 0,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.4,
+                      "x": 65,
+                      "y": 46,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.15,
+                      "x": 65,
+                      "y": 46,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.65,
+                      "x": 65,
+                      "y": 52,
+                      "opacity": 0,
+                      "scale": 0.3,
+                      "progress": 0,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 26,
+                  "height": 23,
+                  "tone": "warning"
+                },
+                {
+                  "id": "done",
+                  "label": "作用域结束 → 值被丢弃",
+                  "shape": "text",
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 80,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.75,
+                      "x": 50,
+                      "y": 80,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 80,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 60,
+                  "height": 9
+                },
+                {
+                  "id": "step",
+                  "label": "进入 → 创建 → 使用 → 结束",
+                  "shape": "text",
+                  "tone": "teal",
+                  "width": 62,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 15,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 15,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 15,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 15,
+                      "opacity": 0,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "own",
+                  "from": "message",
+                  "to": "resource",
+                  "label": "拥有",
+                  "sentence": 2,
+                  "flow": "none",
+                  "untilSentence": 3
+                }
+              ],
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.65,
+                  "x": 50,
+                  "y": 48,
+                  "zoom": 1.04
+                },
+                {
+                  "sentence": 2,
+                  "at": 0.45,
+                  "x": 53,
+                  "y": 48,
+                  "zoom": 1.1
+                },
+                {
+                  "sentence": 3,
+                  "at": 0.35,
+                  "x": 50,
+                  "y": 53,
+                  "zoom": 1.04
+                },
+                {
+                  "sentence": 3,
+                  "at": 1,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "chapter": "02 / 05"
+    },
+    {
+      "id": "move_ownership_change",
+      "template": "CanvasSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "创建 String 后，s1 管理同一份字符串。图中上方是绑定，下方是资源，只是概念示意。 执行赋值时，管理责任交接给 s2，旧绑定退出可用状态。下面的字符串没有搬走，也没有复制。 交接之后，通过 s2 使用这份 String。记住：Move 改变管理责任，不是复制字符串。",
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "parallax": true
+      },
+      "subtitles": true,
+      "narration": [
+        {
+          "text": "创建 String 后，s1 管理同一份字符串。图中上方是绑定，下方是资源，只是概念示意。",
+          "target": 1
+        },
+        {
+          "text": "执行赋值时，管理责任交接给 s2，旧绑定退出可用状态。下面的字符串没有搬走，也没有复制。",
+          "target": 1
+        },
+        {
+          "text": "交接之后，通过 s2 使用这份 String。记住：Move 改变管理责任，不是复制字符串。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "Move：一次连续的责任交接",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "process",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "概念示意：轨迹表示管理责任，不是内存搬移；流动点仅示意访问。 | 教学概念动画，不代表程序实际执行。",
+              "objects": [
+                {
+                  "id": "s1",
+                  "label": "s1",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 23,
+                      "y": 23,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.18,
+                      "x": 23,
+                      "y": 23,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 23,
+                      "y": 23,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.55,
+                      "x": 17,
+                      "y": 23,
+                      "opacity": 0.3,
+                      "scale": 0.8,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 17,
+                      "y": 23,
+                      "opacity": 0.3,
+                      "scale": 0.8,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "detail": "原绑定",
+                  "height": 19
+                },
+                {
+                  "id": "s2",
+                  "label": "s2",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 77,
+                      "y": 23,
+                      "opacity": 0,
+                      "scale": 0.65,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.65,
+                      "x": 77,
+                      "y": 23,
+                      "opacity": 0.4,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.1,
+                      "x": 77,
+                      "y": 23,
+                      "opacity": 0.4,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.65,
+                      "x": 77,
+                      "y": 23,
+                      "scale": 1.1,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 77,
+                      "y": 23,
+                      "scale": 1.1,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "detail": "新绑定",
+                  "tone": "teal",
+                  "height": 19
+                },
+                {
+                  "id": "resource",
+                  "label": "String · hello",
+                  "shape": "resource",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72,
+                      "opacity": 0,
+                      "progress": 0,
+                      "scale": 0.6,
+                      "fontSize": 24,
+                      "fontWeight": 650,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 72,
+                      "progress": 0.2,
+                      "fontSize": 24,
+                      "fontWeight": 650,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 72,
+                      "progress": 1,
+                      "fontSize": 24,
+                      "fontWeight": 650,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 68,
+                      "scale": 1.15,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.65,
+                      "x": 50,
+                      "y": 68,
+                      "scale": 1.15,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 72,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 34,
+                  "height": 23,
+                  "tone": "warning"
+                },
+                {
+                  "id": "duty",
+                  "label": "管理责任",
+                  "shape": "token",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.1,
+                      "x": 23,
+                      "y": 44,
+                      "opacity": 0,
+                      "scale": 0.6,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 23,
+                      "y": 44,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 23,
+                      "y": 44,
+                      "fontSize": 22,
+                      "fontWeight": 600,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 38,
+                      "scale": 0.8,
+                      "fontSize": 22,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle",
+                      "jitter": 1.5
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.65,
+                      "x": 77,
+                      "y": 44,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 77,
+                      "y": 44,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 20,
+                  "height": 11,
+                  "tone": "rose"
+                },
+                {
+                  "id": "result",
+                  "label": "交接责任 · 不复制资源",
+                  "shape": "text",
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 0,
+                      "scale": 0.7,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 92,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 92,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 64,
+                  "height": 8,
+                  "tone": "warning"
+                },
+                {
+                  "id": "handoff",
+                  "label": "交接中",
+                  "shape": "text",
+                  "tone": "rose",
+                  "width": 18,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 16,
+                      "opacity": 0,
+                      "scale": 0.7,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.18,
+                      "x": 50,
+                      "y": 16,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.62,
+                      "x": 50,
+                      "y": 16,
+                      "opacity": 0,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    }
+                  ]
+                },
+                {
+                  "id": "use",
+                  "label": "使用示意",
+                  "shape": "token",
+                  "tone": "teal",
+                  "width": 15,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.05,
+                      "x": 87,
+                      "y": 56,
+                      "opacity": 0,
+                      "scale": 0.5,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.2,
+                      "x": 82,
+                      "y": 62,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.45,
+                      "x": 60,
+                      "y": 77,
+                      "scale": 0.7,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.6,
+                      "x": 60,
+                      "y": 77,
+                      "opacity": 0,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "own1",
+                  "from": "s1",
+                  "to": "resource",
+                  "label": "拥有",
+                  "sentence": 1,
+                  "flow": "none",
+                  "untilSentence": 2
+                },
+                {
+                  "id": "own2",
+                  "from": "s2",
+                  "to": "resource",
+                  "label": "拥有",
+                  "sentence": 2,
+                  "flow": "none"
+                },
+                {
+                  "id": "read",
+                  "from": "s2",
+                  "to": "resource",
+                  "sentence": 3,
+                  "flow": "forward"
+                }
+              ],
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.65,
+                  "x": 50,
+                  "y": 48,
+                  "zoom": 1.04
+                },
+                {
+                  "sentence": 2,
+                  "at": 0.45,
+                  "x": 53,
+                  "y": 48,
+                  "zoom": 1.1
+                },
+                {
+                  "sentence": 3,
+                  "at": 0.35,
+                  "x": 50,
+                  "y": 53,
+                  "zoom": 1.04
+                },
+                {
+                  "sentence": 3,
+                  "at": 1,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "chapter": "03 / 05"
+    },
+    {
+      "id": "borrow_access_change",
+      "template": "CanvasSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "再看借用，s1 继续拥有这份 String。创建 view，只建立不可变引用。 通过 view 读取时，沿只读访问关系理解它如何访问同一份资源。移动标记仅代表读取步骤，不是内存消息。 读取之后，仍可通过 s1 使用 String。访问可以发生，所有权不需要交出去。",
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "parallax": true
+      },
+      "subtitles": true,
+      "narration": [
+        {
+          "text": "再看借用，s1 继续拥有这份 String。创建 view，只建立不可变引用。",
+          "target": 1
+        },
+        {
+          "text": "通过 view 读取时，沿只读访问关系理解它如何访问同一份资源。移动标记仅代表读取步骤，不是内存消息。",
+          "target": 1
+        },
+        {
+          "text": "读取之后，仍可通过 s1 使用 String。访问可以发生，所有权不需要交出去。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "Borrow：读取在发生，拥有关系不变",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "process",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "仅示意引用读取步骤，不是实际程序执行、内存通信或所有权转移。 | 教学概念动画，不代表程序实际执行。",
+              "objects": [
+                {
+                  "id": "s1",
+                  "label": "s1 · 所有者",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 22,
+                      "y": 22,
+                      "opacity": 0,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.15,
+                      "x": 22,
+                      "y": 22,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 22,
+                      "y": 22,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "tone": "accent",
+                  "width": 27,
+                  "height": 19
+                },
+                {
+                  "id": "view",
+                  "label": "view · 不可变引用",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.2,
+                      "x": 76,
+                      "y": 22,
+                      "opacity": 0,
+                      "scale": 0.6,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.6,
+                      "x": 76,
+                      "y": 22,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 76,
+                      "y": 22,
+                      "fontSize": 28,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 32,
+                  "tone": "teal",
+                  "height": 19
+                },
+                {
+                  "id": "resource",
+                  "label": "String · hello",
+                  "shape": "resource",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 70,
+                      "opacity": 0,
+                      "progress": 0,
+                      "fontSize": 24,
+                      "fontWeight": 650,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.25,
+                      "x": 50,
+                      "y": 70,
+                      "fontSize": 24,
+                      "fontWeight": 650,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 70,
+                      "fontSize": 29,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 34,
+                  "height": 23,
+                  "tone": "warning"
+                },
+                {
+                  "id": "read",
+                  "label": "读取示意",
+                  "shape": "token",
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 76,
+                      "y": 42,
+                      "opacity": 0,
+                      "scale": 0.5,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.15,
+                      "x": 76,
+                      "y": 42,
+                      "fontSize": 22,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle",
+                      "jitter": 1.5
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.45,
+                      "x": 65,
+                      "y": 54,
+                      "fontSize": 22,
+                      "fontWeight": 850,
+                      "emphasis": 1,
+                      "easing": "settle",
+                      "jitter": 1.5
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.7,
+                      "x": 50,
+                      "y": 70,
+                      "scale": 0.7,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.8,
+                      "x": 50,
+                      "y": 70,
+                      "opacity": 0,
+                      "scale": 0.5,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 18,
+                  "height": 9,
+                  "tone": "rose"
+                },
+                {
+                  "id": "result",
+                  "label": "hello",
+                  "shape": "token",
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.7,
+                      "x": 50,
+                      "y": 70,
+                      "opacity": 0,
+                      "scale": 0.5,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.85,
+                      "x": 57,
+                      "y": 60,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.25,
+                      "x": 76,
+                      "y": 42,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.6,
+                      "x": 76,
+                      "y": 42,
+                      "opacity": 0,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 15,
+                  "height": 9,
+                  "tone": "warning"
+                },
+                {
+                  "id": "summary",
+                  "label": "借用访问 ≠ 交接所有权",
+                  "shape": "text",
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 28,
+                      "fontWeight": 500,
+                      "emphasis": 0.25,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.45,
+                      "x": 50,
+                      "y": 92,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 92,
+                      "fontSize": 38,
+                      "fontWeight": 900,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    }
+                  ],
+                  "width": 64,
+                  "height": 8,
+                  "tone": "rose"
+                },
+                {
+                  "id": "owner_read",
+                  "label": "s1 仍可读取",
+                  "shape": "token",
+                  "tone": "accent",
+                  "width": 20,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.25,
+                      "x": 22,
+                      "y": 42,
+                      "opacity": 0,
+                      "scale": 0.6,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 26,
+                      "y": 48,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.7,
+                      "x": 45,
+                      "y": 65,
+                      "scale": 0.8,
+                      "fontSize": 22,
+                      "fontWeight": 800,
+                      "emphasis": 1,
+                      "easing": "settle"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.85,
+                      "x": 45,
+                      "y": 65,
+                      "opacity": 0,
+                      "fontSize": 22,
+                      "fontWeight": 500,
+                      "emphasis": 0.6,
+                      "easing": "settle"
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "own",
+                  "from": "s1",
+                  "to": "resource",
+                  "label": "拥有",
+                  "sentence": 1,
+                  "flow": "none"
+                },
+                {
+                  "id": "access",
+                  "from": "view",
+                  "to": "resource",
+                  "label": "只读访问",
+                  "sentence": 2,
+                  "flow": "forward"
+                }
+              ],
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.65,
+                  "x": 50,
+                  "y": 48,
+                  "zoom": 1.04
+                },
+                {
+                  "sentence": 2,
+                  "at": 0.45,
+                  "x": 53,
+                  "y": 48,
+                  "zoom": 1.1
+                },
+                {
+                  "sentence": 3,
+                  "at": 0.35,
+                  "x": 50,
+                  "y": 53,
+                  "zoom": 1.04
+                },
+                {
+                  "sentence": 3,
+                  "at": 1,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "chapter": "04 / 05"
+    },
+    {
+      "id": "three_reading_questions",
+      "template": "BulletListSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "所以读代码，先找谁负责管理值。 再问这一行是交接，还是借用访问；这不是快慢的性能比较。 最后看所有者何时离开作用域，把使用权限与资源释放连起来。",
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "progressive",
+        "camera": "none"
+      },
+      "subtitles": true,
+      "narration": [
+        {
+          "text": "所以读代码，先找谁负责管理值。",
+          "target": 1
+        },
+        {
+          "text": "再问这一行是交接，还是借用访问；这不是快慢的性能比较。",
+          "target": 2
+        },
+        {
+          "text": "最后看所有者何时离开作用域，把使用权限与资源释放连起来。",
+          "target": 3
+        }
+      ],
+      "props": {
+        "heading": "看关系，再读懂代码",
+        "bullets": [
+          "所有权：谁负责管理值？",
+          "Move 交接；不可变 Borrow 只读访问",
+          "作用域结束：值被丢弃，资源释放"
+        ]
+      },
+      "chapter": "05 / 05"
+    }
+  ],
+  "theme": {
+    "palette": "vivid",
+    "brand": "申映 / RUST IN MOTION",
+    "footer": "把知识，讲清楚。",
+    "chapters": true
+  }
+}

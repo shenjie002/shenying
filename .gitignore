@@ -6,6 +6,7 @@ node_modules/
 dist/
 out/
 public/audio/
+public/images/
 timeline.json
 *.tmp
 *.tmp.json

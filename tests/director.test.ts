@@ -8,7 +8,7 @@ import example from '../input/canvas-example.json';
 test('实际生成请求包含内容驱动的选型、组合布局、旁白绑定及完整输出规则', () => {
   const messages = buildMessages(articleRequestSchema.parse({article: '本文说明字符串所有权的移动，并展示代码及移动后不可继续使用原变量的限制。'.repeat(3)}));
   assert.ok(messages[0].content.includes(directorGuide()));
-  for (const text of ['CodeBlock+CalloutBlock', 'BulletBlock+StatBlock', 'DiagramBlock+CodeBlock', 'split-2-1', '完整blocks树', '每个内容块必须至少', '不强制使用CanvasSlide']) assert.ok(messages[0].content.includes(text), text);
+  for (const text of ['CodeBlock+CalloutBlock', 'BulletBlock+StatBlock', 'DiagramBlock+CodeBlock', 'split-2-1', '完整blocks树', '每个内容块必须至少', '不强制使用CanvasSlide', '视觉主角与注意力交接', '旧信息如何缩成锚点或退出', '单个全宽MotionSceneBlock承载', '不虚构自定义字体']) assert.ok(messages[0].content.includes(text), text);
   assert.match(messages[1].content, /自主选择单模板或CanvasSlide混合组合/);
   assert.match(messages[1].content, /完整可渲染剧本/);
 });

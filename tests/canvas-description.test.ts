@@ -14,7 +14,7 @@ test('画布组合说明可解释嵌套布局和逐句绑定，不需要阅读JS
   assert.equal(canvasSummary(scene.props.blocks), '代码 ＋ 节点图 ＋ 警告卡');
   assert.deepEqual(canvasBindings(scene).map(b => [b.target, b.label]), [[1, '代码'], [2, '节点图'], [3, '警告卡']]);
   const html = renderToStaticMarkup(React.createElement(CanvasOverview, {scene}));
-  for (const text of ['代码 ＋ 节点图 ＋ 警告卡', '主辅分栏 · 2:1', '嵌套容器', '纵向堆叠', '#1', '#2', '#3', '不是最终画面截图', '不会高亮块内']) assert.ok(html.includes(text), text);
+  for (const text of ['代码 ＋ 节点图 ＋ 警告卡', '主辅分栏 · 2:1', '嵌套容器', '纵向堆叠', '#1', '#2', '#3', '不是最终画面截图', 'target控制整块入场']) assert.ok(html.includes(text), text);
 });
 
 test('说明识别过渡句、越界目标及未绑定块', () => {

@@ -1,0 +1,456 @@
+{
+  "title": "暖色手帐风｜俏皮弹性验收",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "theme": {
+    "palette": "handbook",
+    "brand": "申映 / HANDBOOK",
+    "footer": "手帐感示意 · 静音估算 · 未核实资料",
+    "chapters": false
+  },
+  "scenes": [
+    {
+      "id": "material_study",
+      "template": "CanvasSlide",
+      "voiceover": "一个 agent，拆开是四个零件：模型、调度、沙箱、记录。 调度最容易过期，因为它写的是对模型能力的假设。 会跟着模型变老的，自己做；只是算力的，让出去。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "stardust",
+          "density": "medium",
+          "intensity": 0.75
+        }
+      },
+      "narration": [
+        {
+          "text": "一个 agent，拆开是四个零件：模型、调度、沙箱、记录。",
+          "target": 1
+        },
+        {
+          "text": "调度最容易过期，因为它写的是对模型能力的假设。",
+          "target": 1
+        },
+        {
+          "text": "会跟着模型变老的，自己做；只是算力的，让出去。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "四样零件，一条分界线",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "stage",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "暖褐大圆角卡片 · 琥珀高亮 · 果冻回弹 · 暖黄字幕胶囊；视觉示意，非真实系统架构。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1.06
+                },
+                {
+                  "sentence": 2,
+                  "at": 0,
+                  "x": 50,
+                  "y": 46,
+                  "zoom": 1.16
+                },
+                {
+                  "sentence": 2,
+                  "at": 0.8,
+                  "x": 50,
+                  "y": 44,
+                  "zoom": 1.2
+                },
+                {
+                  "sentence": 3,
+                  "at": 0.4,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1.04
+                }
+              ],
+              "focus": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "ids": [
+                    "model",
+                    "dispatch",
+                    "sandbox",
+                    "record"
+                  ],
+                  "dimOpacity": 0.24
+                },
+                {
+                  "sentence": 2,
+                  "at": 0,
+                  "ids": [
+                    "dispatch"
+                  ],
+                  "dimOpacity": 0.18,
+                  "blur": 2.5
+                },
+                {
+                  "sentence": 3,
+                  "at": 0,
+                  "ids": [
+                    "model",
+                    "dispatch",
+                    "sandbox",
+                    "keep",
+                    "out"
+                  ],
+                  "dimOpacity": 0.2,
+                  "blur": 1.5
+                }
+              ],
+              "stagger": [
+                {
+                  "sentence": 1,
+                  "objects": [
+                    "model",
+                    "dispatch",
+                    "sandbox",
+                    "record"
+                  ],
+                  "intervalFrames": 5,
+                  "durationFrames": 26,
+                  "preset": "spring-jelly"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "model",
+                  "label": "模型",
+                  "detail": "负责想",
+                  "badge": "大脑",
+                  "icon": "Brain",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 38,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 26,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 26,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.35,
+                      "x": 26,
+                      "y": 26,
+                      "scale": 1.05,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 26,
+                      "y": 38,
+                      "scale": 0.92,
+                      "fontSize": 56,
+                      "fontWeight": 800,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.55,
+                      "x": 26,
+                      "y": 38,
+                      "scale": 0.92,
+                      "fontSize": 56,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "dispatch",
+                  "label": "调度",
+                  "detail": "问 → 派 → 收",
+                  "badge": "循环",
+                  "icon": "Workflow",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 38,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 74,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 74,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.12,
+                      "x": 50,
+                      "y": 46,
+                      "scale": 1.12,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.42,
+                      "x": 50,
+                      "y": 46,
+                      "scale": 1.12,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 26,
+                      "y": 66,
+                      "scale": 0.92,
+                      "fontSize": 56,
+                      "fontWeight": 800,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.55,
+                      "x": 26,
+                      "y": 66,
+                      "scale": 0.92,
+                      "fontSize": 56,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "sandbox",
+                  "label": "沙箱",
+                  "detail": "执行代码",
+                  "badge": "执行",
+                  "icon": "Terminal",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 38,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 26,
+                      "y": 70,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 26,
+                      "y": 70,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.25,
+                      "x": 26,
+                      "y": 74,
+                      "scale": 0.9,
+                      "opacity": 0.55,
+                      "fontSize": 56,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 74,
+                      "y": 64,
+                      "scale": 0.92,
+                      "opacity": 1,
+                      "fontSize": 56,
+                      "fontWeight": 800,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.55,
+                      "x": 74,
+                      "y": 64,
+                      "scale": 0.92,
+                      "opacity": 1,
+                      "fontSize": 56,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "record",
+                  "label": "记录",
+                  "detail": "记到哪一步",
+                  "badge": "账本",
+                  "icon": "FileText",
+                  "shape": "panel",
+                  "tone": "warning",
+                  "width": 38,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 74,
+                      "y": 70,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 74,
+                      "y": 70,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 74,
+                      "y": 74,
+                      "scale": 0.9,
+                      "opacity": 0.5,
+                      "fontSize": 56,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 74,
+                      "y": 84,
+                      "scale": 0.85,
+                      "opacity": 0.35,
+                      "fontSize": 48,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 74,
+                      "y": 86,
+                      "scale": 0.8,
+                      "opacity": 0,
+                      "fontSize": 44,
+                      "fontWeight": 700
+                    }
+                  ]
+                },
+                {
+                  "id": "keep",
+                  "label": "自己做",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 30,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.1,
+                      "x": 26,
+                      "y": 13,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 34,
+                      "fontWeight": 800,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 26,
+                      "y": 14,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 40,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "out",
+                  "label": "让出去",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 30,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.2,
+                      "x": 74,
+                      "y": 33,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 34,
+                      "fontWeight": 800,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.5,
+                      "x": 74,
+                      "y": 34,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 40,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "assume",
+                  "from": "dispatch",
+                  "to": "model",
+                  "sentence": 2,
+                  "untilSentence": 3,
+                  "label": "假设",
+                  "flow": "forward"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

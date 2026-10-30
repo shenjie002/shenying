@@ -1,0 +1,89 @@
+{
+  "title": "Agent 的分界线｜20秒运动编排试验",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "theme": {"palette":"sunrise","brand":"申映 / MOTION STUDY","footer":"文案观点示意 · 静音估算","chapters":false},
+  "scenes": [{
+    "id":"agent_boundary_study",
+    "template":"CanvasSlide",
+    "voiceover":"Anthropic 哪些零件绝不外包？ 会跟着模型一起变老的零件，自己做。 只是算力的，可以让出去。 判断一个产品，就问：它会不会跟着模型一起变？",
+    "narration":[
+      {"text":"Anthropic 哪些零件绝不外包？","target":1},
+      {"text":"会跟着模型一起变老的零件，自己做。","target":1},
+      {"text":"只是算力的，可以让出去。","target":1},
+      {"text":"判断一个产品，就问：它会不会跟着模型一起变？","target":1}
+    ],
+    "subtitles":true,
+    "visual":{"background":"plain","animation":"gentle","pace":"all","camera":"none"},
+    "props":{"heading":"Agent 基础设施的分界线","layout":"stacked","blocks":[{
+      "id":"stage","type":"MotionSceneBlock","props":{
+        "description":"依据用户文案提炼的判断框架，不代表已核实的公司策略。",
+        "camera":[{"sentence":1,"at":0,"x":50,"y":50,"zoom":1},{"sentence":2,"at":0.65,"x":50,"y":46,"zoom":1.05},{"sentence":3,"at":0.7,"x":50,"y":52,"zoom":1},{"sentence":4,"at":0.8,"x":50,"y":50,"zoom":1.06}],
+        "objects":[
+          {"id":"company","label":"Anthropic","shape":"text","tone":"rose","width":65,"height":14,"keys":[
+            {"sentence":1,"at":0,"x":50,"y":32,"fontSize":48,"fontWeight":500,"opacity":0,"scale":0.9},
+            {"sentence":1,"at":0.2,"x":50,"y":29,"fontSize":60,"fontWeight":900,"easing":"settle"},
+            {"sentence":1,"at":0.8,"x":50,"y":29,"fontSize":60,"fontWeight":900},
+            {"sentence":2,"at":0.2,"x":50,"y":12,"fontSize":28,"fontWeight":500,"emphasis":0.2},
+            {"sentence":3,"at":0.9,"x":50,"y":12,"fontSize":28,"fontWeight":500,"emphasis":0.2},
+            {"sentence":4,"at":0.15,"x":50,"y":10,"fontSize":24,"opacity":0}
+          ]},
+          {"id":"question","label":"哪些零件","shape":"text","tone":"normal","width":65,"height":14,"keys":[
+            {"sentence":1,"at":0.12,"x":50,"y":49,"fontSize":32,"opacity":0},
+            {"sentence":1,"at":0.35,"x":50,"y":46,"fontSize":60,"fontWeight":800,"easing":"settle"},
+            {"sentence":1,"at":0.85,"x":50,"y":46,"fontSize":60,"fontWeight":800},
+            {"sentence":2,"at":0.16,"x":28,"y":43,"fontSize":32,"opacity":0,"scale":0.8}
+          ]},
+          {"id":"never","label":"绝不外包？","shape":"text","tone":"rose","width":65,"height":16,"keys":[
+            {"sentence":1,"at":0.28,"x":50,"y":66,"fontSize":38,"fontWeight":500,"opacity":0},
+            {"sentence":1,"at":0.55,"x":50,"y":63,"fontSize":60,"fontWeight":900,"easing":"settle"},
+            {"sentence":1,"at":0.9,"x":50,"y":63,"fontSize":60,"fontWeight":900},
+            {"sentence":2,"at":0.22,"x":72,"y":62,"fontSize":32,"opacity":0,"scale":0.8}
+          ]},
+          {"id":"ages","label":"跟着模型变老","shape":"text","tone":"normal","width":65,"height":13,"keys":[
+            {"sentence":2,"at":0.1,"x":50,"y":39,"fontSize":36,"opacity":0,"scale":0.9},
+            {"sentence":2,"at":0.35,"x":50,"y":32,"fontSize":56,"fontWeight":800,"easing":"settle"},
+            {"sentence":2,"at":0.85,"x":50,"y":32,"fontSize":56,"fontWeight":800},
+            {"sentence":3,"at":0.3,"x":50,"y":22,"fontSize":34,"fontWeight":500,"emphasis":0.2},
+            {"sentence":3,"at":0.85,"x":50,"y":22,"fontSize":34,"fontWeight":500,"emphasis":0.2},
+            {"sentence":4,"at":0.2,"x":50,"y":15,"fontSize":28,"opacity":0}
+          ]},
+          {"id":"keep","label":"自己做","shape":"token","tone":"rose","width":52,"height":18,"keys":[
+            {"sentence":2,"at":0.38,"x":50,"y":58,"fontSize":40,"fontWeight":600,"opacity":0,"scale":0.7},
+            {"sentence":2,"at":0.65,"x":50,"y":55,"fontSize":60,"fontWeight":900,"easing":"settle"},
+            {"sentence":2,"at":0.95,"x":50,"y":55,"fontSize":60,"fontWeight":900},
+            {"sentence":3,"at":0.32,"x":50,"y":36,"fontSize":38,"fontWeight":700,"scale":0.65,"emphasis":0.5},
+            {"sentence":3,"at":0.85,"x":50,"y":36,"fontSize":38,"fontWeight":700,"scale":0.65,"emphasis":0.5},
+            {"sentence":4,"at":0.2,"x":24,"y":34,"fontSize":30,"opacity":0,"scale":0.5}
+          ]},
+          {"id":"compute","label":"只是算力","shape":"text","tone":"teal","width":65,"height":13,"keys":[
+            {"sentence":3,"at":0.12,"x":50,"y":63,"fontSize":36,"opacity":0},
+            {"sentence":3,"at":0.4,"x":50,"y":58,"fontSize":56,"fontWeight":800,"easing":"settle"},
+            {"sentence":3,"at":0.9,"x":50,"y":58,"fontSize":56,"fontWeight":800},
+            {"sentence":4,"at":0.2,"x":73,"y":60,"fontSize":30,"opacity":0,"scale":0.8}
+          ]},
+          {"id":"delegate","label":"可以让出去","shape":"token","tone":"teal","width":60,"height":16,"keys":[
+            {"sentence":3,"at":0.4,"x":50,"y":82,"fontSize":36,"opacity":0,"scale":0.8},
+            {"sentence":3,"at":0.7,"x":50,"y":79,"fontSize":56,"fontWeight":900,"easing":"settle"},
+            {"sentence":3,"at":0.95,"x":50,"y":79,"fontSize":56,"fontWeight":900},
+            {"sentence":4,"at":0.25,"x":50,"y":89,"fontSize":30,"opacity":0,"scale":0.7}
+          ]},
+          {"id":"ask","label":"只问一个问题","shape":"text","tone":"normal","width":65,"height":12,"keys":[
+            {"sentence":4,"at":0.14,"x":50,"y":28,"fontSize":30,"opacity":0},
+            {"sentence":4,"at":0.36,"x":50,"y":24,"fontSize":40,"fontWeight":500,"emphasis":0.2}
+          ]},
+          {"id":"with_model","label":"它会不会","shape":"text","tone":"normal","width":65,"height":14,"keys":[
+            {"sentence":4,"at":0.27,"x":50,"y":48,"fontSize":36,"opacity":0},
+            {"sentence":4,"at":0.5,"x":50,"y":44,"fontSize":56,"fontWeight":800,"easing":"settle"}
+          ]},
+          {"id":"change","label":"跟模型一起变？","shape":"text","tone":"rose","width":65,"height":16,"keys":[
+            {"sentence":4,"at":0.44,"x":50,"y":68,"fontSize":40,"opacity":0,"scale":0.9},
+            {"sentence":4,"at":0.7,"x":50,"y":64,"fontSize":60,"fontWeight":900,"easing":"settle"},
+            {"sentence":4,"at":1,"x":50,"y":64,"fontSize":60,"fontWeight":900}
+          ]}
+        ],"links":[]
+      }
+    }]}
+  }]
+}

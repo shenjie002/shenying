@@ -1,0 +1,155 @@
+{
+  "title": "Rust 所有权：谁负责，谁能用？",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "intro",
+      "template": "TitleSlide",
+      "voiceover": "Rust 不靠垃圾回收器，怎样管理资源？ 先分清三个概念：所有权、移动和借用，这次只看字符串和最基础的不可变借用。",
+      "visual": {"background": "glow", "animation": "gentle", "pace": "progressive"},
+      "subtitles": true,
+      "narration": [
+        {"text": "Rust 不靠垃圾回收器，怎样管理资源？"},
+        {"text": "先分清三个概念：所有权、移动和借用，这次只看字符串和最基础的不可变借用。"}
+      ],
+      "props": {
+        "title": "谁负责，谁能用？",
+        "subtitle": "Rust 入门：所有权 · Move · Borrow"
+      }
+    },
+    {
+      "id": "ownership_scope",
+      "template": "CanvasSlide",
+      "voiceover": "先记住三条原则：每个值有所有者，同一时间只有一个，所有者离开作用域时，值被丢弃，资源按类型逻辑释放。 用字符串理解这个流程：进入作用域，创建并使用，离开时释放。 这只是概念流程，不代表所有值都在堆上。",
+      "visual": {"background": "plain", "animation": "gentle", "pace": "progressive"},
+      "subtitles": true,
+      "narration": [
+        {"text": "先记住三条原则：每个值有所有者，同一时间只有一个，所有者离开作用域时，值被丢弃，资源按类型逻辑释放。", "target": 1},
+        {"text": "用字符串理解这个流程：进入作用域，创建并使用，离开时释放。", "target": 2},
+        {"text": "这只是概念流程，不代表所有值都在堆上。", "target": 2}
+      ],
+      "props": {
+        "heading": "所有权：管理值，也管理结束时刻",
+        "layout": "grid",
+        "blocks": [
+          {
+            "id": "ownership_rules",
+            "type": "BulletBlock",
+            "props": {
+              "heading": "三个基本原则",
+              "bullets": ["每个值都有所有者", "同一时间只有一个所有者", "所有者离开作用域，值被丢弃"]
+            }
+          },
+          {
+            "id": "scope_flow",
+            "type": "DiagramBlock",
+            "props": {
+              "heading": "String 的作用域概念流程",
+              "nodes": ["进入作用域", "创建并使用", "离开并释放"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "move_string",
+      "template": "CanvasSlide",
+      "voiceover": "看这段代码：先由 s1 拥有字符串，再赋值给 s2，随后使用 s2。 图里表示的是责任交接：移动之后，s2 成为所有者，不是深拷贝堆上的字符串。 此时不能继续使用 s1；但别推广到所有类型，整数这样的 Copy 类型不同。",
+      "visual": {"background": "grid", "animation": "gentle", "pace": "progressive"},
+      "subtitles": true,
+      "narration": [
+        {"text": "看这段代码：先由 s1 拥有字符串，再赋值给 s2，随后使用 s2。", "target": 1},
+        {"text": "图里表示的是责任交接：移动之后，s2 成为所有者，不是深拷贝堆上的字符串。", "target": 2},
+        {"text": "此时不能继续使用 s1；但别推广到所有类型，整数这样的 Copy 类型不同。", "target": 3}
+      ],
+      "props": {
+        "heading": "Move：交接所有权，不是深拷贝",
+        "layout": "split-2-1",
+        "blocks": [
+          {
+            "id": "move_code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;\nprintln!(\"{}\", s2);"
+            }
+          },
+          {
+            "id": "move_explanation",
+            "type": "GroupBlock",
+            "layout": "stacked",
+            "blocks": [
+              {
+                "id": "move_relation",
+                "type": "DiagramBlock",
+                "props": {
+                  "heading": "所有权交接",
+                  "nodes": ["s1", "Move", "s2"]
+                }
+              },
+              {
+                "id": "move_limit",
+                "type": "CalloutBlock",
+                "props": {
+                  "variant": "warning",
+                  "text": "String 移动后，s1 不再可用。不要套用到 i32 等 Copy 类型。"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "borrow_string",
+      "template": "CanvasSlide",
+      "voiceover": "如果只是读取，就看这里的与号：view 是对 s1 的不可变引用。 代码先通过 view 读取，随后仍能使用 s1。 因为借用只提供只读访问，s1 仍是所有者；区别在责任与权限，不是快慢结论。",
+      "visual": {"background": "grid", "animation": "gentle", "pace": "progressive"},
+      "subtitles": true,
+      "narration": [
+        {"text": "如果只是读取，就看这里的与号：view 是对 s1 的不可变引用。", "target": 1},
+        {"text": "代码先通过 view 读取，随后仍能使用 s1。", "target": 1},
+        {"text": "因为借用只提供只读访问，s1 仍是所有者；区别在责任与权限，不是快慢结论。", "target": 2}
+      ],
+      "props": {
+        "heading": "Borrow：借用访问，保留所有权",
+        "layout": "split-2-1",
+        "blocks": [
+          {
+            "id": "borrow_code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet view = &s1;\nprintln!(\"{}\", view);\nprintln!(\"{}\", s1);"
+            }
+          },
+          {
+            "id": "borrow_owner",
+            "type": "CalloutBlock",
+            "props": {
+              "variant": "info",
+              "text": "s1：仍是所有者\nview：不可变引用，只读访问\n借用不交接所有权。"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "summary",
+      "template": "BulletListSlide",
+      "voiceover": "读代码时，先问谁负责管理这个值。 再问这一行是移动交接，还是仅仅借用访问。 最后看作用域在哪里结束，就能把所有权、移动、借用串起来。",
+      "visual": {"background": "glow", "animation": "gentle", "pace": "progressive"},
+      "subtitles": true,
+      "narration": [
+        {"text": "读代码时，先问谁负责管理这个值。", "target": 1},
+        {"text": "再问这一行是移动交接，还是仅仅借用访问。", "target": 2},
+        {"text": "最后看作用域在哪里结束，就能把所有权、移动、借用串起来。", "target": 3}
+      ],
+      "props": {
+        "heading": "读代码，先问这三个问题",
+        "bullets": ["谁是所有者，负责管理值？", "这一行在交接，还是借用访问？", "所有者的作用域何时结束？"]
+      }
+    }
+  ]
+}

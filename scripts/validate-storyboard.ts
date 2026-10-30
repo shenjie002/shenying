@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises';
 import {parseGenerated} from '../server/article';
+import {scriptSchema} from '../shared/schema';
+import {masterFrames} from '../shared/master';
 
 const [file, count] = process.argv.slice(2);
 if (!file || (count !== undefined && (!/^\d+$/.test(count) || Number(count) < 1 || Number(count) > 30))) {
@@ -8,10 +10,17 @@ if (!file || (count !== undefined && (!/^\d+$/.test(count) || Number(count) < 1 
 } else {
   try {
     const text = await fs.readFile(file, 'utf8');
-    const expected = count === undefined ? JSON.parse(text).scenes?.length : Number(count);
-    if (!Number.isInteger(expected) || expected < 1 || expected > 30) throw new Error('剧本必须包含1～30幕');
-    const script = parseGenerated(text, expected);
-    console.log(`校验通过：${script.title}，${script.scenes.length}幕，其中${script.scenes.filter(scene => scene.template === 'CanvasSlide').length}幕混合画布。`);
+    const raw = JSON.parse(text);
+    if (raw.master) {
+      if (count !== undefined) throw new Error('master没有分镜数，请省略分镜数参数');
+      const script = scriptSchema.parse(raw);
+      console.log(`校验通过：${script.title}，单根全局画布，${masterFrames(script.master!)}帧，${script.master!.sfx.length}个音效触发。`);
+    } else {
+      const expected = count === undefined ? raw.scenes?.length : Number(count);
+      if (!Number.isInteger(expected) || expected < 1 || expected > 30) throw new Error('剧本必须包含1～30幕');
+      const script = parseGenerated(text, expected);
+      console.log(`校验通过：${script.title}，${script.scenes.length}幕，其中${script.scenes.filter(scene => scene.template === 'CanvasSlide').length}幕混合画布。`);
+    }
     console.log('仅完成格式与动作绑定校验，未写入当前项目；事实、画面裁切及实际音画节奏仍需人工验收。');
   } catch (error) {
     console.error(`校验失败：${error instanceof Error ? error.message : String(error)}`);

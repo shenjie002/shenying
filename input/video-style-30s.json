@@ -1,0 +1,526 @@
+{
+  "title": "微场景与微观动效｜30秒试验",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 6,
+  "theme": {
+    "palette": "handbook",
+    "cinema": true,
+    "brand": "",
+    "footer": "",
+    "chapters": false
+  },
+  "scenes": [
+    {
+      "id": "micro_title",
+      "template": "CanvasSlide",
+      "chapter": "01",
+      "voiceover": "Anthropic 哪些零件绝不外包？",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.65
+        }
+      },
+      "narration": [
+        {
+          "text": "Anthropic 哪些零件绝不外包？",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "标题镜头",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "胶囊标题与逐字出现示意。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 52,
+                  "zoom": 1.15
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 50,
+                  "y": 47,
+                  "zoom": 1.38,
+                  "easing": "settle"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "kicker",
+                  "label": "PART 01",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 40,
+                  "height": 10,
+                  "reveal": "fade",
+                  "revealFrames": 12,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 30,
+                      "fontSize": 26,
+                      "fontWeight": 700
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 50,
+                      "y": 30,
+                      "fontSize": 26,
+                      "fontWeight": 700
+                    }
+                  ]
+                },
+                {
+                  "id": "title",
+                  "label": "哪些零件",
+                  "shape": "text",
+                  "tone": "normal",
+                  "width": 65,
+                  "height": 18,
+                  "reveal": "typewriter",
+                  "revealFrames": 22,
+                  "glow": true,
+                  "float": 0.6,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.05,
+                      "x": 50,
+                      "y": 46,
+                      "fontSize": 60,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 50,
+                      "y": 46,
+                      "fontSize": 60,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "emphasis",
+                  "label": "绝不外包？",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 62,
+                  "height": 16,
+                  "reveal": "pop",
+                  "revealFrames": 18,
+                  "capsule": true,
+                  "glow": true,
+                  "float": 0.5,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.45,
+                      "x": 50,
+                      "y": 64,
+                      "fontSize": 58,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 50,
+                      "y": 64,
+                      "fontSize": 58,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "micro_cards",
+      "template": "CanvasSlide",
+      "chapter": "02",
+      "voiceover": "一个 agent，拆开是四样东西：模型、调度、沙箱、记录。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "一个 agent，拆开是四样东西：模型、调度、沙箱、记录。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "四样零件",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "卡片带轻微漂浮，擦除入场。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1.25
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.6,
+                  "x": 48,
+                  "y": 52,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 52,
+                  "y": 48,
+                  "zoom": 1.08
+                }
+              ],
+              "stagger": [
+                {
+                  "sentence": 1,
+                  "objects": [
+                    "m",
+                    "d",
+                    "x",
+                    "r"
+                  ],
+                  "intervalFrames": 6,
+                  "durationFrames": 20,
+                  "preset": "spring-jelly"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "m",
+                  "label": "模型",
+                  "detail": "想",
+                  "badge": "大脑",
+                  "icon": "Brain",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 46,
+                  "height": 20,
+                  "reveal": "rise",
+                  "float": 1.1,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 28,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 28,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "d",
+                  "label": "调度",
+                  "detail": "问 → 派 → 收",
+                  "badge": "循环",
+                  "icon": "Workflow",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 46,
+                  "height": 20,
+                  "reveal": "rise",
+                  "float": 1.3,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 72,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 72,
+                      "y": 28,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "x",
+                  "label": "沙箱",
+                  "detail": "执行",
+                  "badge": "手",
+                  "icon": "Terminal",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 46,
+                  "height": 20,
+                  "reveal": "rise",
+                  "float": 1.2,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 28,
+                      "y": 60,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 28,
+                      "y": 60,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "r",
+                  "label": "记录",
+                  "detail": "账本",
+                  "badge": "账",
+                  "icon": "FileText",
+                  "shape": "panel",
+                  "tone": "warning",
+                  "width": 46,
+                  "height": 20,
+                  "reveal": "rise",
+                  "float": 0.9,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 72,
+                      "y": 60,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 72,
+                      "y": 60,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "micro_wipe",
+      "template": "CanvasSlide",
+      "chapter": "03",
+      "voiceover": "活一长，最先扛不住的不是模型，是那个调度循环。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.6
+        }
+      },
+      "narration": [
+        {
+          "text": "活一长，最先扛不住的不是模型，是那个调度循环。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "瓶颈镜头",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "擦除入场与聚焦降噪。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 52,
+                  "zoom": 1.1
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.5,
+                  "x": 50,
+                  "y": 48,
+                  "zoom": 1.55,
+                  "easing": "settle"
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 50,
+                  "y": 46,
+                  "zoom": 1.8
+                }
+              ],
+              "focus": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "ids": [
+                    "loop"
+                  ],
+                  "dimOpacity": 0.18,
+                  "blur": 3
+                }
+              ],
+              "objects": [
+                {
+                  "id": "model",
+                  "label": "模型",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 40,
+                  "height": 10,
+                  "reveal": "wipe",
+                  "revealFrames": 14,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 30,
+                      "y": 30,
+                      "fontSize": 38
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 30,
+                      "y": 30,
+                      "fontSize": 38
+                    }
+                  ]
+                },
+                {
+                  "id": "loop",
+                  "label": "调度循环",
+                  "shape": "ring",
+                  "tone": "highlight",
+                  "width": 52,
+                  "height": 30,
+                  "reveal": "pop",
+                  "revealFrames": 16,
+                  "float": 0.8,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 1,
+                      "fontSize": 48,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 1,
+                      "fontSize": 48,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "led",
+                  "label": "记录",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 40,
+                  "height": 10,
+                  "reveal": "wipe",
+                  "revealFrames": 14,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 70,
+                      "y": 74,
+                      "fontSize": 38
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 70,
+                      "y": 74,
+                      "fontSize": 38
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "l",
+                  "from": "loop",
+                  "to": "model",
+                  "sentence": 1,
+                  "flow": "reverse",
+                  "dashed": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

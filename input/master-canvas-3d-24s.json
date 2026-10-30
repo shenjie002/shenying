@@ -1,0 +1,470 @@
+{
+  "title": "单根全局画布｜3D视差 24秒",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 8,
+  "theme": {
+    "palette": "handbook",
+    "cinema": true,
+    "brand": "",
+    "footer": "",
+    "chapters": false
+  },
+  "scenes": [],
+  "master": {
+    "backdrop": "aurora",
+    "beats": [
+      {
+        "text": "哪些零件，绝不外包？",
+        "frames": 135
+      },
+      {
+        "text": "一个 agent，拆开是四样东西。",
+        "frames": 150
+      },
+      {
+        "text": "模型和调度，是它的大脑和循环。",
+        "frames": 150
+      },
+      {
+        "text": "沙箱负责动手，记录负责记账。",
+        "frames": 150
+      },
+      {
+        "text": "会跟着模型变老的，自己做。",
+        "frames": 135
+      }
+    ],
+    "actors": [
+      {
+        "id": "kicker",
+        "label": "PART 01",
+        "kind": "chip",
+        "tone": "muted",
+        "fontSize": 20,
+        "width": 26,
+        "keys": [
+          {
+            "frame": 0,
+            "x": 50,
+            "y": 24,
+            "scale": 1,
+            "opacity": 0
+          },
+          {
+            "frame": 16,
+            "x": 50,
+            "y": 26,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 120,
+            "x": 50,
+            "y": 26,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 150,
+            "x": 23,
+            "y": 7.6,
+            "scale": 0.62,
+            "opacity": 0.92,
+            "easing": "settle",
+            "z": -60,
+            "rotateX": -6
+          },
+          {
+            "frame": 720,
+            "x": 23,
+            "y": 7.6,
+            "scale": 0.62,
+            "opacity": 0.92,
+            "z": -60,
+            "rotateX": -6
+          }
+        ],
+        "depth": 0.4
+      },
+      {
+        "id": "title",
+        "label": "哪些零件",
+        "kind": "text",
+        "tone": "normal",
+        "fontSize": 64,
+        "fontWeight": 800,
+        "width": 78,
+        "glow": true,
+        "float": 0.5,
+        "keys": [
+          {
+            "frame": 0,
+            "x": 50,
+            "y": 43,
+            "scale": 1.12,
+            "opacity": 0,
+            "z": -120
+          },
+          {
+            "frame": 22,
+            "x": 50,
+            "y": 43,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly",
+            "z": 40
+          },
+          {
+            "frame": 120,
+            "x": 50,
+            "y": 43,
+            "scale": 1,
+            "opacity": 1,
+            "z": 40
+          },
+          {
+            "frame": 168,
+            "x": 24,
+            "y": 14.5,
+            "scale": 0.4,
+            "opacity": 1,
+            "easing": "settle",
+            "z": -40,
+            "rotateX": -6,
+            "rotateY": 4
+          },
+          {
+            "frame": 720,
+            "x": 24,
+            "y": 14.5,
+            "scale": 0.4,
+            "opacity": 1,
+            "z": -40,
+            "rotateX": -6,
+            "rotateY": 4
+          }
+        ],
+        "depth": 0.45
+      },
+      {
+        "id": "emph",
+        "label": "绝不外包？",
+        "kind": "chip",
+        "tone": "highlight",
+        "fontSize": 44,
+        "fontWeight": 900,
+        "width": 46,
+        "glow": true,
+        "float": 0.4,
+        "keys": [
+          {
+            "frame": 26,
+            "x": 50,
+            "y": 58,
+            "scale": 0.86,
+            "opacity": 0
+          },
+          {
+            "frame": 52,
+            "x": 50,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly"
+          },
+          {
+            "frame": 122,
+            "x": 50,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 236,
+            "x": 52,
+            "y": 8.6,
+            "scale": 0.5,
+            "opacity": 0.95,
+            "easing": "settle",
+            "z": -30,
+            "rotateX": -4
+          },
+          {
+            "frame": 720,
+            "x": 52,
+            "y": 8.6,
+            "scale": 0.5,
+            "opacity": 0.95,
+            "z": -30,
+            "rotateX": -4
+          }
+        ],
+        "depth": 0.6
+      },
+      {
+        "id": "m",
+        "label": "模型",
+        "detail": "它想",
+        "badge": "01",
+        "kind": "card",
+        "tone": "rose",
+        "fontSize": 46,
+        "fontWeight": 900,
+        "width": 36,
+        "float": 0.9,
+        "keys": [
+          {
+            "frame": 150,
+            "x": 30,
+            "y": 100,
+            "scale": 0.86,
+            "opacity": 0,
+            "z": -320,
+            "rotateX": 14
+          },
+          {
+            "frame": 196,
+            "x": 30,
+            "y": 36,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly",
+            "z": 30,
+            "rotateX": -3
+          },
+          {
+            "frame": 330,
+            "x": 30,
+            "y": 33,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 640,
+            "x": 30,
+            "y": 29,
+            "scale": 0.92,
+            "opacity": 1,
+            "easing": "settle",
+            "z": 10,
+            "rotateX": 0
+          }
+        ],
+        "depth": 1.25
+      },
+      {
+        "id": "d",
+        "label": "调度",
+        "detail": "问 → 派 → 收",
+        "badge": "02",
+        "kind": "card",
+        "tone": "highlight",
+        "fontSize": 46,
+        "fontWeight": 900,
+        "width": 36,
+        "float": 1.1,
+        "keys": [
+          {
+            "frame": 166,
+            "x": 70,
+            "y": 100,
+            "scale": 0.86,
+            "opacity": 0,
+            "z": -320,
+            "rotateX": 14
+          },
+          {
+            "frame": 212,
+            "x": 70,
+            "y": 36,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly",
+            "z": 30,
+            "rotateX": -3
+          },
+          {
+            "frame": 332,
+            "x": 70,
+            "y": 33,
+            "scale": 1,
+            "opacity": 1
+          },
+          {
+            "frame": 640,
+            "x": 70,
+            "y": 29,
+            "scale": 0.92,
+            "opacity": 1,
+            "z": 10,
+            "rotateX": 0
+          }
+        ],
+        "depth": 1.25
+      },
+      {
+        "id": "x",
+        "label": "沙箱",
+        "detail": "动手执行",
+        "badge": "03",
+        "kind": "card",
+        "tone": "teal",
+        "fontSize": 46,
+        "fontWeight": 900,
+        "width": 36,
+        "float": 1,
+        "keys": [
+          {
+            "frame": 300,
+            "x": 30,
+            "y": 100,
+            "scale": 0.86,
+            "opacity": 0,
+            "z": -320,
+            "rotateX": 14
+          },
+          {
+            "frame": 346,
+            "x": 30,
+            "y": 62,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly",
+            "z": 30,
+            "rotateX": -3
+          },
+          {
+            "frame": 660,
+            "x": 30,
+            "y": 50,
+            "scale": 0.92,
+            "opacity": 1,
+            "z": 10,
+            "rotateX": 0
+          }
+        ],
+        "depth": 1.25
+      },
+      {
+        "id": "r",
+        "label": "记录",
+        "detail": "记一笔账",
+        "badge": "04",
+        "kind": "card",
+        "tone": "warning",
+        "fontSize": 46,
+        "fontWeight": 900,
+        "width": 36,
+        "float": 1.2,
+        "keys": [
+          {
+            "frame": 316,
+            "x": 70,
+            "y": 100,
+            "scale": 0.86,
+            "opacity": 0,
+            "z": -320,
+            "rotateX": 14
+          },
+          {
+            "frame": 362,
+            "x": 70,
+            "y": 62,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly",
+            "z": 30,
+            "rotateX": -3
+          },
+          {
+            "frame": 660,
+            "x": 70,
+            "y": 50,
+            "scale": 0.92,
+            "opacity": 1,
+            "z": 10,
+            "rotateX": 0
+          }
+        ],
+        "depth": 1.25
+      },
+      {
+        "id": "rule",
+        "label": "会跟着模型变老 → 自己做",
+        "kind": "line",
+        "tone": "highlight",
+        "fontSize": 30,
+        "fontWeight": 800,
+        "width": 84,
+        "keys": [
+          {
+            "frame": 600,
+            "x": 50,
+            "y": 80,
+            "scale": 0.94,
+            "opacity": 0,
+            "z": -260
+          },
+          {
+            "frame": 632,
+            "x": 50,
+            "y": 78,
+            "scale": 1,
+            "opacity": 1,
+            "easing": "spring-jelly",
+            "z": 60
+          },
+          {
+            "frame": 720,
+            "x": 50,
+            "y": 78,
+            "scale": 1,
+            "opacity": 1,
+            "z": 40
+          }
+        ],
+        "depth": 1.4
+      }
+    ],
+    "camera": [
+      {
+        "frame": 0,
+        "x": 50,
+        "y": 50,
+        "zoom": 1.05
+      },
+      {
+        "frame": 150,
+        "x": 50,
+        "y": 49,
+        "zoom": 1.16,
+        "easing": "settle"
+      },
+      {
+        "frame": 330,
+        "x": 47,
+        "y": 44,
+        "zoom": 1.3
+      },
+      {
+        "frame": 480,
+        "x": 54,
+        "y": 56,
+        "zoom": 1.14
+      },
+      {
+        "frame": 600,
+        "x": 50,
+        "y": 57,
+        "zoom": 1.26
+      },
+      {
+        "frame": 719,
+        "x": 50,
+        "y": 52,
+        "zoom": 1.04
+      }
+    ]
+  }
+}

@@ -13,6 +13,7 @@
 
 ## Documentation
 
+- [Documentation index](https://github.com/shenjie002/shenying/blob/main/docs/README.md): all shipped capability topics, scenes/MotionScene/master distinctions, user workflow and maintenance boundaries.
 - [Full agent reference](https://github.com/shenjie002/shenying/blob/main/llms-full.txt): consolidated product, workflow, limitations, and integration reference.
 - [Agent workflow](https://github.com/shenjie002/shenying/blob/main/docs/agent-guide.md): creating and validating storyboards safely.
 - [MCP integration](https://github.com/shenjie002/shenying/blob/main/docs/mcp.md): stdio setup, tools, resources, prompts, and permissions.
@@ -20,10 +21,34 @@
 - [Audio, motion and reliability](https://github.com/shenjie002/shenying/blob/main/docs/audio-motion-reliability.md): bounded TTS voice choice, sentence-start keyword cues, subtle camera/parallax, draft render, and unavailable features/automation boundaries.
 - [Visual style](https://github.com/shenjie002/shenying/blob/main/docs/visual-style.md): frame-driven backgrounds, bounded entrance effects and canvas-only dim/pulse focus; content-led choices are injected into generation.
 - [Charts and semantic icons](https://github.com/shenjie002/shenying/blob/main/docs/visualizations.md): architecture topology, neutral comparison matrices, sourced timelines/bar charts, bounded trees and whitelist icons, rendered and schema-validated.
-- [Mixed canvas](https://github.com/shenjie002/shenying/blob/main/docs/canvas.md): CanvasSlide combines code, bullets, callouts, statistics and simple diagrams using bounded nested containers; whole-block timing, not within-block animation.
+- [Mixed canvas](https://github.com/shenjie002/shenying/blob/main/docs/canvas.md): CanvasSlide combines code, text, sourced charts, local images and bounded process animations using nested containers or percentage free layout; targets control whole blocks, while declared block fields control internal timing.
 - [Renderer contract](https://github.com/shenjie002/shenying/blob/main/docs/renderer-contract.md): actual scene actions, narration targets, timing priorities, and unsupported effects. Read before drafting.
+- [Continuous short-film workflow](https://github.com/shenjie002/shenying/blob/main/docs/master-composition.md): user article/requirements → AI actor/keyframe draft → form editing → preview/save/render, 30–120 seconds, optional per-beat TTS narration (must fit each beat), synthesised cues muted by default (sfxMuted); no narration auto-retiming.
 - [Script schema](https://github.com/shenjie002/shenying/blob/main/shared/schema.ts): authoritative validation and timeline types.
 - [Example storyboard](https://github.com/shenjie002/shenying/blob/main/input/visual-upgrade.json): six scene types.
 - [License](https://github.com/shenjie002/shenying/blob/main/LICENSE): prior-permission terms.
 
 These documents aid discovery and understanding; llms.txt does not guarantee indexing by search engines or agents.
+
+- [State and relationship demonstrations](https://github.com/shenjie002/shenying/blob/main/docs/mechanisms.md): fixed-identity entities, narration-bound snapshots, validation and cross-topic limits.
+
+- [JSON creation and incremental rendering](https://github.com/shenjie002/shenying/blob/main/docs/json-creation.md): bounded visibility, focus, slots, view changes and scene-level render cache; no arbitrary-animation guarantee.
+
+- [Free layout and connectors](https://github.com/shenjie002/shenying/blob/main/docs/free-layout-connections.md): bounded percentage rectangles, line/arrow styles, frame-based flow and basic chart reveals; built-in catalog, not arbitrary plugins.
+
+
+## 竖屏与高级讲解表达
+
+参阅 [docs/short-video-presentation.md](docs/short-video-presentation.md)：真正横竖屏、主题/章节/来源、RichTextBlock、受控本地ImageBlock、CycleBlock、TransferContainerBlock、BalanceScaleBlock，以及StatBlock.counter、BarChartBlock.countUp和TimelineBlock.milestones。旧版“仅固定数字、无图片/容器转移”等限制由本节限定能力替代；不支持任意CSS/JS、远程素材或自动数据真实性验证。生成与MCP使用同一Schema/能力契约，无新增素材写入MCP权限。草稿横屏960×540、竖屏540×960；每次实际使用需确认素材授权和人工检查裁切。
+
+
+## 连续过程动画能力
+生成和渲染现已支持受约束的 MotionSceneBlock 连续关键帧。详见 [docs/continuous-motion.md](docs/continuous-motion.md) 及 `input/continuous-motion-example.json`。该能力使用句内比例关键帧、确定性平滑插值和移动连线，不是任意代码执行或实时仿真；正文生成规则也已更新。
+
+
+视觉主题目录：[docs/themes.md](docs/themes.md)。theme.palette支持blue/editorial/light/vivid/ocean/sunrise/botanical/candy/neon/blueprint/handbook，生成提示直接复用shared/themes.ts；新主题开放舞台与深浅色语义适配，非任意CSS样式或所有旧组件完整换肤。
+
+
+## 当前进度交接入口
+
+新会话先读 `docs/current-progress.md` 当前摘要及 `docs/README.md`，区分历史认可稿、开发验收稿和待渲染稿；测试以当前执行为准。编排区域独立滚动（80vh/960px，顶部固定）；运行临时文件用后清理，用户视频/稿件与素材缓存不自动删除。

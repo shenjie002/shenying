@@ -1,0 +1,8 @@
+{
+ "title":"竖屏编辑式讲解能力示例","format":"portrait","fps":30,"tailPaddingFrames":12,
+ "theme":{"palette":"editorial","brand":"申映 · 知识讲解","footer":"示例，不代表真实运行","chapters":true},
+ "scenes":[
+ {"id":"question","template":"CanvasSlide","chapter":"01 / 从问题开始","source":"本地教学示例，无外部数据","voiceover":"先提出一个具体的问题。 再突出真正需要解释的变化。","narration":[{"text":"先提出一个具体的问题。","target":1},{"text":"再突出真正需要解释的变化。","target":1}],"subtitles":true,"visual":{"background":"plain","animation":"gentle","pace":"all"},"props":{"heading":"先让观众知道看什么","layout":"free","blocks":[{"id":"question_text","type":"RichTextBlock","props":{"size":"hero","align":"center","segments":[{"text":"资源没变，"},{"text":"谁在负责？","tone":"warning","breakBefore":true,"sentence":2}]}},{"id":"loop","type":"CycleBlock","props":{"label":"理解 → 检查 → 返回","motion":"rotate","symbol":"cycle","periodFrames":120}}],"placements":[{"id":"question_text","x":0,"y":0,"width":100,"height":45},{"id":"loop","x":15,"y":55,"width":70,"height":40}]}},
+ {"id":"conclusion","template":"CanvasSlide","chapter":"02 / 回答问题","voiceover":"保持对象身份不变，用关系解释变化。 动画是解释工具，不是事实证据。","narration":[{"text":"保持对象身份不变，用关系解释变化。","target":1},{"text":"动画是解释工具，不是事实证据。","target":2}],"subtitles":true,"visual":{"background":"plain","animation":"gentle","pace":"all"},"props":{"heading":"回到可记住的结论","layout":"stacked","blocks":[{"id":"takeaway","type":"RichTextBlock","props":{"size":"title","align":"left","segments":[{"text":"保持身份","tone":"warning"},{"text":"解释变化","tone":"accent","breakBefore":true}]}},{"id":"boundary","type":"CalloutBlock","props":{"variant":"info","text":"概念示意不等于实际执行；截图与数据应保留来源。"}}]}}
+ ]
+}

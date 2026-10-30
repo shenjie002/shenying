@@ -39,9 +39,38 @@ async def synthesize(text, voice=VOICE):
     return "audio/" + audio.name, duration
 
 
+def write_timeline(data):
+    target = ROOT / "timeline.json"
+    temp = target.with_suffix(".tmp.json")
+    temp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(str(temp), str(target))
+
+
+def master_narration(beats, durations, fps):
+    """Each beat gets one clip at its absolute start; action frames never move."""
+    cursor, timed = 0, []
+    for i, (beat, (src, duration)) in enumerate(zip(beats, durations)):
+        frames = math.ceil(duration * fps)
+        if frames > beat["frames"]:
+            raise ValueError("第%d段配音%d帧，超过段长%d帧；请删减该段字幕或加长frames" % (i + 1, frames, beat["frames"]))
+        timed.append({"beat": i, "from": cursor, "durationInFrames": frames, "audioSrc": src})
+        cursor += beat["frames"]
+    return timed, cursor
+
+
 async def main():
     data = json.loads((ROOT / "script.json").read_text(encoding="utf-8"))
     fps = data["fps"]
+    master = data.get("master")
+    if master:
+        beats, durations = master["beats"], []
+        for i, beat in enumerate(beats):
+            durations.append(await synthesize(beat["text"].strip(), VOICE))
+            print("段落 %d / %d：配音 %d / %d 帧" % (i + 1, len(beats), math.ceil(durations[-1][1] * fps), beat["frames"]), flush=True)
+        timed, total = master_narration(beats, durations, fps)
+        data.update(scenes=[], masterNarration=timed, mode="tts", totalFrames=total + data["tailPaddingFrames"])
+        write_timeline(data)
+        return
     for i, scene in enumerate(data["scenes"]):
         voice = scene.get('voice', VOICE)
         if voice not in {VOICE, 'zh-CN-YunxiNeural', 'zh-CN-XiaoyiNeural', 'zh-CN-YunjianNeural'}:
@@ -69,10 +98,7 @@ async def main():
         print("分镜 %d / %d：%d 帧" % (i + 1, len(data["scenes"]), scene["durationInFrames"]), flush=True)
     data["totalFrames"] = sum(s["durationInFrames"] for s in data["scenes"])
     data["mode"] = "tts"
-    target = ROOT / "timeline.json"
-    temp = target.with_suffix(".tmp.json")
-    temp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    os.replace(str(temp), str(target))
+    write_timeline(data)
 
 
 if __name__ == "__main__":

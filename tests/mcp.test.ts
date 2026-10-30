@@ -36,6 +36,36 @@ test('MCP 默认只读，资源和 prompt 可发现，校验保留跨字段规�
   } finally {await close();}
 });
 
+test('MCP全局画布校验/时间轴保留合成音效，schema与renderer公开同一契约且不新增工具',async()=>{
+  const {client,close}=await connect();
+  try {
+    const master=JSON.parse(await readFile(new URL('../input/master-motion-sound-30s.json',import.meta.url),'utf8'));
+    const valid=await client.callTool({name:'validate_script',arguments:{script:master}});
+    assert.ok(!valid.isError);
+    const preview=await client.callTool({name:'preview_timeline',arguments:{script:master}});
+    assert.match(JSON.stringify(preview),/900/);assert.match(JSON.stringify(preview),/bloop/);
+    const renderer=await client.readResource({uri:'shenying://renderer'});
+    assert.match(JSON.stringify(renderer),/damping/);assert.match(JSON.stringify(renderer),/whoosh/);
+    const schema=await client.readResource({uri:'shenying://schema'});
+    assert.match(JSON.stringify(schema),/iconMotion/);assert.match(JSON.stringify(schema),/sfx/);
+  } finally {await close();}
+});
+
+test('MCP连续短片生成请求字段透传，越界请求不发网',async()=>{
+ const calls:Record<string,unknown>[]=[];
+ const {client,close}=await connect({external:true,fetch:(async(_url,init)=>{calls.push(JSON.parse(String(init?.body)));return new Response(JSON.stringify({script:{}}));}) as typeof fetch});
+ try {
+  const tools=(await client.listTools()).tools;
+  const generate=tools.find(t=>t.name==='generate_storyboard')!;
+  assert.match(JSON.stringify(generate.inputSchema),/soundEffects/);
+  const input={article:'测试资料。'.repeat(30),mode:'master',duration:30,format:'portrait',instructions:'对象接力',soundEffects:true};
+  assert.ok(!(await client.callTool({name:'generate_storyboard',arguments:input})).isError);
+  assert.equal(calls[0].mode,'master');assert.equal(calls[0].format,'portrait');assert.equal(calls[0].instructions,'对象接力');
+  assert.ok((await client.callTool({name:'generate_storyboard',arguments:{...input,duration:180}})).isError);
+  assert.equal(calls.length,1);
+ } finally {await close();}
+});
+
 test('MCP 显式权限组合控制工具是否可调用', async () => {
   for (const [options, expected] of [
     [{writes: true}, ['save_script', 'prepare_silent']],

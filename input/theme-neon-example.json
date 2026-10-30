@@ -1,0 +1,387 @@
+{
+  "title": "Rust 所有权：看清交接与借用",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "move_ownership_change",
+      "template": "CanvasSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "创建 String 后，s1 管理同一份字符串。图中上方是绑定，下方是资源，只是概念示意。 执行赋值时，管理责任交接给 s2，旧绑定退出可用状态。下面的字符串没有搬走，也没有复制。 交接之后，通过 s2 使用这份 String。记住：Move 改变管理责任，不是复制字符串。",
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "parallax": true
+      },
+      "subtitles": true,
+      "narration": [
+        {
+          "text": "创建 String 后，s1 管理同一份字符串。图中上方是绑定，下方是资源，只是概念示意。",
+          "target": 1
+        },
+        {
+          "text": "执行赋值时，管理责任交接给 s2，旧绑定退出可用状态。下面的字符串没有搬走，也没有复制。",
+          "target": 1
+        },
+        {
+          "text": "交接之后，通过 s2 使用这份 String。记住：Move 改变管理责任，不是复制字符串。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "Move：一次连续的责任交接",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "process",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "概念示意：轨迹表示管理责任，不是内存搬移；流动点仅示意访问。 | 教学概念动画，不代表程序实际执行。",
+              "objects": [
+                {
+                  "id": "s1",
+                  "label": "s1",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 23,
+                      "y": 23,
+                      "opacity": 0,
+                      "scale": 0.8
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.18,
+                      "x": 23,
+                      "y": 23
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 23,
+                      "y": 23
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.55,
+                      "x": 17,
+                      "y": 23,
+                      "opacity": 0.3,
+                      "scale": 0.8
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 17,
+                      "y": 23,
+                      "opacity": 0.3,
+                      "scale": 0.8
+                    }
+                  ],
+                  "detail": "原绑定"
+                },
+                {
+                  "id": "s2",
+                  "label": "s2",
+                  "shape": "panel",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 77,
+                      "y": 23,
+                      "opacity": 0,
+                      "scale": 0.65
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.65,
+                      "x": 77,
+                      "y": 23,
+                      "opacity": 0.4
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.1,
+                      "x": 77,
+                      "y": 23,
+                      "opacity": 0.4
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.65,
+                      "x": 77,
+                      "y": 23,
+                      "scale": 1.1
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 77,
+                      "y": 23,
+                      "scale": 1.1
+                    }
+                  ],
+                  "detail": "新绑定",
+                  "tone": "teal"
+                },
+                {
+                  "id": "resource",
+                  "label": "String · hello",
+                  "shape": "resource",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72,
+                      "opacity": 0,
+                      "progress": 0,
+                      "scale": 0.6
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 72,
+                      "progress": 0.2
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 72,
+                      "progress": 1
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0,
+                      "x": 50,
+                      "y": 72
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 68,
+                      "scale": 1.15
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.65,
+                      "x": 50,
+                      "y": 68,
+                      "scale": 1.15
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 72
+                    }
+                  ],
+                  "detail": "同一份资源 · 未复制",
+                  "width": 34,
+                  "height": 19,
+                  "tone": "warning"
+                },
+                {
+                  "id": "duty",
+                  "label": "管理责任",
+                  "shape": "token",
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.1,
+                      "x": 23,
+                      "y": 44,
+                      "opacity": 0,
+                      "scale": 0.6
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 23,
+                      "y": 44
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 23,
+                      "y": 44
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 38,
+                      "scale": 0.8
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.65,
+                      "x": 77,
+                      "y": 44
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 77,
+                      "y": 44
+                    }
+                  ],
+                  "width": 20,
+                  "height": 11,
+                  "tone": "rose"
+                },
+                {
+                  "id": "result",
+                  "label": "责任已交接，资源未复制",
+                  "shape": "text",
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.1,
+                      "x": 50,
+                      "y": 92,
+                      "opacity": 0,
+                      "scale": 0.7
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 92
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 1,
+                      "x": 50,
+                      "y": 92
+                    }
+                  ],
+                  "width": 60,
+                  "height": 8,
+                  "tone": "warning"
+                },
+                {
+                  "id": "handoff",
+                  "label": "交接中",
+                  "shape": "text",
+                  "tone": "rose",
+                  "width": 18,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0,
+                      "x": 50,
+                      "y": 16,
+                      "opacity": 0,
+                      "scale": 0.7
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.18,
+                      "x": 50,
+                      "y": 16
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.62,
+                      "x": 50,
+                      "y": 16,
+                      "opacity": 0
+                    }
+                  ]
+                },
+                {
+                  "id": "use",
+                  "label": "使用示意",
+                  "shape": "token",
+                  "tone": "teal",
+                  "width": 15,
+                  "height": 9,
+                  "keys": [
+                    {
+                      "sentence": 3,
+                      "at": 0.05,
+                      "x": 77,
+                      "y": 44,
+                      "opacity": 0,
+                      "scale": 0.5
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.2,
+                      "x": 72,
+                      "y": 50
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.45,
+                      "x": 50,
+                      "y": 65,
+                      "scale": 0.7
+                    },
+                    {
+                      "sentence": 3,
+                      "at": 0.6,
+                      "x": 50,
+                      "y": 65,
+                      "opacity": 0
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "own1",
+                  "from": "s1",
+                  "to": "resource",
+                  "label": "拥有",
+                  "sentence": 1,
+                  "flow": "none",
+                  "untilSentence": 2
+                },
+                {
+                  "id": "own2",
+                  "from": "s2",
+                  "to": "resource",
+                  "label": "拥有",
+                  "sentence": 2,
+                  "flow": "none"
+                },
+                {
+                  "id": "read",
+                  "from": "s2",
+                  "to": "resource",
+                  "label": "通过新绑定使用",
+                  "sentence": 3,
+                  "flow": "forward"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "chapter": "03 / 05"
+    }
+  ],
+  "theme": {
+    "palette": "neon",
+    "brand": "申映 / RUST IN MOTION",
+    "footer": "把知识，讲清楚。",
+    "chapters": true
+  }
+}

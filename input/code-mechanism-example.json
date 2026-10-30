@@ -1,0 +1,301 @@
+{
+  "title": "Rust：代码行与关系变化同句联动",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "move_linked",
+      "template": "CanvasSlide",
+      "voiceover": "第一行创建 String，s1 是它的所有者。 右侧是对应的关系示意，实体位置保持不变。 第二行把 String 移动给 s2，拥有关系随之交接，s1 不再可用。 第三行通过 s2 读取；交接没有深拷贝字符串。",
+      "subtitles": true,
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none"
+      },
+      "narration": [
+        {
+          "text": "第一行创建 String，s1 是它的所有者。",
+          "target": 1
+        },
+        {
+          "text": "右侧是对应的关系示意，实体位置保持不变。",
+          "target": 2
+        },
+        {
+          "text": "第二行把 String 移动给 s2，拥有关系随之交接，s1 不再可用。",
+          "target": 2
+        },
+        {
+          "text": "第三行通过 s2 读取；交接没有深拷贝字符串。",
+          "target": 2
+        }
+      ],
+      "props": {
+        "heading": "Move：变的是所有者，不是复制一份资源",
+        "layout": "grid",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet s2 = s1;\nprintln!(\"{}\", s2);",
+              "focus": [
+                {
+                  "sentence": 1,
+                  "line": 1
+                },
+                {
+                  "sentence": 3,
+                  "line": 2
+                },
+                {
+                  "sentence": 4,
+                  "line": 3
+                }
+              ]
+            }
+          },
+          {
+            "id": "ownership",
+            "type": "MechanismBlock",
+            "props": {
+              "heading": "String所有权交接",
+              "entities": [
+                {
+                  "id": "s1",
+                  "label": "s1"
+                },
+                {
+                  "id": "s2",
+                  "label": "s2"
+                },
+                {
+                  "id": "resource",
+                  "label": "同一份 String"
+                }
+              ],
+              "steps": [
+                {
+                  "sentence": 2,
+                  "caption": "赋值前：s1负责管理String。",
+                  "states": [
+                    {
+                      "entity": "s1",
+                      "text": "所有者",
+                      "tone": "active"
+                    },
+                    {
+                      "entity": "s2",
+                      "text": "尚未接管",
+                      "tone": "neutral"
+                    },
+                    {
+                      "entity": "resource",
+                      "text": "字符串资源",
+                      "tone": "neutral"
+                    }
+                  ],
+                  "relations": [
+                    {
+                      "from": "s1",
+                      "to": "resource",
+                      "label": "拥有",
+                      "kind": "solid"
+                    }
+                  ]
+                },
+                {
+                  "sentence": 3,
+                  "caption": "let s2 = s1;：交接所有权，不深拷贝字符串。",
+                  "states": [
+                    {
+                      "entity": "s1",
+                      "text": "移动后不可用",
+                      "tone": "muted"
+                    },
+                    {
+                      "entity": "s2",
+                      "text": "新的所有者",
+                      "tone": "active"
+                    },
+                    {
+                      "entity": "resource",
+                      "text": "仍是同一份资源",
+                      "tone": "neutral"
+                    }
+                  ],
+                  "relations": [
+                    {
+                      "from": "s2",
+                      "to": "resource",
+                      "label": "拥有",
+                      "kind": "solid"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "voice": "zh-CN-XiaoxiaoNeural"
+    },
+    {
+      "id": "borrow_linked",
+      "template": "CanvasSlide",
+      "voiceover": "第一行仍由 s1 拥有 String。 右侧是对应的关系示意，实体位置保持不变。 第二行创建不可变引用 view；拥有关系不变，只新增只读访问。 第三行通过 view 读取字符串，没有交出所有权。 第四行仍能使用 s1；它一直是所有者。",
+      "subtitles": true,
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none"
+      },
+      "narration": [
+        {
+          "text": "第一行仍由 s1 拥有 String。",
+          "target": 1
+        },
+        {
+          "text": "右侧是对应的关系示意，实体位置保持不变。",
+          "target": 2
+        },
+        {
+          "text": "第二行创建不可变引用 view；拥有关系不变，只新增只读访问。",
+          "target": 2
+        },
+        {
+          "text": "第三行通过 view 读取字符串，没有交出所有权。",
+          "target": 2
+        },
+        {
+          "text": "第四行仍能使用 s1；它一直是所有者。",
+          "target": 2
+        }
+      ],
+      "props": {
+        "heading": "Borrow：增加只读访问，不交出所有权",
+        "layout": "grid",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "rust",
+              "code": "let s1 = String::from(\"hello\");\nlet view = &s1;\nprintln!(\"{}\", view);\nprintln!(\"{}\", s1);",
+              "focus": [
+                {
+                  "sentence": 1,
+                  "line": 1
+                },
+                {
+                  "sentence": 3,
+                  "line": 2
+                },
+                {
+                  "sentence": 4,
+                  "line": 3
+                },
+                {
+                  "sentence": 5,
+                  "line": 4
+                }
+              ]
+            }
+          },
+          {
+            "id": "borrowing",
+            "type": "MechanismBlock",
+            "props": {
+              "heading": "不可变借用",
+              "entities": [
+                {
+                  "id": "s1",
+                  "label": "s1"
+                },
+                {
+                  "id": "view",
+                  "label": "view"
+                },
+                {
+                  "id": "resource",
+                  "label": "同一份 String"
+                }
+              ],
+              "steps": [
+                {
+                  "sentence": 2,
+                  "caption": "借用前：s1拥有String。",
+                  "states": [
+                    {
+                      "entity": "s1",
+                      "text": "所有者",
+                      "tone": "active"
+                    },
+                    {
+                      "entity": "view",
+                      "text": "尚未创建引用",
+                      "tone": "neutral"
+                    },
+                    {
+                      "entity": "resource",
+                      "text": "字符串资源",
+                      "tone": "neutral"
+                    }
+                  ],
+                  "relations": [
+                    {
+                      "from": "s1",
+                      "to": "resource",
+                      "label": "拥有",
+                      "kind": "solid"
+                    }
+                  ]
+                },
+                {
+                  "sentence": 3,
+                  "caption": "let view = &s1;：只读引用不是新的所有者。",
+                  "states": [
+                    {
+                      "entity": "s1",
+                      "text": "仍是所有者",
+                      "tone": "active"
+                    },
+                    {
+                      "entity": "view",
+                      "text": "不可变引用",
+                      "tone": "active"
+                    },
+                    {
+                      "entity": "resource",
+                      "text": "仍是同一份资源",
+                      "tone": "neutral"
+                    }
+                  ],
+                  "relations": [
+                    {
+                      "from": "s1",
+                      "to": "resource",
+                      "label": "拥有",
+                      "kind": "solid"
+                    },
+                    {
+                      "from": "view",
+                      "to": "resource",
+                      "label": "只读访问",
+                      "kind": "dashed"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "voice": "zh-CN-XiaoxiaoNeural"
+    }
+  ]
+}

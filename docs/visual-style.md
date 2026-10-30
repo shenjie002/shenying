@@ -17,6 +17,10 @@
 
 Canvas focus依照原有narration/beat活动目标变化，dim轻度暗化非活动块，pulse使用帧驱动低频呼吸。不是任意词语圈选、图节点或柱条动画。未开始任何目标时不暗化。
 
+## 环境与内部弹簧
+
+visual.ambient可选stardust/glow，网页视觉编辑器可选开关；density/intensity通过JSON调节。MotionScene内部弹簧与组级stagger不是外层Reveal的spring入场，字段及静止模式见[motion-effects.md](./motion-effects.md)。
+
 ## AI 内容驱动
 
 技术/架构优先grid或code与gentle/pop；概念引入可用aurora与gentle/flip；风险场景可用grain与border，画布需要引导时再选pulse；密集数据/长文字优先plain/grid，不让背景抢占阅读。保持全片风格统一，不逐幕随机换特效。所有规则由rendererGuide注入文章实际模型请求并暴露给MCP。
@@ -33,6 +37,18 @@ Canvas focus依照原有narration/beat活动目标变化，dim轻度暗化非活
 
 ## 尚未实现
 
-数字滚动计数、动态柱形增长、图内连线随配音追踪、任意文字圈选、九宫格专项展示、像素碎片入场、任意相机路径和场景间重叠转场未实现，模型不得输出或承诺。如需这些效果应另行扩展Schema、渲染和测试，而非仅改提示。
+已支持StatBlock.counter与BarChartBlock.countUp受控数字显露（非滚轮字形动画），free布局connectors的draw/flow/pulse，以及MotionSceneBlock内随对象移动的示意连线和受限camera轨道。任意图表数据形变、逐字配音追线、任意文字圈选、九宫格专项展示、像素碎片入场、任意相机路径和场景间重叠转场仍未实现，模型不得输出或承诺。准确字段见[高级讲解表达](./short-video-presentation.md)、[自由布局](./free-layout-connections.md)及[连续过程](./continuous-motion.md)；不以修改提示代替扩展Schema、渲染和测试。
 
 生成结果仍须人工检查阅读性、遮挡和实际动态节奏；静态截图、单测、构建不能代替完整媒体验收。
+
+## 自由布局、线条与图表动画更新
+
+现支持layout=free与百分比placements自由错落位置/尺寸/层级；connectors提供实/虚/点线、无/单/双箭头、直线/折线/曲线及draw/flow/pulse。BarChart支持grow/sequence，Timeline与Tree支持sequence，均以有效旁白句首与帧进度驱动。其他图表默认静态，不支持所有动态图表或真实流式数据。shared/extensions.ts为内置分类能力目录，不是运行时动态插件加载器，不允许JSON执行代码。旧文“全部静态/不支持自由布局”以本节及准确Schema为准。示例input/free-canvas-example.json；详见[自由布局与连线说明](./free-layout-connections.md)。
+
+
+## 竖屏与高级讲解表达
+
+参阅 [short-video-presentation.md](short-video-presentation.md)：真正横竖屏、主题/章节/来源、RichTextBlock、受控本地ImageBlock、CycleBlock、TransferContainerBlock、BalanceScaleBlock，以及StatBlock.counter、BarChartBlock.countUp和TimelineBlock.milestones。旧版“仅固定数字、无图片/容器转移”等限制由本节限定能力替代；不支持任意CSS/JS、远程素材或自动数据真实性验证。生成与MCP使用同一Schema/能力契约，无新增素材写入MCP权限。草稿横屏960×540、竖屏540×960；每次实际使用需确认素材授权和人工检查裁切。
+
+
+视觉主题目录：[themes.md](themes.md)。theme.palette支持blue/editorial/light/vivid/ocean/sunrise/botanical/candy/neon/blueprint/handbook，生成提示直接复用shared/themes.ts；新主题开放舞台与深浅色语义适配，非任意CSS样式或所有旧组件完整换肤。

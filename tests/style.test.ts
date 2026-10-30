@@ -24,5 +24,5 @@ test('文章实际请求包含风格规则与未实现能力边界',()=>{
   const prompt=buildMessages(articleRequestSchema.parse({article:'文章素材。'.repeat(30)}))[0].content;
   assert.ok(prompt.includes(styleGuide));
   assert.match(prompt,/每幕根据文章内容选择/);
-  assert.match(prompt,/未实现：数字滚动计数/);
+  assert.match(prompt,/受控高级表达：TransferContainerBlock/);
 });

@@ -1,0 +1,11 @@
+{
+ "title":"自由画布布局测试（虚构数据）","fps":30,"tailPaddingFrames":12,
+ "scenes":[{"id":"free_demo","template":"CanvasSlide","voiceover":"先看左上角的输入。 中间步骤接收资料，流动线只是关系示意。 右下柱图使用虚构数据测试动画，不是性能证据。","subtitles":true,
+ "visual":{"background":"plain","animation":"gentle","pace":"all"},
+ "narration":[{"text":"先看左上角的输入。","target":1},{"text":"中间步骤接收资料，流动线只是关系示意。","target":2},{"text":"右下柱图使用虚构数据测试动画，不是性能证据。","target":3}],
+ "props":{"heading":"自由错落：输入、关系与展示","layout":"free",
+ "blocks":[{"id":"a","type":"CalloutBlock","props":{"variant":"info","text":"输入资料，不是执行命令"}},{"id":"b","type":"BulletBlock","props":{"heading":"处理步骤","bullets":["理解内容","组织解释"]}},{"id":"c","type":"BarChartBlock","props":{"heading":"虚构布局数据","unit":"演示单位","bars":[{"label":"甲","value":30},{"label":"乙","value":50}],"motion":{"mode":"grow","sentence":3,"durationFrames":30}}}],
+ "placements":[{"id":"a","x":0,"y":0,"width":29,"height":32},{"id":"b","x":35,"y":9,"width":29,"height":49},{"id":"c","x":67,"y":40,"width":33,"height":60}],
+ "connectors":[{"id":"ab","from":"a","to":"b","sentence":2,"label":"资料","style":{"stroke":"dashed","arrow":"end","route":"curve","motion":"flow"}},{"id":"bc","from":"b","to":"c","fromAnchor":"bottom","toAnchor":"left","sentence":3,"label":"示意","style":{"stroke":"solid","arrow":"end","route":"elbow","motion":"draw"}}]
+ }}]
+}

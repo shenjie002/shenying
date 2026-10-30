@@ -1,0 +1,954 @@
+{
+  "title": "分界线｜50秒成片质感试验",
+  "format": "portrait",
+  "fps": 30,
+  "tailPaddingFrames": 6,
+  "theme": {
+    "palette": "handbook",
+    "cinema": true,
+    "brand": "",
+    "footer": "",
+    "chapters": false
+  },
+  "scenes": [
+    {
+      "id": "shot_question",
+      "template": "CanvasSlide",
+      "chapter": "01",
+      "voiceover": "哪些零件，绝不外包？",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.6
+        }
+      },
+      "narration": [
+        {
+          "text": "哪些零件，绝不外包？",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "镜头 01",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "成片取向示意；cinema模式下不显示该说明。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 52,
+                  "zoom": 1.05
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 50,
+                  "y": 48,
+                  "zoom": 1.22,
+                  "easing": "smooth"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "a",
+                  "label": "哪些零件",
+                  "shape": "text",
+                  "tone": "normal",
+                  "width": 65,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 44,
+                      "opacity": 0,
+                      "scale": 1.06,
+                      "fontSize": 60,
+                      "fontWeight": 800,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.22,
+                      "x": 50,
+                      "y": 44,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 60,
+                      "fontWeight": 800
+                    }
+                  ]
+                },
+                {
+                  "id": "b",
+                  "label": "绝不外包？",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 65,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.12,
+                      "x": 50,
+                      "y": 60,
+                      "opacity": 0,
+                      "scale": 1.08,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.4,
+                      "x": 50,
+                      "y": 60,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "shot_parts",
+      "template": "CanvasSlide",
+      "chapter": "02",
+      "voiceover": "一个 agent，拆开是四样东西：模型、调度、沙箱、记录。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.55
+        }
+      },
+      "narration": [
+        {
+          "text": "一个 agent，拆开是四样东西：模型、调度、沙箱、记录。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "镜头 02",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "成片取向示意；cinema模式下不显示该说明。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1.3
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.55,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 46,
+                  "y": 54,
+                  "zoom": 1.12,
+                  "easing": "settle"
+                }
+              ],
+              "stagger": [
+                {
+                  "sentence": 1,
+                  "objects": [
+                    "m",
+                    "d",
+                    "s1",
+                    "r"
+                  ],
+                  "intervalFrames": 7,
+                  "durationFrames": 20,
+                  "preset": "spring-jelly"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "m",
+                  "label": "模型",
+                  "detail": "想",
+                  "badge": "大脑",
+                  "icon": "Brain",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 44,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 28,
+                      "y": 27,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 28,
+                      "y": 27,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "d",
+                  "label": "调度",
+                  "detail": "问 → 派 → 收",
+                  "badge": "循环",
+                  "icon": "Workflow",
+                  "shape": "panel",
+                  "tone": "highlight",
+                  "width": 44,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 72,
+                      "y": 27,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 72,
+                      "y": 27,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "s1",
+                  "label": "沙箱",
+                  "detail": "执行",
+                  "badge": "手",
+                  "icon": "Terminal",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 44,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 28,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 28,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "r",
+                  "label": "记录",
+                  "detail": "账本",
+                  "badge": "账",
+                  "icon": "FileText",
+                  "shape": "panel",
+                  "tone": "warning",
+                  "width": 44,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 72,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 72,
+                      "y": 58,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "shot_bottleneck",
+      "template": "CanvasSlide",
+      "chapter": "03",
+      "voiceover": "活一长，最先扛不住的不是模型，是那个调度循环。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.6
+        }
+      },
+      "narration": [
+        {
+          "text": "活一长，最先扛不住的不是模型，是那个调度循环。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "镜头 03",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "成片取向示意；cinema模式下不显示该说明。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.45,
+                  "x": 50,
+                  "y": 46,
+                  "zoom": 1.6,
+                  "easing": "settle"
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 50,
+                  "y": 44,
+                  "zoom": 1.9,
+                  "easing": "smooth"
+                }
+              ],
+              "focus": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "ids": [
+                    "loop"
+                  ],
+                  "dimOpacity": 0.2,
+                  "blur": 3
+                }
+              ],
+              "objects": [
+                {
+                  "id": "model",
+                  "label": "模型",
+                  "shape": "token",
+                  "tone": "muted",
+                  "width": 40,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 32,
+                      "y": 30,
+                      "fontSize": 40
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 32,
+                      "y": 30,
+                      "fontSize": 40
+                    }
+                  ]
+                },
+                {
+                  "id": "loop",
+                  "label": "调度循环",
+                  "shape": "ring",
+                  "tone": "highlight",
+                  "width": 52,
+                  "height": 30,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 0.9,
+                      "fontSize": 44,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.3,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 1.25,
+                      "fontSize": 48,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 50,
+                      "y": 52,
+                      "scale": 1.3,
+                      "progress": 1,
+                      "fontSize": 48,
+                      "fontWeight": 900
+                    }
+                  ]
+                },
+                {
+                  "id": "ledger",
+                  "label": "记录",
+                  "shape": "token",
+                  "tone": "muted",
+                  "width": 40,
+                  "height": 10,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 68,
+                      "y": 74,
+                      "fontSize": 40
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 68,
+                      "y": 74,
+                      "fontSize": 40
+                    }
+                  ]
+                }
+              ],
+              "links": [
+                {
+                  "id": "l1",
+                  "from": "loop",
+                  "to": "model",
+                  "sentence": 1,
+                  "flow": "reverse",
+                  "dashed": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "shot_data",
+      "template": "CanvasSlide",
+      "chapter": "04",
+      "voiceover": "光是今年 2 月，Claude Code 的年化收入就过了 25 亿美元。 内部产品工程团队，65% 的代码提交来自 Slack 里的 Claude Tag。",
+      "subtitles": true,
+      "source": "参考文案所列数据；未独立核实",
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.5
+        }
+      },
+      "narration": [
+        {
+          "text": "光是今年 2 月，Claude Code 的年化收入就过了 25 亿美元。",
+          "target": 1
+        },
+        {
+          "text": "内部产品工程团队，65% 的代码提交来自 Slack 里的 Claude Tag。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "镜头 04",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "成片取向示意；cinema模式下不显示该说明。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 58,
+                  "zoom": 1.4
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.6,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 2,
+                  "at": 0.5,
+                  "x": 50,
+                  "y": 40,
+                  "zoom": 1.15
+                }
+              ],
+              "objects": [
+                {
+                  "id": "rev",
+                  "label": "25 亿美元",
+                  "detail": "年化收入 · 文案称今年 2 月",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 65,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "scale": 0.85,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 22,
+                      "scale": 0.6,
+                      "fontSize": 60
+                    }
+                  ]
+                },
+                {
+                  "id": "tag",
+                  "label": "Claude Tag",
+                  "detail": "Slack 里提交",
+                  "shape": "panel",
+                  "tone": "accent",
+                  "width": 46,
+                  "height": 16,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.05,
+                      "x": 50,
+                      "y": 48,
+                      "opacity": 0,
+                      "scale": 0.9,
+                      "fontSize": 40
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.35,
+                      "x": 50,
+                      "y": 48,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 40,
+                      "easing": "spring-jelly"
+                    }
+                  ]
+                },
+                {
+                  "id": "pct",
+                  "label": "65%",
+                  "detail": "内部代码提交",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 50,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 2,
+                      "at": 0.2,
+                      "x": 50,
+                      "y": 68,
+                      "opacity": 0,
+                      "scale": 0.8,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 2,
+                      "at": 0.55,
+                      "x": 50,
+                      "y": 68,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "shot_line",
+      "template": "CanvasSlide",
+      "chapter": "05",
+      "voiceover": "规矩只有一条：会跟着模型一起变老的，自己做；只是算力的，可以让出去。",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.6
+        }
+      },
+      "narration": [
+        {
+          "text": "规矩只有一条：会跟着模型一起变老的，自己做；只是算力的，可以让出去。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "镜头 05",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "成片取向示意；cinema模式下不显示该说明。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1.35
+                },
+                {
+                  "sentence": 1,
+                  "at": 0.5,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 50,
+                  "y": 52,
+                  "zoom": 1.08
+                }
+              ],
+              "objects": [
+                {
+                  "id": "keep",
+                  "label": "跟着模型变老",
+                  "detail": "自己做",
+                  "shape": "panel",
+                  "tone": "rose",
+                  "width": 56,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 34,
+                      "opacity": 0,
+                      "scale": 0.9,
+                      "fontSize": 52,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.3,
+                      "x": 34,
+                      "y": 30,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 52
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 34,
+                      "y": 30,
+                      "fontSize": 52
+                    }
+                  ]
+                },
+                {
+                  "id": "give",
+                  "label": "只是算力",
+                  "detail": "可以让出去",
+                  "shape": "panel",
+                  "tone": "teal",
+                  "width": 56,
+                  "height": 20,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.25,
+                      "x": 50,
+                      "y": 66,
+                      "opacity": 0,
+                      "scale": 0.9,
+                      "fontSize": 52,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.55,
+                      "x": 66,
+                      "y": 66,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 52
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 66,
+                      "y": 66,
+                      "fontSize": 52
+                    }
+                  ]
+                },
+                {
+                  "id": "q",
+                  "label": "它会不会跟着模型变？",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 65,
+                  "height": 14,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.6,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 0,
+                      "scale": 0.95,
+                      "fontSize": 30,
+                      "fontWeight": 800
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.85,
+                      "x": 50,
+                      "y": 90,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 32,
+                      "fontWeight": 900,
+                      "easing": "spring-snappy"
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "shot_end",
+      "template": "CanvasSlide",
+      "chapter": "06",
+      "voiceover": "只问一句：它会不会跟着模型一起变？",
+      "subtitles": true,
+      "visual": {
+        "background": "aurora",
+        "animation": "gentle",
+        "pace": "all",
+        "camera": "none",
+        "ambient": {
+          "kind": "glow",
+          "intensity": 0.7
+        }
+      },
+      "narration": [
+        {
+          "text": "只问一句：它会不会跟着模型一起变？",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "镜头 06",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "s",
+            "type": "MotionSceneBlock",
+            "props": {
+              "description": "成片取向示意；cinema模式下不显示该说明。",
+              "camera": [
+                {
+                  "sentence": 1,
+                  "at": 0,
+                  "x": 50,
+                  "y": 50,
+                  "zoom": 1
+                },
+                {
+                  "sentence": 1,
+                  "at": 1,
+                  "x": 50,
+                  "y": 46,
+                  "zoom": 1.18,
+                  "easing": "settle"
+                }
+              ],
+              "objects": [
+                {
+                  "id": "one",
+                  "label": "只问一句",
+                  "shape": "text",
+                  "tone": "muted",
+                  "width": 60,
+                  "height": 12,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0,
+                      "x": 50,
+                      "y": 32,
+                      "opacity": 0,
+                      "fontSize": 36
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.25,
+                      "x": 50,
+                      "y": 32,
+                      "opacity": 1,
+                      "fontSize": 36
+                    }
+                  ]
+                },
+                {
+                  "id": "final",
+                  "label": "跟着模型一起变？",
+                  "shape": "text",
+                  "tone": "highlight",
+                  "width": 65,
+                  "height": 18,
+                  "keys": [
+                    {
+                      "sentence": 1,
+                      "at": 0.15,
+                      "x": 50,
+                      "y": 54,
+                      "opacity": 0,
+                      "scale": 1.05,
+                      "fontSize": 60,
+                      "fontWeight": 900,
+                      "easing": "spring-jelly"
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 0.5,
+                      "x": 50,
+                      "y": 54,
+                      "opacity": 1,
+                      "scale": 1,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    },
+                    {
+                      "sentence": 1,
+                      "at": 1,
+                      "x": 50,
+                      "y": 54,
+                      "fontSize": 60,
+                      "fontWeight": 900
+                    }
+                  ]
+                }
+              ],
+              "links": []
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

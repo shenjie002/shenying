@@ -19,7 +19,7 @@ test('节拍按帧定位代码行和解释，无需浏览器或网络', () => {
   assert.equal(eventFrame(scene, 2, 5), Math.floor(scene.durationInFrames * 0.33));
 });
 test('完整展示取消逐项延迟；旧剧本自动启用温和弹簧', () => {
-  const scene = previewTimeline(scriptSchema.parse(original)).scenes[0];
+  const scene = {...previewTimeline(scriptSchema.parse(example)).scenes[0],visual:undefined};
   assert.equal(visualOf(scene).animation, 'spring');
   assert.equal(eventFrame({...scene, visual: {background: 'plain', animation: 'none', pace: 'all'}}, 4, 5), 0);
 });

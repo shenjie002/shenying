@@ -1,0 +1,130 @@
+{
+  "title": "Rust 所有权：同一份资源，两种关系变化",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "resource_question",
+      "template": "TitleSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "Rust 不靠垃圾回收器，怎样知道谁来管理资源？ 从一个字符串出发，看清所有权、移动和不可变借用。",
+      "visual": {"background": "plain", "animation": "gentle", "pace": "progressive", "camera": "none"},
+      "subtitles": true,
+      "narration": [
+        {"text": "Rust 不靠垃圾回收器，怎样知道谁来管理资源？"},
+        {"text": "从一个字符串出发，看清所有权、移动和不可变借用。"}
+      ],
+      "props": {"title": "资源没换，关系变了", "subtitle": "String 入门：谁拥有，谁能读取，何时释放"}
+    },
+    {
+      "id": "scope_lifetime",
+      "template": "CodeSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "进入花括号里的作用域，message 成为这个 String 的所有者；每个值有所有者，同一时间只有一个。 这里可以用 message 读取字符串。 离开作用域，值被丢弃，字符串资源释放，message 不再可用；这不代表所有 Rust 值都在堆上。",
+      "visual": {"background": "grid", "animation": "gentle", "pace": "progressive", "camera": "none"},
+      "subtitles": true,
+      "narration": [
+        {"text": "进入花括号里的作用域，message 成为这个 String 的所有者；每个值有所有者，同一时间只有一个。", "target": 2, "caption": "创建 String：message 负责管理它。"},
+        {"text": "这里可以用 message 读取字符串。", "target": 3, "caption": "在作用域内使用所有者。"},
+        {"text": "离开作用域，值被丢弃，字符串资源释放，message 不再可用；这不代表所有 Rust 值都在堆上。", "target": 4, "caption": "所有者离开作用域：值被丢弃，资源按类型逻辑释放。"}
+      ],
+      "props": {"heading": "所有者的作用域，为资源划出终点", "language": "rust", "code": "{\n    let message = String::from(\"hello\");\n    println!(\"{}\", message);\n}"}
+    },
+    {
+      "id": "move_relationship",
+      "template": "CanvasSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "先看概念示意：s1 拥有这份 String，s2 还没有接管它。 赋值移动后，拥有关系改为从 s2 指向同一份资源，s1 不再可用。 这就是 Move：交接管理责任，不是深拷贝字符串；i32 等 Copy 类型的赋值语义不同。",
+      "visual": {"background": "plain", "animation": "gentle", "pace": "all", "camera": "none", "parallax": false},
+      "subtitles": true,
+      "narration": [
+        {"text": "先看概念示意：s1 拥有这份 String，s2 还没有接管它。", "target": 1},
+        {"text": "赋值移动后，拥有关系改为从 s2 指向同一份资源，s1 不再可用。", "target": 1},
+        {"text": "这就是 Move：交接管理责任，不是深拷贝字符串；i32 等 Copy 类型的赋值语义不同。", "target": 1}
+      ],
+      "props": {
+        "heading": "Move：所有者变了，资源没有复制",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "move_state",
+            "type": "MechanismBlock",
+            "props": {
+              "heading": "String 的所有权交接（概念示意）",
+              "entities": [{"id": "s1", "label": "s1"}, {"id": "s2", "label": "s2"}, {"id": "resource", "label": "同一份 String 资源"}],
+              "steps": [
+                {
+                  "sentence": 1,
+                  "caption": "let s1 = String::from(\"hello\");：s1 是所有者。",
+                  "states": [{"entity": "s1", "text": "拥有 String", "tone": "active"}, {"entity": "s2", "text": "尚未接管", "tone": "neutral"}, {"entity": "resource", "text": "字符串内容 hello", "tone": "neutral"}],
+                  "relations": [{"from": "s1", "to": "resource", "label": "拥有", "kind": "solid"}]
+                },
+                {
+                  "sentence": 2,
+                  "caption": "let s2 = s1;：s2 接管，随后可用 s2 读取。",
+                  "states": [{"entity": "s1", "text": "移动后不可用", "tone": "muted"}, {"entity": "s2", "text": "拥有 String", "tone": "active"}, {"entity": "resource", "text": "字符串内容 hello", "tone": "neutral"}],
+                  "relations": [{"from": "s2", "to": "resource", "label": "拥有", "kind": "solid"}]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "borrow_relationship",
+      "template": "CanvasSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "借用从相似的起点看：s1 拥有字符串，view 还不是引用。 创建不可变引用后，新增 view 的只读访问关系，s1 的拥有关系保持不变。 这就是 Borrow：通过 view 读取后，示例里仍能使用 s1，因为所有权没有交出去。",
+      "visual": {"background": "plain", "animation": "gentle", "pace": "all", "camera": "none", "parallax": false},
+      "subtitles": true,
+      "narration": [
+        {"text": "借用从相似的起点看：s1 拥有字符串，view 还不是引用。", "target": 1},
+        {"text": "创建不可变引用后，新增 view 的只读访问关系，s1 的拥有关系保持不变。", "target": 1},
+        {"text": "这就是 Borrow：通过 view 读取后，示例里仍能使用 s1，因为所有权没有交出去。", "target": 1}
+      ],
+      "props": {
+        "heading": "Borrow：保留所有者，增加只读访问",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "borrow_state",
+            "type": "MechanismBlock",
+            "props": {
+              "heading": "String 的不可变借用（概念示意）",
+              "entities": [{"id": "s1", "label": "s1"}, {"id": "view", "label": "view"}, {"id": "resource", "label": "同一份 String 资源"}],
+              "steps": [
+                {
+                  "sentence": 1,
+                  "caption": "let s1 = String::from(\"hello\");：与移动示例相同的起点。",
+                  "states": [{"entity": "s1", "text": "拥有 String", "tone": "active"}, {"entity": "view", "text": "尚未创建引用", "tone": "neutral"}, {"entity": "resource", "text": "字符串内容 hello", "tone": "neutral"}],
+                  "relations": [{"from": "s1", "to": "resource", "label": "拥有", "kind": "solid"}]
+                },
+                {
+                  "sentence": 2,
+                  "caption": "let view = &s1;：实线表示拥有，虚线表示只读访问。",
+                  "states": [{"entity": "s1", "text": "拥有 String", "tone": "active"}, {"entity": "view", "text": "不可变引用", "tone": "active"}, {"entity": "resource", "text": "字符串内容 hello", "tone": "neutral"}],
+                  "relations": [{"from": "s1", "to": "resource", "label": "拥有", "kind": "solid"}, {"from": "view", "to": "resource", "label": "只读访问", "kind": "dashed"}]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "read_the_relationship",
+      "template": "BulletListSlide",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "voiceover": "读代码，先问谁负责管理这个值。 再问这一行是交接所有权，还是仅仅借用访问，而不是比较谁快谁慢。 最后结合所有者的作用域，理解资源何时释放。",
+      "visual": {"background": "plain", "animation": "gentle", "pace": "progressive", "camera": "none"},
+      "subtitles": true,
+      "narration": [
+        {"text": "读代码，先问谁负责管理这个值。", "target": 1},
+        {"text": "再问这一行是交接所有权，还是仅仅借用访问，而不是比较谁快谁慢。", "target": 2},
+        {"text": "最后结合所有者的作用域，理解资源何时释放。", "target": 3}
+      ],
+      "props": {"heading": "记住关系，而不只是术语", "bullets": ["所有权：谁负责管理值？", "Move 交接；不可变 Borrow 只读访问", "作用域：所有者何时离开？"]}
+    }
+  ]
+}

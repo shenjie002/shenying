@@ -1,0 +1,237 @@
+{
+  "title": "JSON创作能力测试：视图与对象",
+  "fps": 30,
+  "tailPaddingFrames": 12,
+  "scenes": [
+    {
+      "id": "views",
+      "template": "CanvasSlide",
+      "voiceover": "先定位代码中的问题。 再展开关系图，突出第二个节点。 最后回到上下对照，并显示结论。",
+      "subtitles": true,
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all"
+      },
+      "narration": [
+        {
+          "text": "先定位代码中的问题。",
+          "target": 1
+        },
+        {
+          "text": "再展开关系图，突出第二个节点。",
+          "target": 2
+        },
+        {
+          "text": "最后回到上下对照，并显示结论。",
+          "target": 3
+        }
+      ],
+      "props": {
+        "heading": "视图切换：定位、展开、返回",
+        "layout": "grid",
+        "blocks": [
+          {
+            "id": "code",
+            "type": "CodeBlock",
+            "props": {
+              "language": "text",
+              "code": "请求 → 检查 → 返回"
+            }
+          },
+          {
+            "id": "diagram",
+            "type": "DiagramBlock",
+            "props": {
+              "heading": "教学流程示意",
+              "nodes": [
+                "输入",
+                "检查",
+                "返回"
+              ]
+            }
+          },
+          {
+            "id": "note",
+            "type": "CalloutBlock",
+            "props": {
+              "variant": "info",
+              "text": "先定位，再理解过程，最后归纳。"
+            }
+          }
+        ],
+        "cues": [
+          {
+            "sentence": 1,
+            "layout": "grid",
+            "blocks": [
+              {
+                "id": "code",
+                "visible": true,
+                "emphasis": "normal"
+              },
+              {
+                "id": "diagram",
+                "visible": false,
+                "emphasis": "normal"
+              },
+              {
+                "id": "note",
+                "visible": false,
+                "emphasis": "normal"
+              }
+            ]
+          },
+          {
+            "sentence": 2,
+            "layout": "grid",
+            "blocks": [
+              {
+                "id": "code",
+                "visible": true,
+                "emphasis": "normal"
+              },
+              {
+                "id": "diagram",
+                "visible": true,
+                "emphasis": "normal",
+                "item": 2
+              },
+              {
+                "id": "note",
+                "visible": false,
+                "emphasis": "normal"
+              }
+            ],
+            "focus": "diagram"
+          },
+          {
+            "sentence": 3,
+            "layout": "stacked",
+            "blocks": [
+              {
+                "id": "code",
+                "visible": false,
+                "emphasis": "normal"
+              },
+              {
+                "id": "diagram",
+                "visible": true,
+                "emphasis": "normal"
+              },
+              {
+                "id": "note",
+                "visible": true,
+                "emphasis": "normal"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "slots",
+      "template": "CanvasSlide",
+      "voiceover": "任务先在审核队列，执行器等待。 审核后任务进入执行队列，执行器开始处理。",
+      "subtitles": true,
+      "visual": {
+        "background": "plain",
+        "animation": "gentle",
+        "pace": "all"
+      },
+      "narration": [
+        {
+          "text": "任务先在审核队列，执行器等待。",
+          "target": 1
+        },
+        {
+          "text": "审核后任务进入执行队列，执行器开始处理。",
+          "target": 1
+        }
+      ],
+      "props": {
+        "heading": "换题材：同一组件表达订单状态",
+        "layout": "stacked",
+        "blocks": [
+          {
+            "id": "workflow",
+            "type": "MechanismBlock",
+            "props": {
+              "heading": "预设槽位移动与归属",
+              "entities": [
+                {
+                  "id": "order",
+                  "label": "订单"
+                },
+                {
+                  "id": "warehouse",
+                  "label": "仓库"
+                }
+              ],
+              "steps": [
+                {
+                  "sentence": 1,
+                  "caption": "教学假设：任务尚在审核队列。",
+                  "states": [
+                    {
+                      "entity": "order",
+                      "text": "待审核",
+                      "tone": "neutral",
+                      "slot": 1,
+                      "container": "review"
+                    },
+                    {
+                      "entity": "warehouse",
+                      "text": "等待",
+                      "tone": "muted",
+                      "slot": 2
+                    }
+                  ],
+                  "relations": []
+                },
+                {
+                  "sentence": 2,
+                  "caption": "教学假设：任务进入下一处理阶段。",
+                  "states": [
+                    {
+                      "entity": "order",
+                      "text": "执行中",
+                      "tone": "active",
+                      "slot": 2,
+                      "container": "execute"
+                    },
+                    {
+                      "entity": "warehouse",
+                      "text": "处理中",
+                      "tone": "active",
+                      "slot": 1
+                    }
+                  ],
+                  "relations": [
+                    {
+                      "from": "order",
+                      "to": "warehouse",
+                      "label": "发货任务",
+                      "kind": "solid",
+                      "emphasis": "highlight"
+                    }
+                  ]
+                }
+              ],
+              "containers": [
+                {
+                  "id": "review",
+                  "label": "审核队列"
+                },
+                {
+                  "id": "execute",
+                  "label": "执行队列"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,11 +1,19 @@
 import {z} from 'zod';
 
-export const articleRequestSchema = z.object({
+export const articleRequestObject = z.object({
   article: z.string().trim().min(80, '文章至少需要 80 个字符').max(30000, '文章最多 30000 个字符'),
   audience: z.enum(['beginner', 'general', 'technical']).default('general'),
   style: z.enum(['clear', 'story', 'professional']).default('clear'),
+  mode: z.enum(['scenes', 'master']).default('scenes'),
+  format: z.enum(['landscape', 'portrait']).default('landscape'),
+  instructions: z.string().trim().max(2000, '制作要求最多2000字符').default(''),
+  soundEffects: z.boolean().default(false),
   duration: z.number().int().min(30).max(600).default(90),
   sceneCount: z.number().int().min(3).max(12).default(5),
+});
+export const articleRequestSchema = articleRequestObject.superRefine((input,ctx)=>{
+  if(input.mode==='master' && input.duration>120) ctx.addIssue({code:'custom',path:['duration'],message:'连续动效短片目前支持30～120秒；长讲解请选择分幕模式'});
+  if(input.mode==='scenes' && input.soundEffects) ctx.addIssue({code:'custom',path:['soundEffects'],message:'内置合成音效目前仅支持连续动效短片'});
 });
 export type ArticleRequest = z.infer<typeof articleRequestSchema>;
 export const templateLabels: Record<string, string> = {CanvasSlide: '混合画布',TitleSlide: '标题封面', BulletListSlide: '要点列表', CodeSlide: '代码讲解', CardSlide: '双栏对比', FlowSlide: '流程演示', TerminalSlide: '终端演示'};

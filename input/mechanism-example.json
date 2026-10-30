@@ -1,0 +1,55 @@
+{
+  "title":"机制演示：Rust与订单（非业务系统实录）",
+  "fps":30,
+  "tailPaddingFrames":12,
+  "scenes":[
+    {
+      "id":"move",
+      "template":"CanvasSlide",
+      "voiceover":"初始由 s1 拥有这份 String，s2 尚未接管。 执行 let s2 = s1 后，s2 接管同一份资源，s1 不再可用；并没有深拷贝字符串。",
+      "subtitles":true,
+      "visual":{"background":"plain","animation":"gentle","pace":"all"},
+      "narration":[{"text":"初始由 s1 拥有这份 String，s2 尚未接管。","target":1},{"text":"执行 let s2 = s1 后，s2 接管同一份资源，s1 不再可用；并没有深拷贝字符串。","target":1}],
+      "props":{"heading":"Move：变的是所有者，不是复制一份资源","layout":"stacked","blocks":[{"id":"ownership","type":"MechanismBlock","props":{
+        "heading":"String所有权交接",
+        "entities":[{"id":"s1","label":"s1"},{"id":"s2","label":"s2"},{"id":"resource","label":"同一份 String"}],
+        "steps":[
+          {"sentence":1,"caption":"赋值前：s1负责管理String。","states":[{"entity":"s1","text":"所有者","tone":"active"},{"entity":"s2","text":"尚未接管","tone":"neutral"},{"entity":"resource","text":"字符串资源","tone":"neutral"}],"relations":[{"from":"s1","to":"resource","label":"拥有","kind":"solid"}]},
+          {"sentence":2,"caption":"let s2 = s1;：交接所有权，不深拷贝字符串。","states":[{"entity":"s1","text":"移动后不可用","tone":"muted"},{"entity":"s2","text":"新的所有者","tone":"active"},{"entity":"resource","text":"仍是同一份资源","tone":"neutral"}],"relations":[{"from":"s2","to":"resource","label":"拥有","kind":"solid"}]}
+        ]
+      }}]}
+    },
+    {
+      "id":"borrow",
+      "template":"CanvasSlide",
+      "voiceover":"起初 s1 是 String 的所有者。 创建 view 等于与号 s1 后，view 只读访问 String，所有权仍由 s1 保留。",
+      "subtitles":true,
+      "visual":{"background":"plain","animation":"gentle","pace":"all"},
+      "narration":[{"text":"起初 s1 是 String 的所有者。","target":1},{"text":"创建 view 等于与号 s1 后，view 只读访问 String，所有权仍由 s1 保留。","target":1}],
+      "props":{"heading":"Borrow：增加只读访问，不交出所有权","layout":"stacked","blocks":[{"id":"borrowing","type":"MechanismBlock","props":{
+        "heading":"不可变借用",
+        "entities":[{"id":"s1","label":"s1"},{"id":"view","label":"view"},{"id":"resource","label":"同一份 String"}],
+        "steps":[
+          {"sentence":1,"caption":"借用前：s1拥有String。","states":[{"entity":"s1","text":"所有者","tone":"active"},{"entity":"view","text":"尚未创建引用","tone":"neutral"},{"entity":"resource","text":"字符串资源","tone":"neutral"}],"relations":[{"from":"s1","to":"resource","label":"拥有","kind":"solid"}]},
+          {"sentence":2,"caption":"let view = &s1;：只读引用不是新的所有者。","states":[{"entity":"s1","text":"仍是所有者","tone":"active"},{"entity":"view","text":"不可变引用","tone":"active"},{"entity":"resource","text":"仍是同一份资源","tone":"neutral"}],"relations":[{"from":"s1","to":"resource","label":"拥有","kind":"solid"},{"from":"view","to":"resource","label":"只读访问","kind":"dashed"}]}
+        ]
+      }}]}
+    },
+    {
+      "id":"order",
+      "template":"CanvasSlide",
+      "voiceover":"这是一个简化订单流程示例：订单待审核，仓库尚未收到发货任务。 审核通过后，订单等待出库，仓库收到发货任务。",
+      "subtitles":true,
+      "visual":{"background":"plain","animation":"gentle","pace":"all"},
+      "narration":[{"text":"这是一个简化订单流程示例：订单待审核，仓库尚未收到发货任务。","target":1},{"text":"审核通过后，订单等待出库，仓库收到发货任务。","target":1}],
+      "props":{"heading":"换题材：同一组件表达订单状态","layout":"stacked","blocks":[{"id":"workflow","type":"MechanismBlock","props":{
+        "heading":"教学用简化流程",
+        "entities":[{"id":"order","label":"订单"},{"id":"warehouse","label":"仓库"}],
+        "steps":[
+          {"sentence":1,"caption":"教学假设：未审核时不下发发货任务。","states":[{"entity":"order","text":"待审核","tone":"neutral"},{"entity":"warehouse","text":"未收到任务","tone":"muted"}],"relations":[]},
+          {"sentence":2,"caption":"审核通过后创建发货任务；不代表已完成发货。","states":[{"entity":"order","text":"等待出库","tone":"active"},{"entity":"warehouse","text":"已收到任务","tone":"active"}],"relations":[{"from":"order","to":"warehouse","label":"发货任务","kind":"solid"}]}
+        ]
+      }}]}
+    }
+  ]
+}

@@ -1,57 +1,2197 @@
 {
-  "title": "理解 Rust 所有权",
+  "format": "portrait",
+  "theme": {
+    "palette": "handbook",
+    "cinema": true,
+    "brand": "申映",
+    "footer": "把知识，讲清楚。",
+    "chapters": false
+  },
+  "title": "调度为什么要自己握着？",
   "fps": 30,
-  "tailPaddingFrames": 12,
-  "scenes": [
-    {
-      "id": "intro",
-      "voiceover": "不需要垃圾回收，Rust 是怎样管理内存的？关键就在所有权。",
-      "template": "FlowSlide",
-      "props": {
-        "heading": "请求是怎样完成的？",
-        "steps": [
-          "发起请求",
-          "服务处理",
-          "返回结果"
-        ],
-        "description": "跟随数据，理解每一步的作用。"
+  "tailPaddingFrames": 0,
+  "scenes": [],
+  "master": {
+    "backdrop": "aurora",
+    "beats": [
+      {
+        "text": "模型公司为什么要自己掌握调度？",
+        "frames": 130
+      },
+      {
+        "text": "而跑代码的沙箱，却愿意交给别人用。先拆开一个 agent 看看。",
+        "frames": 200
+      },
+      {
+        "text": "模型是厨师，负责想下一步做什么。",
+        "frames": 210
+      },
+      {
+        "text": "调度是领班：问模型下一步，派工具，再把结果拿回来，一圈一圈地转。",
+        "frames": 240
+      },
+      {
+        "text": "沙箱是灶台，在这里跑代码、改文件。",
+        "frames": 210
+      },
+      {
+        "text": "记录是账本，记着活干到了哪一步。",
+        "frames": 210
+      },
+      {
+        "text": "以前一问一答，就是一个完整的任务；现在可能要跑几十分钟、几百步。",
+        "frames": 270
+      },
+      {
+        "text": "活一长，最先扛不住的往往不是模型，而是调度这个循环。",
+        "frames": 240
+      },
+      {
+        "text": "因为调度里，写着许多对模型的假设：假定它做不到什么。",
+        "frames": 240
+      },
+      {
+        "text": "比如旧模型临近上下文上限，会提前收工。调度就替它定时清空、重来。",
+        "frames": 270
+      },
+      {
+        "text": "新模型没了这个毛病，那套清空重来，反倒成了白白拖慢的累赘。",
+        "frames": 270
+      },
+      {
+        "text": "模型每升级一次，就有一批假设过期。最先知道新能力的，是模型公司自己。",
+        "frames": 240
+      },
+      {
+        "text": "所以，调度更可能留在模型公司手里。",
+        "frames": 210
+      },
+      {
+        "text": "沙箱管算力和隔离，跟模型聪明无关，所以可以放到客户机器或第三方沙箱。",
+        "frames": 240
+      },
+      {
+        "text": "所以判断标准只有一个，看这个零件：会不会随模型能力一起变。",
+        "frames": 210
+      },
+      {
+        "text": "会跟着模型一起变老的零件，自己做；只是算力的，可以让出去。",
+        "frames": 210
       }
-    },
-    {
-      "id": "rules",
-      "voiceover": "每个值都有一个所有者。同一时间，一个值只有一个所有者。当所有者离开作用域，值就会被释放。",
-      "template": "FlowSlide",
-      "props": {
-        "heading": "请求是怎样完成的？",
-        "steps": [
-          "发起请求",
-          "服务处理",
-          "返回结果"
-        ],
-        "description": "跟随数据，理解每一步的作用。"
+    ],
+    "actors": [
+      {
+        "id": "title",
+        "label": "调度为什么\n要自己握着？",
+        "kind": "text",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "highlight",
+        "fontSize": 62,
+        "fontWeight": 800,
+        "width": 90,
+        "glow": false,
+        "float": 0,
+        "depth": 0.3,
+        "keys": [
+          {
+            "frame": 0,
+            "x": 50,
+            "y": 40,
+            "scale": 0.9,
+            "opacity": 0,
+            "rotate": 0,
+            "z": -120,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 23,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 174,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 203,
+            "x": 50,
+            "y": 6,
+            "scale": 0.42,
+            "opacity": 0.9,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "model",
+        "label": "模型",
+        "detail": "厨师：想下一步",
+        "kind": "card",
+        "icon": "Brain",
+        "iconMotion": "draw",
+        "decoration": "underline",
+        "tone": "accent",
+        "fontSize": 34,
+        "fontWeight": 700,
+        "width": 44,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 219,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 248,
+            "x": 50,
+            "y": 22,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0.4,
+            "easing": "smooth"
+          },
+          {
+            "frame": 340,
+            "x": 50,
+            "y": 22,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0.4,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 364,
+            "x": 50,
+            "y": 22,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 540,
+            "x": 50,
+            "y": 22,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 570,
+            "x": 50,
+            "y": 22,
+            "scale": 0.9,
+            "opacity": 0.8,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1200,
+            "x": 50,
+            "y": 22,
+            "scale": 0.9,
+            "opacity": 0.8,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1236,
+            "x": 50,
+            "y": 16,
+            "scale": 0.7,
+            "opacity": 0.4,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1720,
+            "x": 50,
+            "y": 16,
+            "scale": 0.7,
+            "opacity": 0.4,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1750,
+            "x": 50,
+            "y": 14,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2490,
+            "x": 50,
+            "y": 60,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2516,
+            "x": 50,
+            "y": 56,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2740,
+            "x": 50,
+            "y": 56,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2770,
+            "x": 27,
+            "y": 28,
+            "scale": 0.8,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 27,
+            "y": 28,
+            "scale": 0.8,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3220,
+            "x": 35,
+            "y": 26,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "loop",
+        "label": "调度",
+        "detail": "领班：问、派、取回",
+        "kind": "ring",
+        "icon": "Workflow",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "highlight",
+        "fontSize": 34,
+        "fontWeight": 700,
+        "width": 40,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 219,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 248,
+            "x": 50,
+            "y": 46,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0.15,
+            "easing": "smooth"
+          },
+          {
+            "frame": 545,
+            "x": 50,
+            "y": 46,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0.15,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 572,
+            "x": 50,
+            "y": 46,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0.15,
+            "easing": "linear"
+          },
+          {
+            "frame": 770,
+            "x": 50,
+            "y": 46,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 800,
+            "x": 50,
+            "y": 46,
+            "scale": 0.9,
+            "opacity": 0.7,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1200,
+            "x": 50,
+            "y": 46,
+            "scale": 0.9,
+            "opacity": 0.7,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1236,
+            "x": 50,
+            "y": 44,
+            "scale": 1.15,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0,
+            "easing": "linear"
+          },
+          {
+            "frame": 1460,
+            "x": 50,
+            "y": 44,
+            "scale": 1.15,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-jelly"
+          },
+          {
+            "frame": 1488,
+            "x": 50,
+            "y": 44,
+            "scale": 1.22,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1712,
+            "x": 50,
+            "y": 44,
+            "scale": 1.22,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 28,
+            "scale": 0.82,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2740,
+            "x": 50,
+            "y": 28,
+            "scale": 0.82,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2770,
+            "x": 73,
+            "y": 28,
+            "scale": 0.72,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 73,
+            "y": 28,
+            "scale": 0.72,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3220,
+            "x": 65,
+            "y": 26,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "token",
+        "label": "下一步？",
+        "kind": "chip",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "highlight",
+        "fontSize": 22,
+        "fontWeight": 700,
+        "width": 30,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 580,
+            "x": 50,
+            "y": 40,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 598,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 626,
+            "x": 50,
+            "y": 30,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 656,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 690,
+            "x": 34,
+            "y": 63,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 720,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 750,
+            "x": 66,
+            "y": 63,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 776,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 800,
+            "x": 50,
+            "y": 40,
+            "scale": 0.4,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "sandbox",
+        "label": "沙箱",
+        "detail": "灶台：跑代码、改文件",
+        "kind": "card",
+        "icon": "Terminal",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "teal",
+        "fontSize": 34,
+        "fontWeight": 700,
+        "width": 40,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 219,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 248,
+            "x": 28,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 790,
+            "x": 28,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 814,
+            "x": 28,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 990,
+            "x": 28,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1020,
+            "x": 28,
+            "y": 72,
+            "scale": 0.9,
+            "opacity": 0.75,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1200,
+            "x": 28,
+            "y": 72,
+            "scale": 0.9,
+            "opacity": 0.75,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1236,
+            "x": 22,
+            "y": 78,
+            "scale": 0.7,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2950,
+            "x": 50,
+            "y": 74,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2976,
+            "x": 50,
+            "y": 68,
+            "scale": 0.85,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 68,
+            "scale": 0.85,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 64,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "ledger",
+        "label": "记录",
+        "detail": "账本：干到哪一步",
+        "kind": "card",
+        "icon": "FileText",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "normal",
+        "fontSize": 34,
+        "fontWeight": 700,
+        "width": 40,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 219,
+            "x": 50,
+            "y": 46,
+            "scale": 0.3,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 248,
+            "x": 72,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1000,
+            "x": 72,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0.6,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1024,
+            "x": 72,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1200,
+            "x": 72,
+            "y": 72,
+            "scale": 1.05,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1236,
+            "x": 78,
+            "y": 78,
+            "scale": 0.7,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2780,
+            "x": 50,
+            "y": 47,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2806,
+            "x": 50,
+            "y": 43,
+            "scale": 0.72,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 43,
+            "scale": 0.72,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 40,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "shortTask",
+        "label": "一问一答",
+        "kind": "chip",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "muted",
+        "fontSize": 26,
+        "fontWeight": 700,
+        "width": 30,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 1210,
+            "x": 50,
+            "y": 64,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1232,
+            "x": 50,
+            "y": 64,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1330,
+            "x": 50,
+            "y": 64,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1360,
+            "x": 50,
+            "y": 63,
+            "scale": 0.78,
+            "opacity": 0.4,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1712,
+            "x": 50,
+            "y": 63,
+            "scale": 0.78,
+            "opacity": 0.4,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 66,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "longTask",
+        "label": "几十分钟、几百步",
+        "badge": "现在",
+        "kind": "line",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "highlight",
+        "fontSize": 30,
+        "fontWeight": 700,
+        "width": 54,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 1350,
+            "x": 50,
+            "y": 80,
+            "scale": 0.9,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1376,
+            "x": 50,
+            "y": 73,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1712,
+            "x": 50,
+            "y": 73,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 80,
+            "scale": 0.9,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "focusRing",
+        "label": "圈注",
+        "kind": "doodle",
+        "iconMotion": "none",
+        "decoration": "circle",
+        "tone": "highlight",
+        "fontSize": 44,
+        "fontWeight": 700,
+        "width": 58,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 1480,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1520,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1700,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 1730,
+            "x": 50,
+            "y": 40,
+            "scale": 1,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2520,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2540,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 0,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2580,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2730,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2760,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "assumption",
+        "label": "快到上限\n就提前收工",
+        "detail": "调度对策：定时清空、重来",
+        "badge": "旧模型",
+        "kind": "card",
+        "icon": "Settings",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "warning",
+        "fontSize": 34,
+        "fontWeight": 700,
+        "width": 42,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 1740,
+            "x": 50,
+            "y": 34,
+            "scale": 0.3,
+            "opacity": 0,
+            "rotate": 0,
+            "z": -200,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 1766,
+            "x": 50,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2230,
+            "x": 50,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2260,
+            "x": 27,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2300,
+            "x": 27,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2316,
+            "x": 27,
+            "y": 59,
+            "scale": 0.96,
+            "opacity": 0.55,
+            "rotate": -3,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2490,
+            "x": 27,
+            "y": 59,
+            "scale": 0.96,
+            "opacity": 0.55,
+            "rotate": -3,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2520,
+            "x": 27,
+            "y": 72,
+            "scale": 0.8,
+            "opacity": 0,
+            "rotate": -3,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "newModel",
+        "label": "不再\n提前收工",
+        "detail": "这个毛病没了",
+        "badge": "新模型",
+        "kind": "card",
+        "icon": "Sparkles",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "teal",
+        "fontSize": 34,
+        "fontWeight": 700,
+        "width": 42,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 2240,
+            "x": 96,
+            "y": 58,
+            "scale": 0.9,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2266,
+            "x": 73,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2490,
+            "x": 73,
+            "y": 58,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2520,
+            "x": 50,
+            "y": 56,
+            "scale": 0.5,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "drag",
+        "label": "成了累赘",
+        "kind": "text",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "rose",
+        "fontSize": 44,
+        "fontWeight": 900,
+        "width": 40,
+        "glow": true,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 2296,
+            "x": 27,
+            "y": 74,
+            "scale": 1.8,
+            "opacity": 0,
+            "rotate": -11.200000000000001,
+            "z": 200,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-bouncy"
+          },
+          {
+            "frame": 2320,
+            "x": 27,
+            "y": 74,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": -8,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2490,
+            "x": 27,
+            "y": 74,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": -8,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 2520,
+            "x": 27,
+            "y": 86,
+            "scale": 0.8,
+            "opacity": 0,
+            "rotate": -8,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "own",
+        "label": "随模型变：自己掌握",
+        "kind": "chip",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "accent",
+        "fontSize": 28,
+        "fontWeight": 700,
+        "width": 62,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 2745,
+            "x": 50,
+            "y": 10,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2770,
+            "x": 50,
+            "y": 15,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 15,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 30,
+            "scale": 1.3,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3390,
+            "x": 50,
+            "y": 30,
+            "scale": 1.3,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 3416,
+            "x": 50,
+            "y": 32,
+            "scale": 1.42,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "open",
+        "label": "只是算力：可以开放",
+        "kind": "chip",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "teal",
+        "fontSize": 28,
+        "fontWeight": 700,
+        "width": 62,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 2950,
+            "x": 50,
+            "y": 52,
+            "scale": 0.6,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 2974,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 56,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3220,
+            "x": 50,
+            "y": 64,
+            "scale": 1.3,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3390,
+            "x": 50,
+            "y": 64,
+            "scale": 1.3,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 3416,
+            "x": 50,
+            "y": 62,
+            "scale": 1.42,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "hosts",
+        "label": "客户机器 · 第三方沙箱",
+        "kind": "chip",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "muted",
+        "fontSize": 24,
+        "fontWeight": 700,
+        "width": 66,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 3010,
+            "x": 50,
+            "y": 84,
+            "scale": 0.7,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-snappy"
+          },
+          {
+            "frame": 3034,
+            "x": 50,
+            "y": 80,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3190,
+            "x": 50,
+            "y": 80,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3216,
+            "x": 50,
+            "y": 84,
+            "scale": 0.8,
+            "opacity": 0,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
+      },
+      {
+        "id": "rule",
+        "label": "判断标准：\n会不会随模型能力变？",
+        "kind": "text",
+        "iconMotion": "none",
+        "decoration": "underline",
+        "tone": "highlight",
+        "fontSize": 42,
+        "fontWeight": 800,
+        "width": 88,
+        "glow": false,
+        "float": 0,
+        "depth": 1,
+        "keys": [
+          {
+            "frame": 3196,
+            "x": 50,
+            "y": 50,
+            "scale": 0.7,
+            "opacity": 0,
+            "rotate": 0,
+            "z": -100,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "spring-soft"
+          },
+          {
+            "frame": 3226,
+            "x": 50,
+            "y": 47,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3390,
+            "x": 50,
+            "y": 47,
+            "scale": 1,
+            "opacity": 1,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          },
+          {
+            "frame": 3416,
+            "x": 50,
+            "y": 47,
+            "scale": 0.85,
+            "opacity": 0.55,
+            "rotate": 0,
+            "z": 0,
+            "rotateX": 0,
+            "rotateY": 0,
+            "progress": 1,
+            "easing": "smooth"
+          }
+        ]
       }
-    },
-    {
-      "id": "code",
-      "voiceover": "把字符串从 s1 赋给 s2，所有权发生转移。这之后，不能再使用 s1。",
-      "template": "CodeSlide",
-      "props": {
-        "heading": "赋值，也可能是转移",
-        "language": "rust",
-        "code": "fn main() {\n    let s1 = String::from(\"hello\");\n    let s2 = s1; // ownership moves\n    println!(\"{}\", s2);\n}"
+    ],
+    "sfx": [
+      {
+        "frame": 5,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 177,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 230,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 342,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 547,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 598,
+        "sound": "bloop",
+        "gain": 0.3
+      },
+      {
+        "frame": 626,
+        "sound": "tick",
+        "gain": 0.5
+      },
+      {
+        "frame": 656,
+        "sound": "tick",
+        "gain": 0.35
+      },
+      {
+        "frame": 690,
+        "sound": "tick",
+        "gain": 0.5
+      },
+      {
+        "frame": 720,
+        "sound": "tick",
+        "gain": 0.35
+      },
+      {
+        "frame": 750,
+        "sound": "tick",
+        "gain": 0.5
+      },
+      {
+        "frame": 776,
+        "sound": "tick",
+        "gain": 0.35
+      },
+      {
+        "frame": 792,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 1002,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 1204,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 1214,
+        "sound": "bloop",
+        "gain": 0.35
+      },
+      {
+        "frame": 1352,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 1460,
+        "sound": "tick",
+        "gain": 0.45
+      },
+      {
+        "frame": 1482,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 1740,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 1764,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 2240,
+        "sound": "whoosh",
+        "gain": 0.5
+      },
+      {
+        "frame": 2314,
+        "sound": "tick",
+        "gain": 0.55
+      },
+      {
+        "frame": 2318,
+        "sound": "bloop",
+        "gain": 0.45
+      },
+      {
+        "frame": 2490,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 2512,
+        "sound": "bloop",
+        "gain": 0.4
+      },
+      {
+        "frame": 2542,
+        "sound": "tick",
+        "gain": 0.4
+      },
+      {
+        "frame": 2740,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 2770,
+        "sound": "bloop",
+        "gain": 0.45
+      },
+      {
+        "frame": 2806,
+        "sound": "bloop",
+        "gain": 0.35
+      },
+      {
+        "frame": 2950,
+        "sound": "whoosh",
+        "gain": 0.4
+      },
+      {
+        "frame": 2974,
+        "sound": "bloop",
+        "gain": 0.45
+      },
+      {
+        "frame": 3034,
+        "sound": "tick",
+        "gain": 0.4
+      },
+      {
+        "frame": 3192,
+        "sound": "whoosh",
+        "gain": 0.45
+      },
+      {
+        "frame": 3226,
+        "sound": "chime",
+        "gain": 0.45
+      },
+      {
+        "frame": 3412,
+        "sound": "chime",
+        "gain": 0.5
       }
-    },
-    {
-      "id": "compare",
-      "voiceover": "转移会更换所有者。借用则让你在不转移所有权的情况下使用一个值。",
-      "template": "CardSlide",
-      "props": {
-        "heading": "转移，还是借用？",
-        "leftTitle": "Move · 转移",
-        "leftBody": "交出所有权，原变量不再可用。",
-        "rightTitle": "Borrow · 借用",
-        "rightBody": "通过引用访问，所有权保持不变。"
+    ],
+    "sfxMuted": true,
+    "camera": [
+      {
+        "frame": 0,
+        "x": 50,
+        "y": 50,
+        "zoom": 1,
+        "easing": "smooth"
+      },
+      {
+        "frame": 560,
+        "x": 50,
+        "y": 50,
+        "zoom": 1,
+        "easing": "smooth"
+      },
+      {
+        "frame": 600,
+        "x": 50,
+        "y": 47,
+        "zoom": 1.08,
+        "easing": "smooth"
+      },
+      {
+        "frame": 770,
+        "x": 50,
+        "y": 47,
+        "zoom": 1.08,
+        "easing": "smooth"
+      },
+      {
+        "frame": 810,
+        "x": 50,
+        "y": 50,
+        "zoom": 1,
+        "easing": "smooth"
+      },
+      {
+        "frame": 1740,
+        "x": 50,
+        "y": 50,
+        "zoom": 1,
+        "easing": "smooth"
+      },
+      {
+        "frame": 1780,
+        "x": 50,
+        "y": 52,
+        "zoom": 1.08,
+        "easing": "smooth"
+      },
+      {
+        "frame": 2215,
+        "x": 50,
+        "y": 52,
+        "zoom": 1.08,
+        "easing": "smooth"
+      },
+      {
+        "frame": 2250,
+        "x": 50,
+        "y": 50,
+        "zoom": 1,
+        "easing": "smooth"
+      },
+      {
+        "frame": 3600,
+        "x": 50,
+        "y": 50,
+        "zoom": 1,
+        "easing": "smooth"
       }
-    }
-  ]
+    ]
+  }
 }

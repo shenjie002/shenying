@@ -1,3 +1,5 @@
+import {ambientParticles,ambientDrift} from '../../shared/motion-effects';
+import {themes} from './PresentationContent';
 import React from 'react';
 import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {TimedScene} from '../../shared/schema';
@@ -19,16 +21,23 @@ export function Reveal({scene, delay = 0, children, style}: {scene: TimedScene; 
     ...(mode === 'border' ? {borderRadius: 18, boxShadow: local >= 0 && local < 30 ? `0 0 0 2px rgba(174,190,255,${Math.max(0, 1-local/30)}), 0 0 20px #9eafff24` : 'none'} : {}),
   }}>{children}</div>;
 }
-export function Background({scene}: {scene: TimedScene}) {
+export function Background({scene,palette='blue'}: {scene: TimedScene;palette?:keyof typeof themes}) {
   const frame = useCurrentFrame();
   const kind = visualOf(scene).background;
   const moving = visualOf(scene).animation !== 'none';
   const phase = moving ? frame / 100 : 0;
-  return <div style={{position: 'absolute', inset: 0, overflow: 'hidden', background: '#0c1427', pointerEvents: 'none'}}>
-    {(kind === 'glow' || kind === 'grid') && <><div style={{position: 'absolute', inset: '-15%', background: 'radial-gradient(ellipse at 78% 25%, #7560d83d, transparent 48%), radial-gradient(ellipse at 18% 80%, #208b9d24, transparent 43%)', transform: `translate(${Math.sin(phase) * 25}px, ${Math.cos(phase) * 16}px)`}}/>
+  const ambient=scene.visual?.ambient;
+  const drift=ambientDrift(frame,moving);
+  return <div style={{position: 'absolute', inset: 0, overflow: 'hidden', background: themes[palette].background, pointerEvents: 'none'}}>
+    <div style={{position:'absolute',inset:'-8%',transform:`translate(${drift.x}px,${drift.y}px) scale(${drift.scale})`}}>
+    {ambient?.kind==='stardust'&&ambientParticles(frame,moving,ambient.density,ambient.intensity).map((p,i)=><div key={`dust-${i}`} style={{position:'absolute',left:`${p.x}%`,top:`${p.y}%`,width:p.size,height:p.size,borderRadius:'50%',background:themes[palette].text,opacity:p.opacity,filter:`blur(${p.blur}px)`,boxShadow:`0 0 ${p.size*3}px ${themes[palette].accent}60`}}/>)}
+    {ambient?.kind==='glow'&&[0,1,2].map(i=><div key={`ambient-${i}`} style={{position:'absolute',inset:'-25%',opacity:ambient.intensity*.35,background:`radial-gradient(ellipse at ${20+i*30}% ${25+i*20}%,${[themes[palette].accent,themes[palette].teal,themes[palette].rose][i]}70,transparent 48%)`,filter:'blur(45px)',transform:`translate(${Math.sin(phase*.5+i)*35+i*7}px,${Math.cos(phase*.4+i)*25+i*5}px)`}}/>)}
+    </div>
+    {themes[palette].decoration!=='none'&&<><div style={{position:'absolute',inset:0,background:`radial-gradient(ellipse at 12% 18%,${themes[palette].accent}18,transparent 50%),radial-gradient(ellipse at 90% 65%,${themes[palette].teal}18,transparent 48%),radial-gradient(ellipse at 55% 110%,${themes[palette].warning}18,transparent 55%)`}}/>{themes[palette].decoration==='orbits'&&[0,1,2].map(i=><div key={i} style={{position:'absolute',width:320+i*85,height:320+i*85,borderRadius:'50%',border:`2px solid ${[themes[palette].accent,themes[palette].teal,themes[palette].warning][i]}18`,left:`${8+i*32}%`,top:`${12+i*22}%`,transform:`translate(${Math.sin(phase+i)*18}px,${Math.cos(phase+i)*12}px)`}}/>)}{themes[palette].decoration==='grid'&&kind!=='grid'&&<div style={{position:'absolute',inset:0,backgroundImage:`linear-gradient(${themes[palette].accent}0c 1px,transparent 1px),linear-gradient(90deg,${themes[palette].accent}0c 1px,transparent 1px)`,backgroundSize:'48px 48px'}}/>}</>}
+    {(kind === 'glow' || kind === 'grid') && <><div style={{position: 'absolute', inset: '-15%', background: `radial-gradient(ellipse at 78% 25%, ${themes[palette].accent}20, transparent 48%), radial-gradient(ellipse at 18% 80%, ${themes[palette].warning}12, transparent 43%)`, transform: `translate(${Math.sin(phase) * 25 + drift.x * .5}px, ${Math.cos(phase) * 16 + drift.y * .5}px) scale(${drift.scale})`}}/>
       <div style={{position: 'absolute', width: 700, height: 700, right: -180, top: -240, borderRadius: '50%', border: '1px solid #b7baff18', transform: `scale(${1 + Math.sin(phase) * 0.03})`}}/>
     </>}
-    {kind === 'aurora' && <div style={{position:'absolute',inset:'-20%',background:'radial-gradient(ellipse at 25% 35%,#537bee35,transparent 55%),radial-gradient(ellipse at 80% 65%,#a759ce30,transparent 55%)',filter:'blur(50px)',transform:`translate(${Math.sin(phase)*35}px,${Math.cos(phase)*22}px) rotate(${Math.sin(phase)*5}deg)`}}/>}
+    {kind === 'aurora' && <div style={{position:'absolute',inset:'-20%',background:'radial-gradient(ellipse at 25% 35%,#537bee35,transparent 55%),radial-gradient(ellipse at 80% 65%,#a759ce30,transparent 55%)',filter:'blur(50px)',transform:`translate(${Math.sin(phase)*35+drift.x*.6}px,${Math.cos(phase)*22+drift.y*.6}px) rotate(${Math.sin(phase)*5}deg) scale(${drift.scale})`}}/>}
     {kind === 'grain' && <><div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at top right,#80445216,transparent 70%)'}}/>{Array.from({length:180},(_,i)=><div key={i} style={{position:'absolute',left:`${(i*73.37)%100}%`,top:`${(i*47.13)%100}%`,width:2,height:2,background:'#c1cadb',opacity:0.025+(moving ? (Math.sin(phase+i)*0.5+0.5)*0.025 : 0.015)}}/>)}</>}
     {kind === 'spotlight' && <div style={{position:'absolute',inset:'-40%',background:'linear-gradient(125deg,transparent 35%,#a6c5ed18 43%,#b5a6ed0a 49%,transparent 56%)',transform:`translateX(${Math.sin(phase)*30}px)`,opacity:0.75+Math.sin(phase)*0.1}}/>}
     {kind === 'code' && <div style={{position:'absolute',inset:'10% -5%',transform:`rotate(-8deg) translateY(${Math.sin(phase)*12}px)`,color:'#94afd5',opacity:0.045,fontFamily:'monospace',fontSize:28,lineHeight:2.2,whiteSpace:'pre',filter:'blur(1px)'}}>{Array.from({length:12},(_,i)=>`// VISUAL TEXTURE ${i+1}    fn example() { let value = 1; }    <module />`).join('\n')}</div>}
