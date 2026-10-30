@@ -15,6 +15,8 @@
 
 ### 项目介绍视频
 
+[🌐 在线演示网站 / Live demo](https://shenjie002.github.io/shenying/)（只读介绍与预录视频，不提供在线制作服务）
+
 [▶ 查看申映项目介绍视频（MP4，约 7 MB）](https://github.com/shenjie002/shenying/releases/download/project-introduction-video/video-1793351473140.mp4) · [视频发布页 / Watch or download](https://github.com/shenjie002/shenying/releases/tag/project-introduction-video)
 
 通过实际演示了解文章、结构化剧本、人工审阅、配音和视频导出的制作流程。此视频是项目介绍，不代表所有能力组合均已验收，也不保证任意文章一键成片。

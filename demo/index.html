@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="申映 Shenying：从文章、待审分镜到配音与视频导出的本地工作台。观看项目介绍与制作流程。">
+  <meta name="color-scheme" content="dark">
+  <title>申映 Shenying · 让文章变成视频</title>
+  <style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#0b1020;color:#edf1ff;font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}a{color:inherit}main,header,footer{width:min(1120px,calc(100% - 40px));margin:auto}header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 0;border-bottom:1px solid #ffffff15}.brand{font-weight:750;font-size:21px;text-decoration:none}.brand span{font-size:13px;font-weight:400;letter-spacing:2px;color:#98a6c6;margin-left:10px}nav{display:flex;gap:22px;font-size:14px;color:#b2bed8}nav a{text-decoration:none}a:hover{color:#b3c6ff}a:focus-visible,video:focus-visible{outline:3px solid #a7baff;outline-offset:5px}.hero{padding:84px 0 48px;max-width:820px}.eyebrow{color:#9eafff;font-size:12px;letter-spacing:3px;font-weight:700}h1{font-size:clamp(38px,6.5vw,76px);letter-spacing:-2px;line-height:1.18;margin:22px 0}h1 span{color:#a9bcff}.lead{max-width:650px;color:#aebbd6;font-size:18px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-flex;padding:11px 20px;border-radius:10px;background:#b6c6ff;color:#111a36;text-decoration:none;font-weight:650}.button.secondary{color:#d5dffa;background:#ffffff08;border:1px solid #ffffff20}.button:hover{color:#111a36;background:#d0daff}.button.secondary:hover{color:white;background:#ffffff16}.video-shell{border:1px solid #ffffff20;border-radius:18px;background:#050814;overflow:hidden;box-shadow:0 24px 80px #0005}.video-label{display:flex;justify-content:space-between;gap:12px;padding:14px 20px;border-bottom:1px solid #ffffff15;color:#c4cfea;font-size:13px}.video-label span:last-child{color:#91a0bf}video{display:block;width:100%;max-height:72vh;background:#050814}.caption{font-size:13px;color:#94a2bf;margin:14px 0}.section{padding:64px 0 10px}h2{font-size:28px;letter-spacing:-.5px;margin:0 0 10px}.intro{color:#aebbd6;margin-top:0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}.card{padding:24px;background:#ffffff04;border:1px solid #ffffff12;border-radius:14px}.number{font-size:12px;letter-spacing:2px;color:#8fa6ff}.card h3{font-size:17px;margin:16px 0 8px}.card p{font-size:14px;color:#9eacc8;margin:0}.notice{margin:46px 0 56px;padding:24px 28px;border:1px solid #ffffff18;border-radius:14px;background:#11192c}.notice h2{font-size:18px}.notice p{color:#aebbd6;font-size:14px;margin:8px 0}.notice a{text-underline-offset:3px}footer{padding:24px 0 36px;border-top:1px solid #ffffff15;color:#8594b2;font-size:12px;display:flex;justify-content:space-between;gap:20px}footer a{white-space:nowrap}@media(max-width:760px){.hero{padding-top:52px}.grid{grid-template-columns:repeat(2,1fr)}.brand span{display:none}nav{gap:14px}.section{padding-top:44px}}@media(max-width:420px){main,header,footer{width:calc(100% - 28px)}.grid{grid-template-columns:1fr}.card{padding:20px}.video-label{font-size:12px;padding:12px}.notice{padding:20px}footer{flex-direction:column;gap:6px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="./">申映 <span>SHENYING</span></a>
+    <nav aria-label="主导航"><a href="#demo">观看演示</a><a href="https://github.com/shenjie002/shenying">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">LOCAL VIDEO STUDIO · 项目演示</div>
+      <h1>把知识讲清楚，<br><span>让文章变成视频。</span></h1>
+      <p class="lead">申映是一个本地运行的讲解视频制作工作台。从文章到结构化分镜，经过人工审阅、画面编辑与配音，再输出 Remotion 视频。</p>
+      <div class="actions"><a class="button" href="#demo">▶ 观看项目演示</a><a class="button secondary" href="https://github.com/shenjie002/shenying#readme">了解项目 ↗</a></div>
+    </section>
+    <section id="demo" aria-label="项目介绍视频">
+      <div class="video-shell">
+        <div class="video-label"><span>申映 / 项目介绍</span><span>实际流程演示 · MP4</span></div>
+        <video controls playsinline preload="metadata" aria-label="申映项目介绍视频"><source src="./introduction.mp4" type="video/mp4">当前浏览器无法播放此视频，请使用下方链接下载观看。</video>
+      </div>
+      <p class="caption">点击播放观看。<a href="./introduction.mp4">直接打开视频</a> · <a href="https://github.com/shenjie002/shenying/releases/tag/project-introduction-video">查看原始发布页</a>。样片仅展示项目流程，不代表所有能力组合均已验收。</p>
+    </section>
+    <section class="section" aria-labelledby="workflow">
+      <h2 id="workflow">从内容到成片，保留人的判断。</h2>
+      <p class="intro">不是无人审稿的一键生成，而是可以检查、修改和预览的创作流程。</p>
+      <div class="grid">
+        <article class="card"><span class="number">01 / CONTENT</span><h3>文章与制作要求</h3><p>输入文章，选择画幅、时长与讲解方式，为内容建立清晰的结构。</p></article>
+        <article class="card"><span class="number">02 / STORYBOARD</span><h3>生成待审编排</h3><p>AI 提交结构化剧本，由人检查事实、旁白、画面与动作安排。</p></article>
+        <article class="card"><span class="number">03 / EDIT</span><h3>编辑与预览</h3><p>调整字幕、对象、时间和镜头，在本地工作台中预览动画。</p></article>
+        <article class="card"><span class="number">04 / EXPORT</span><h3>配音与视频导出</h3><p>在本地准备音频与时间轴，检查草稿后通过 Remotion 渲染 MP4。</p></article>
+      </div>
+    </section>
+    <aside class="notice" aria-labelledby="boundary">
+      <h2 id="boundary">这是只读演示网站，不是在线制作服务。</h2>
+      <p>此页面仅展示介绍与预录视频，不连接本地 API，不接收文章，不提供 AI 生成、配音、保存或视频渲染。完整工作台需要在本地配置运行；模型与 TTS 的外部请求须另行确认。</p>
+      <p>源码公开不等于开源授权。除法律及 GitHub 平台条款允许的范围外，使用、复制、修改或分发本项目均须事先取得作者明确书面授权。详见 <a href="https://github.com/shenjie002/shenying/blob/main/LICENSE">LICENSE</a>；可通过 <a href="https://github.com/shenjie002/shenying/issues">仓库 Issue</a> 联系作者申请授权。</p>
+    </aside>
+  </main>
+  <footer><span>申映 Shenying · 把知识，讲清楚。</span><a href="https://github.com/shenjie002/shenying">项目源码与文档 ↗</a></footer>
+</body>
+</html>
